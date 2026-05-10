@@ -398,50 +398,84 @@ TEXT_SECONDARY = "#7f8c8d"
 TEXT_MUTED = "#34495e"
 
 def card(children, **kwargs):
-    style = {"backgroundColor": CARD_BG, "padding": "20px", "borderRadius": "10px", "marginBottom": "20px"}
+    style = {"backgroundColor": CARD_BG, "padding": "clamp(10px, 3vw, 20px)", "borderRadius": "10px", "marginBottom": "15px"}
     style.update(kwargs.get("style", {}))
     return html.Div(children, style=style)
 
 def stat_card(value, label, color="#3498db"):
-    return html.Div(style={"textAlign": "center", "backgroundColor": CARD_BG, "padding": "20px", "borderRadius": "10px", "minWidth": "140px"}, children=[
-        html.H2(str(value), style={"color": color, "margin": "0", "fontSize": "36px"}),
-        html.P(label, style={"color": TEXT_SECONDARY, "margin": "5px 0 0 0", "fontSize": "13px"}),
+    return html.Div(className="stat-card", style={"textAlign": "center", "backgroundColor": CARD_BG, "padding": "clamp(10px, 2vw, 20px)", "borderRadius": "10px", "flex": "1 1 120px", "minWidth": "0"}, children=[
+        html.H2(str(value), style={"color": color, "margin": "0", "fontSize": "clamp(20px, 4vw, 36px)", "wordBreak": "break-word"}),
+        html.P(label, style={"color": TEXT_SECONDARY, "margin": "5px 0 0 0", "fontSize": "clamp(10px, 1.5vw, 13px)"}),
+    ])
+
+def stat_row(cards):
+    return html.Div(className="stat-row", style={
+        "display": "flex", "justifyContent": "center", "gap": "clamp(8px, 2vw, 30px)",
+        "marginBottom": "20px", "flexWrap": "wrap",
+    }, children=cards)
+
+def chart_pair(left, right):
+    return html.Div(className="chart-pair", style={"display": "flex", "gap": "15px", "flexWrap": "wrap"}, children=[
+        html.Div(style={"flex": "1 1 350px", "minWidth": "0"}, children=[left]),
+        html.Div(style={"flex": "1 1 350px", "minWidth": "0"}, children=[right]),
     ])
 
 # ============================================================
 # LAYOUT
 # ============================================================
 
-app = dash.Dash(__name__, suppress_callback_exceptions=True)
+RESPONSIVE_CSS = """
+@media (max-width: 768px) {
+    .dash-table-container { font-size: 11px !important; }
+    .dash-table-container td, .dash-table-container th { padding: 5px !important; }
+    pre { font-size: 10px !important; white-space: pre-wrap !important; word-break: break-word !important; }
+    .tab-content { padding: 10px !important; }
+}
+@media (max-width: 480px) {
+    .dash-table-container { font-size: 10px !important; }
+}
+.js-plotly-plot .plotly .main-svg { width: 100% !important; }
+"""
+
+app = dash.Dash(
+    __name__,
+    suppress_callback_exceptions=True,
+    meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1.0, maximum-scale=5.0"}],
+)
 app.title = "Precision Oncology Pipeline"
+app.index_string = '''<!DOCTYPE html>
+<html>
+<head>
+{%metas%}<title>{%title%}</title>{%favicon%}{%css%}
+<style>''' + RESPONSIVE_CSS + '''</style>
+</head>
+<body>{%app_entry%}<footer>{%config%}{%scripts%}{%renderer%}</footer></body>
+</html>'''
 
 verdict = "PERFECT MATCH" if concordance == 100 else "EXCELLENT" if concordance >= 90 else "GOOD"
 verdict_color = "#2ecc71" if concordance >= 90 else "#f39c12"
 
-app.layout = html.Div(style={"backgroundColor": DARK_BG, "minHeight": "100vh", "fontFamily": "monospace"}, children=[
-    # Header
-    html.Div(style={"padding": "20px 20px 0 20px"}, children=[
-        html.H1("Precision Oncology Pipeline", style={"color": TEXT_PRIMARY, "textAlign": "center", "marginBottom": "0"}),
+TAB_STYLE = {"backgroundColor": CARD_BG, "color": TEXT_SECONDARY, "border": "1px solid #2c3e50",
+             "fontFamily": "monospace", "padding": "8px 12px", "fontSize": "clamp(11px, 2vw, 14px)"}
+TAB_SELECTED = {"backgroundColor": "#0f3460", "color": TEXT_PRIMARY, "border": "1px solid #3498db",
+                "fontFamily": "monospace", "padding": "8px 12px", "fontSize": "clamp(11px, 2vw, 14px)"}
+
+app.layout = html.Div(style={"backgroundColor": DARK_BG, "minHeight": "100vh", "fontFamily": "monospace", "overflowX": "hidden"}, children=[
+    html.Div(style={"padding": "clamp(10px, 3vw, 20px) clamp(10px, 3vw, 20px) 0"}, children=[
+        html.H1("Precision Oncology Pipeline", style={"color": TEXT_PRIMARY, "textAlign": "center", "marginBottom": "0", "fontSize": "clamp(18px, 4vw, 32px)"}),
         html.P("End-to-End Test Pass - Sid Sijbrandij's Osteosarcoma Data",
-               style={"color": TEXT_SECONDARY, "textAlign": "center", "marginBottom": "20px"}),
+               style={"color": TEXT_SECONDARY, "textAlign": "center", "marginBottom": "15px", "fontSize": "clamp(11px, 2vw, 14px)"}),
     ]),
 
-    # Tabs
-    dcc.Tabs(id="tabs", value="validation", style={"marginLeft": "20px", "marginRight": "20px"}, children=[
-        dcc.Tab(label="STAR Validation", value="validation",
-                style={"backgroundColor": CARD_BG, "color": TEXT_SECONDARY, "border": "1px solid #2c3e50", "fontFamily": "monospace"},
-                selected_style={"backgroundColor": "#0f3460", "color": TEXT_PRIMARY, "border": "1px solid #3498db", "fontFamily": "monospace"}),
-        dcc.Tab(label="Variant Explorer", value="variants",
-                style={"backgroundColor": CARD_BG, "color": TEXT_SECONDARY, "border": "1px solid #2c3e50", "fontFamily": "monospace"},
-                selected_style={"backgroundColor": "#0f3460", "color": TEXT_PRIMARY, "border": "1px solid #3498db", "fontFamily": "monospace"}),
-        dcc.Tab(label="Methodology & Reproducibility", value="methodology",
-                style={"backgroundColor": CARD_BG, "color": TEXT_SECONDARY, "border": "1px solid #2c3e50", "fontFamily": "monospace"},
-                selected_style={"backgroundColor": "#0f3460", "color": TEXT_PRIMARY, "border": "1px solid #3498db", "fontFamily": "monospace"}),
+    dcc.Tabs(id="tabs", value="validation", style={"margin": "0 clamp(5px, 2vw, 20px)"}, children=[
+        dcc.Tab(label="STAR", value="validation", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Variants", value="variants", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Methods", value="methodology", style=TAB_STYLE, selected_style=TAB_SELECTED),
     ]),
 
-    html.Div(id="tab-content", style={"padding": "20px"}),
+    html.Div(id="tab-content", className="tab-content", style={"padding": "clamp(8px, 2vw, 20px)"}),
 
-    html.P("Built for a father's fight.", style={"color": TEXT_MUTED, "textAlign": "center", "padding": "20px", "fontSize": "12px"}),
+    html.P("Built for a father's fight.", style={"color": TEXT_MUTED, "textAlign": "center", "padding": "15px", "fontSize": "12px"}),
 ])
 
 
@@ -457,79 +491,86 @@ def render_tab(tab):
 
 def render_validation():
     return html.Div([
-        # Summary
-        html.Div(style={"display": "flex", "justifyContent": "center", "gap": "40px", "marginBottom": "30px", "flexWrap": "wrap"}, children=[
+        stat_row([
             stat_card(f"{concordance:.0f}%", "Concordance", verdict_color),
             stat_card(verdict, "Verdict", verdict_color),
-            stat_card(f"{star_matches}/{star_total}", "Metrics Matched", "#3498db"),
-            stat_card("74.3M", "Input Reads", "#9b59b6"),
-            stat_card("95.23%", "Unique Mapping", "#2ecc71"),
+            stat_card(f"{star_matches}/{star_total}", "Matched", "#3498db"),
+            stat_card("74.3M", "Reads", "#9b59b6"),
+            stat_card("95.23%", "Unique Map", "#2ecc71"),
         ]),
 
-        dcc.Graph(figure=fig_gauge),
+        dcc.Graph(figure=fig_gauge, config={"responsive": True}),
 
-        html.H3("Read Fate Tie-Out", style={"color": TEXT_PRIMARY, "marginTop": "30px"}),
-        dcc.Graph(figure=fig_read_fate),
+        html.H3("Read Fate Tie-Out", style={"color": TEXT_PRIMARY, "marginTop": "20px", "fontSize": "clamp(16px, 3vw, 24px)"}),
+        dcc.Graph(figure=fig_read_fate, config={"responsive": True}),
 
         card([
-            html.H3("What This Proves", style={"color": TEXT_PRIMARY, "marginTop": "0"}),
+            html.H3("What This Proves", style=METH_H2),
             html.P("Our custom STAR pipeline running on Terra (STAR 2.7.11b, GRCh38 + GENCODE v47) produced "
                    "identical results to Sid's team's reprocessed alignment of the same BostonGene T0 RNA-seq sample (BG003082). "
                    "Every metric matches exactly: same read count, same mapping rate, same splice junctions, same mismatch rate.",
-                   style={"color": "#bdc3c7", "lineHeight": "1.8"}),
+                   style=METH_P),
             html.P("This validates three things: (1) data transferred without corruption, "
                    "(2) our WDL workflow and Docker configuration are correct, "
                    "(3) the GCS-to-Terra infrastructure works end-to-end.",
-                   style={"color": TEXT_SECONDARY, "lineHeight": "1.8"}),
+                   style=METH_P2),
         ]),
 
-        html.H3("Metric-by-Metric Comparison", style={"color": TEXT_PRIMARY}),
-        dash_table.DataTable(
-            data=star_table,
-            columns=[{"name": c, "id": c} for c in ["Metric", "Our Pipeline", "Sid's Pipeline", "Status"]],
-            style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
-            style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50", "padding": "10px", "fontFamily": "monospace"},
-            style_data_conditional=[
-                {"if": {"filter_query": '{Status} = "EXACT MATCH"', "column_id": "Status"}, "color": "#2ecc71", "fontWeight": "bold"},
-                {"if": {"filter_query": '{Status} contains "DIFF"', "column_id": "Status"}, "color": "#e74c3c", "fontWeight": "bold"},
-            ],
-        ),
+        html.H3("Metric-by-Metric Comparison", style={"color": TEXT_PRIMARY, "fontSize": "clamp(16px, 3vw, 24px)"}),
+        html.Div(style={"overflowX": "auto"}, children=[
+            dash_table.DataTable(
+                data=star_table,
+                columns=[{"name": c, "id": c} for c in ["Metric", "Our Pipeline", "Sid's Pipeline", "Status"]],
+                style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                             "padding": "8px", "fontFamily": "monospace", "fontSize": "clamp(10px, 1.5vw, 14px)",
+                             "minWidth": "60px", "whiteSpace": "normal"},
+                style_data_conditional=[
+                    {"if": {"filter_query": '{Status} = "EXACT MATCH"', "column_id": "Status"}, "color": "#2ecc71", "fontWeight": "bold"},
+                    {"if": {"filter_query": '{Status} contains "DIFF"', "column_id": "Status"}, "color": "#e74c3c", "fontWeight": "bold"},
+                ],
+            ),
+        ]),
 
-        dcc.Graph(figure=fig_star_bars, style={"marginTop": "30px"}),
-        dcc.Graph(figure=fig_pies),
+        dcc.Graph(figure=fig_star_bars, style={"marginTop": "20px"}, config={"responsive": True}),
+        dcc.Graph(figure=fig_pies, config={"responsive": True}),
 
-        # Gene Expression Validation
-        html.H2("Gene Expression Validation", style={"color": TEXT_PRIMARY, "marginTop": "40px", "borderTop": "2px solid #2c3e50", "paddingTop": "30px"}),
+        html.H2("Gene Expression Validation", style={"color": TEXT_PRIMARY, "marginTop": "30px", "borderTop": "2px solid #2c3e50",
+                 "paddingTop": "20px", "fontSize": "clamp(16px, 3.5vw, 28px)"}),
     ] + (
         [
-            html.Div(style={"display": "flex", "justifyContent": "center", "gap": "30px", "marginBottom": "30px", "flexWrap": "wrap"}, children=[
+            stat_row([
                 stat_card(f"{gc['rho']:.4f}", "Spearman Rho", "#2ecc71"),
-                stat_card(f"{gc['exact_pct']:.0f}%", "Exact Matches", "#3498db"),
+                stat_card(f"{gc['exact_pct']:.0f}%", "Exact Match", "#3498db"),
                 stat_card(f"{gc['shared']:,}", "Shared Genes", "#9b59b6"),
-                stat_card(f"{gc['genes_ours'] - gc['genes_sids']:,}", "Annotation Delta", "#f39c12"),
+                stat_card(f"{gc['genes_ours'] - gc['genes_sids']:,}", "Annot. Delta", "#f39c12"),
             ]),
 
             card([
-                html.H3("What This Means", style={"color": TEXT_PRIMARY, "marginTop": "0"}),
+                html.H3("What This Means", style={"color": TEXT_PRIMARY, "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
                 html.P("Our STAR rerun on Terra produced gene-level read counts (ReadsPerGene.out.tab) that we compare against "
                        "Sid's team's counts from the same sample. The Spearman correlation of 0.987 is excellent.",
-                       style={"color": "#bdc3c7", "lineHeight": "1.8"}),
+                       style={"color": "#bdc3c7", "lineHeight": "1.8", "fontSize": "clamp(12px, 2vw, 15px)"}),
                 html.P("The 10% of genes that differ are explained by annotation version: our index uses GENCODE v47 (78,724 genes) "
                        "while Sid's used an older GENCODE release (60,660 genes). Different gene models cause reads in overlapping "
                        "regions to be assigned differently. The differences are small (a few counts) and concentrated in low-expression genes.",
-                       style={"color": TEXT_SECONDARY, "lineHeight": "1.8"}),
+                       style={"color": TEXT_SECONDARY, "lineHeight": "1.8", "fontSize": "clamp(12px, 2vw, 15px)"}),
                 html.P("This is expected biology, not a pipeline error. The highly-expressed genes that matter for target identification "
                        "show near-identical counts between pipelines.",
-                       style={"color": TEXT_SECONDARY, "fontStyle": "italic", "lineHeight": "1.8"}),
+                       style={"color": TEXT_SECONDARY, "fontStyle": "italic", "lineHeight": "1.8", "fontSize": "clamp(12px, 2vw, 15px)"}),
             ]),
 
-            html.H3("Gene Count Comparison", style={"color": TEXT_PRIMARY}),
-            dash_table.DataTable(
-                data=gc_table,
-                columns=[{"name": "Metric", "id": "Metric"}, {"name": "Value", "id": "Value"}],
-                style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
-                style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50", "padding": "10px", "fontFamily": "monospace"},
-            ),
+            html.H3("Gene Count Comparison", style={"color": TEXT_PRIMARY, "fontSize": "clamp(16px, 3vw, 24px)"}),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=gc_table,
+                    columns=[{"name": "Metric", "id": "Metric"}, {"name": "Value", "id": "Value"}],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "8px", "fontFamily": "monospace", "fontSize": "clamp(10px, 1.5vw, 14px)",
+                                 "whiteSpace": "normal"},
+                ),
+            ]),
 
             dcc.Graph(figure=fig_gene_scatter, style={"marginTop": "20px"}),
             dcc.Graph(figure=fig_gene_top20),
@@ -542,68 +583,77 @@ def render_validation():
 
 def render_variants():
     return html.Div([
-        # Summary cards
-        html.Div(style={"display": "flex", "justifyContent": "center", "gap": "20px", "marginBottom": "30px", "flexWrap": "wrap"}, children=[
+        stat_row([
             stat_card(f"{len(variants):,}", "Total Variants", "#3498db"),
-            stat_card(f"{len(pass_variants):,}", "PASS Variants", "#2ecc71"),
-            stat_card(str(len(high_impact)), "HIGH Impact", "#e74c3c"),
-            stat_card(str(len(moderate_impact)), "MODERATE Impact", "#f39c12"),
-            stat_card(str(len(high_mod_genes)), "Affected Genes", "#9b59b6"),
+            stat_card(f"{len(pass_variants):,}", "PASS", "#2ecc71"),
+            stat_card(str(len(high_impact)), "HIGH", "#e74c3c"),
+            stat_card(str(len(moderate_impact)), "MODERATE", "#f39c12"),
+            stat_card(str(len(high_mod_genes)), "Genes", "#9b59b6"),
         ]),
 
-        # Known drivers
         card([
-            html.H3("Known Osteosarcoma Drivers", style={"color": TEXT_PRIMARY, "marginTop": "0"}),
-            html.Div(style={"display": "flex", "gap": "10px", "flexWrap": "wrap"}, children=[
+            html.H3("Known Osteosarcoma Drivers", style={"color": TEXT_PRIMARY, "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.Div(style={"display": "flex", "gap": "8px", "flexWrap": "wrap"}, children=[
                 html.Span(gene, style={
-                    "padding": "5px 15px", "borderRadius": "20px", "fontSize": "14px", "fontWeight": "bold",
+                    "padding": "4px 12px", "borderRadius": "20px", "fontSize": "clamp(11px, 1.5vw, 14px)", "fontWeight": "bold",
                     "backgroundColor": "#2ecc71" if gene in found_drivers else "#2c3e50",
                     "color": "white" if gene in found_drivers else TEXT_SECONDARY,
                 }) for gene in sorted(known_drivers)
             ]),
             html.P(f"Found {len(found_drivers)}/{len(known_drivers)} known drivers with HIGH/MODERATE impact variants",
-                   style={"color": TEXT_SECONDARY, "marginTop": "10px", "marginBottom": "0"}),
+                   style={"color": TEXT_SECONDARY, "marginTop": "10px", "marginBottom": "0", "fontSize": "clamp(11px, 1.5vw, 14px)"}),
         ]),
 
-        dcc.Graph(figure=fig_genome),
+        dcc.Graph(figure=fig_genome, config={"responsive": True}),
 
-        html.Div(style={"display": "flex", "gap": "20px", "flexWrap": "wrap"}, children=[
-            html.Div(style={"flex": "1", "minWidth": "400px"}, children=[dcc.Graph(figure=fig_chrom)]),
-            html.Div(style={"flex": "1", "minWidth": "400px"}, children=[dcc.Graph(figure=fig_spectrum)]),
-        ]),
-        html.Div(style={"display": "flex", "gap": "20px", "flexWrap": "wrap"}, children=[
-            html.Div(style={"flex": "1", "minWidth": "400px"}, children=[dcc.Graph(figure=fig_impact)]),
-            html.Div(style={"flex": "1", "minWidth": "400px"}, children=[dcc.Graph(figure=fig_conseq)]),
-        ]),
-
-        dcc.Graph(figure=fig_genes),
-
-        html.H3("HIGH & MODERATE Impact Variants", style={"color": TEXT_PRIMARY, "marginTop": "30px"}),
-        dash_table.DataTable(
-            data=high_table[:200],
-            columns=[{"name": c, "id": c} for c in ["Gene", "Location", "Change", "Protein", "Consequence", "Impact", "SIFT", "PolyPhen"]],
-            style_table={"overflowX": "auto", "maxHeight": "500px", "overflowY": "auto"},
-            style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50", "position": "sticky", "top": 0},
-            style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50", "padding": "8px", "fontFamily": "monospace", "fontSize": "12px"},
-            style_data_conditional=[
-                {"if": {"filter_query": '{Impact} = "HIGH"', "column_id": "Impact"}, "color": "#e74c3c", "fontWeight": "bold"},
-                {"if": {"filter_query": '{Impact} = "MODERATE"', "column_id": "Impact"}, "color": "#f39c12"},
-            ],
-            filter_action="native",
-            sort_action="native",
-            page_size=50,
+        chart_pair(
+            dcc.Graph(figure=fig_chrom, config={"responsive": True}),
+            dcc.Graph(figure=fig_spectrum, config={"responsive": True}),
         ),
+        chart_pair(
+            dcc.Graph(figure=fig_impact, config={"responsive": True}),
+            dcc.Graph(figure=fig_conseq, config={"responsive": True}),
+        ),
+
+        dcc.Graph(figure=fig_genes, config={"responsive": True}),
+
+        html.H3("HIGH & MODERATE Impact Variants", style={"color": TEXT_PRIMARY, "marginTop": "20px", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+        html.Div(style={"overflowX": "auto"}, children=[
+            dash_table.DataTable(
+                data=high_table[:200],
+                columns=[{"name": c, "id": c} for c in ["Gene", "Location", "Change", "Protein", "Consequence", "Impact", "SIFT", "PolyPhen"]],
+                style_table={"overflowX": "auto", "maxHeight": "500px", "overflowY": "auto"},
+                style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50", "position": "sticky", "top": 0},
+                style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                             "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)",
+                             "minWidth": "50px", "whiteSpace": "normal"},
+                style_data_conditional=[
+                    {"if": {"filter_query": '{Impact} = "HIGH"', "column_id": "Impact"}, "color": "#e74c3c", "fontWeight": "bold"},
+                    {"if": {"filter_query": '{Impact} = "MODERATE"', "column_id": "Impact"}, "color": "#f39c12"},
+                ],
+                filter_action="native",
+                sort_action="native",
+                page_size=50,
+            ),
+        ]),
     ])
 
 
+METH_H2 = {"color": TEXT_PRIMARY, "marginTop": "0", "fontSize": "clamp(16px, 3vw, 24px)"}
+METH_H4 = lambda c: {"color": c, "fontSize": "clamp(13px, 2vw, 18px)"}
+METH_P = {"color": "#bdc3c7", "lineHeight": "1.8", "fontSize": "clamp(12px, 2vw, 15px)"}
+METH_P2 = {"color": TEXT_SECONDARY, "lineHeight": "1.8", "fontSize": "clamp(12px, 2vw, 15px)"}
+METH_LI = {"color": "#bdc3c7", "lineHeight": "2.0", "fontSize": "clamp(12px, 2vw, 15px)"}
+METH_TD_L = {"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)"}
+METH_TD_R = {"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)", "wordBreak": "break-word"}
+
 def render_methodology():
     return html.Div([
-        # Pipeline overview
         card([
-            html.H2("Pipeline Architecture", style={"color": TEXT_PRIMARY, "marginTop": "0"}),
+            html.H2("Pipeline Architecture", style=METH_H2),
             html.P("This pipeline processes raw genomic data through two independent arms (DNA and RNA), "
                    "then cross-validates findings to identify high-confidence therapeutic targets.",
-                   style={"color": "#bdc3c7", "lineHeight": "1.8"}),
+                   style=METH_P),
             html.Pre("""
     BIOPSY TISSUE
         |
@@ -635,64 +685,64 @@ def render_methodology():
 
         # STAR methodology
         card([
-            html.H2("STAR Alignment - Methodology", style={"color": TEXT_PRIMARY, "marginTop": "0"}),
+            html.H2("STAR Alignment - Methodology", style=METH_H2),
 
-            html.H4("What STAR Does", style={"color": "#3498db"}),
+            html.H4("What STAR Does", style=METH_H4("#3498db")),
             html.P("STAR (Spliced Transcripts Alignment to a Reference) maps RNA-seq reads to the human reference genome. "
                    "Unlike DNA alignment, RNA reads can span exon-exon junctions (splice sites), so STAR uses a two-pass approach: "
                    "first pass discovers novel splice junctions, second pass uses those junctions for more accurate mapping.",
-                   style={"color": "#bdc3c7", "lineHeight": "1.8"}),
+                   style=METH_P),
 
-            html.H4("Our Configuration", style={"color": "#3498db"}),
+            html.H4("Our Configuration", style=METH_H4("#3498db")),
             html.Table(style={"width": "100%", "borderCollapse": "collapse"}, children=[
-                html.Tr([html.Td("STAR Version", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("2.7.11b", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Reference Genome", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("GRCh38 (hg38) - no ALT, no HLA, no decoy contigs", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Gene Annotation", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("GENCODE v47 (comprehensive)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Protocol", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("GTEx / TOPMed RNA-seq pipeline parameters", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("sjdbOverhang", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("75 (matching 2x76bp paired-end reads)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Quantification", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("TranscriptomeSAM + GeneCounts (both STAR-native and RSEM-compatible)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Chimeric Detection", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("Enabled (chimSegmentMin=15) for fusion gene detection", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Docker Image", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("quay.io/biocontainers/star:2.7.11b--h5ca1c30_8", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Compute Platform", style={"color": TEXT_SECONDARY, "padding": "8px"}),
-                         html.Td("Google Cloud via Terra (Broad Institute) - 8 CPU, 64 GB RAM, preemptible", style={"color": TEXT_PRIMARY, "padding": "8px"})]),
+                html.Tr([html.Td("STAR Version", style=METH_TD_L),
+                         html.Td("2.7.11b", style=METH_TD_R)]),
+                html.Tr([html.Td("Reference Genome", style=METH_TD_L),
+                         html.Td("GRCh38 (hg38) - no ALT, no HLA, no decoy contigs", style=METH_TD_R)]),
+                html.Tr([html.Td("Gene Annotation", style=METH_TD_L),
+                         html.Td("GENCODE v47 (comprehensive)", style=METH_TD_R)]),
+                html.Tr([html.Td("Protocol", style=METH_TD_L),
+                         html.Td("GTEx / TOPMed RNA-seq pipeline parameters", style=METH_TD_R)]),
+                html.Tr([html.Td("sjdbOverhang", style=METH_TD_L),
+                         html.Td("75 (matching 2x76bp paired-end reads)", style=METH_TD_R)]),
+                html.Tr([html.Td("Quantification", style=METH_TD_L),
+                         html.Td("TranscriptomeSAM + GeneCounts (both STAR-native and RSEM-compatible)", style=METH_TD_R)]),
+                html.Tr([html.Td("Chimeric Detection", style=METH_TD_L),
+                         html.Td("Enabled (chimSegmentMin=15) for fusion gene detection", style=METH_TD_R)]),
+                html.Tr([html.Td("Docker Image", style=METH_TD_L),
+                         html.Td("quay.io/biocontainers/star:2.7.11b--h5ca1c30_8", style=METH_TD_R)]),
+                html.Tr([html.Td("Compute Platform", style={**METH_TD_L, "borderBottom": "none"}),
+                         html.Td("Google Cloud via Terra (Broad Institute) - 8 CPU, 64 GB RAM, preemptible", style={**METH_TD_R, "borderBottom": "none"})]),
             ]),
 
-            html.H4("Why Results Are Identical to Sid's", style={"color": "#3498db", "marginTop": "20px"}),
+            html.H4("Why Results Are Identical to Sid's", style={**METH_H4("#3498db"), "marginTop": "20px"}),
             html.P("STAR alignment is deterministic: given identical inputs (FASTQ files, genome index, parameters), "
                    "it produces identical outputs every time. There is no random sampling or stochastic element in the alignment step. "
-                   "Our results match Sid's because we used:", style={"color": "#bdc3c7", "lineHeight": "1.8"}),
-            html.Ul(style={"color": "#bdc3c7", "lineHeight": "2.0"}, children=[
+                   "Our results match Sid's because we used:", style=METH_P),
+            html.Ul(style=METH_LI, children=[
                 html.Li("The exact same FASTQ files (BG003082, BostonGene T0, transferred from Sid's B2 bucket)"),
                 html.Li("The exact same STAR genome index (built by Francois Aguet, GTEx pipeline maintainer)"),
                 html.Li("The exact same STAR version (2.7.11b)"),
                 html.Li("The same alignment parameters (GTEx/TOPMed protocol)"),
             ]),
             html.P("This is expected behavior, not luck. The match validates our data integrity and infrastructure, not our analytical skill.",
-                   style={"color": TEXT_SECONDARY, "fontStyle": "italic", "lineHeight": "1.8"}),
+                   style={**METH_P2, "fontStyle": "italic"}),
         ]),
 
         # Mutect2 methodology
         card([
-            html.H2("Mutect2 Variant Calling - Methodology", style={"color": TEXT_PRIMARY, "marginTop": "0"}),
+            html.H2("Mutect2 Variant Calling - Methodology", style=METH_H2),
 
-            html.H4("What Mutect2 Does", style={"color": "#e74c3c"}),
+            html.H4("What Mutect2 Does", style=METH_H4("#e74c3c")),
             html.P("Mutect2 is GATK's somatic variant caller. It compares tumor DNA against matched normal (blood) DNA "
                    "to find mutations that exist only in the tumor. It uses a Bayesian model to distinguish real somatic mutations "
                    "from sequencing errors, germline variants, and contamination artifacts.",
-                   style={"color": "#bdc3c7", "lineHeight": "1.8"}),
+                   style=METH_P),
 
-            html.H4("Why Mutect2 Results May Differ From Sid's", style={"color": "#e74c3c"}),
+            html.H4("Why Mutect2 Results May Differ From Sid's", style=METH_H4("#e74c3c")),
             html.P("Unlike STAR, Mutect2 has stochastic elements and version-dependent behavior:",
-                   style={"color": "#bdc3c7", "lineHeight": "1.8"}),
-            html.Ul(style={"color": "#bdc3c7", "lineHeight": "2.0"}, children=[
+                   style=METH_P),
+            html.Ul(style=METH_LI, children=[
                 html.Li([html.Strong("Different GATK versions: "), "We use GATK 4.5.0.0. Sid's team used Sarek 3.5.1 (which bundles a different GATK). "
                          "Each version has refined heuristics for active region detection, read assembly, and filtering."]),
                 html.Li([html.Strong("Random downsampling: "), "Mutect2 downsamples high-coverage regions. The random seed may differ between runs."]),
@@ -701,39 +751,39 @@ def render_methodology():
                 html.Li([html.Strong("Scatter intervals: "), "We scatter across 24 shards. Shard boundaries can affect variant calls at the edges."]),
             ]),
 
-            html.H4("Expected Concordance", style={"color": "#e74c3c"}),
+            html.H4("Expected Concordance", style=METH_H4("#e74c3c")),
             html.P("For the same tumor-normal pair processed with different GATK versions and parameters, "
                    "published benchmarks show 85-95% concordance for high-confidence (PASS) variants. "
                    "Variants unique to one caller are typically low-confidence or near the detection threshold. "
                    "HIGH impact variants in known cancer genes should show >95% concordance.",
-                   style={"color": "#bdc3c7", "lineHeight": "1.8"}),
+                   style=METH_P),
 
-            html.H4("Our Configuration", style={"color": "#e74c3c"}),
+            html.H4("Our Configuration", style=METH_H4("#e74c3c")),
             html.Table(style={"width": "100%", "borderCollapse": "collapse"}, children=[
-                html.Tr([html.Td("GATK Version", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("4.5.0.0 (broadinstitute/gatk:4.5.0.0)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Reference", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("GRCh38 (gs://gcp-public-data--broad-references/hg38/v0/)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Panel of Normals", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("1000 Genomes PoN (gs://gatk-best-practices/somatic-hg38/)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("gnomAD", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("af-only-gnomad.hg38.vcf.gz", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Contamination Check", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("ExAC common variants (small_exac_common_3.hg38)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Scatter Count", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("24 parallel shards", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Orientation Bias Filter", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("Enabled (catches FFPE/oxidation artifacts)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Preemptible VMs", style={"color": TEXT_SECONDARY, "padding": "8px"}),
-                         html.Td("Yes (2 attempts before falling back to on-demand)", style={"color": TEXT_PRIMARY, "padding": "8px"})]),
+                html.Tr([html.Td("GATK Version", style=METH_TD_L),
+                         html.Td("4.5.0.0 (broadinstitute/gatk:4.5.0.0)", style=METH_TD_R)]),
+                html.Tr([html.Td("Reference", style=METH_TD_L),
+                         html.Td("GRCh38 (gs://gcp-public-data--broad-references/hg38/v0/)", style=METH_TD_R)]),
+                html.Tr([html.Td("Panel of Normals", style=METH_TD_L),
+                         html.Td("1000 Genomes PoN (gs://gatk-best-practices/somatic-hg38/)", style=METH_TD_R)]),
+                html.Tr([html.Td("gnomAD", style=METH_TD_L),
+                         html.Td("af-only-gnomad.hg38.vcf.gz", style=METH_TD_R)]),
+                html.Tr([html.Td("Contamination Check", style=METH_TD_L),
+                         html.Td("ExAC common variants (small_exac_common_3.hg38)", style=METH_TD_R)]),
+                html.Tr([html.Td("Scatter Count", style=METH_TD_L),
+                         html.Td("24 parallel shards", style=METH_TD_R)]),
+                html.Tr([html.Td("Orientation Bias Filter", style=METH_TD_L),
+                         html.Td("Enabled (catches FFPE/oxidation artifacts)", style=METH_TD_R)]),
+                html.Tr([html.Td("Preemptible VMs", style={**METH_TD_L, "borderBottom": "none"}),
+                         html.Td("Yes (2 attempts before falling back to on-demand)", style={**METH_TD_R, "borderBottom": "none"})]),
             ]),
         ]),
 
         # Variant annotation
         card([
-            html.H2("Variant Annotation - How Mutations Are Classified", style={"color": TEXT_PRIMARY, "marginTop": "0"}),
+            html.H2("Variant Annotation - How Mutations Are Classified", style=METH_H2),
 
-            html.H4("Impact Levels (Ensembl VEP)", style={"color": "#9b59b6"}),
+            html.H4("Impact Levels (Ensembl VEP)", style=METH_H4("#9b59b6")),
             html.Table(style={"width": "100%", "borderCollapse": "collapse"}, children=[
                 html.Tr([html.Td("HIGH", style={"color": "#e74c3c", "padding": "10px", "borderBottom": "1px solid #2c3e50", "fontWeight": "bold"}),
                          html.Td("Gene is broken. Protein is truncated, frameshifted, or splice site is destroyed. "
@@ -752,8 +802,8 @@ def render_methodology():
                                  style={"color": "#bdc3c7", "padding": "10px"})]),
             ]),
 
-            html.H4("Pathogenicity Predictors", style={"color": "#9b59b6", "marginTop": "20px"}),
-            html.Ul(style={"color": "#bdc3c7", "lineHeight": "2.0"}, children=[
+            html.H4("Pathogenicity Predictors", style={**METH_H4("#9b59b6"), "marginTop": "20px"}),
+            html.Ul(style=METH_LI, children=[
                 html.Li([html.Strong("SIFT: "), "Predicts whether an amino acid substitution affects protein function based on sequence conservation. "
                          "Score < 0.05 = 'deleterious'. Based on evolutionary conservation across species."]),
                 html.Li([html.Strong("PolyPhen-2: "), "Predicts damage using protein structure and conservation. "
@@ -766,10 +816,10 @@ def render_methodology():
 
         # Reproducibility
         card([
-            html.H2("Reproducibility & Limitations", style={"color": TEXT_PRIMARY, "marginTop": "0"}),
+            html.H2("Reproducibility & Limitations", style=METH_H2),
 
-            html.H4("What This Test Pass Proves", style={"color": "#2ecc71"}),
-            html.Ul(style={"color": "#bdc3c7", "lineHeight": "2.0"}, children=[
+            html.H4("What This Test Pass Proves", style=METH_H4("#2ecc71")),
+            html.Ul(style=METH_LI, children=[
                 html.Li("Data can be transferred from external sources to our GCS bucket without corruption"),
                 html.Li("Our Terra workspace can execute standard bioinformatics workflows (Mutect2, STAR)"),
                 html.Li("STAR alignment produces identical results to Sid's team when given identical inputs"),
@@ -777,8 +827,8 @@ def render_methodology():
                 html.Li("The infrastructure is ready to process real patient data"),
             ]),
 
-            html.H4("What This Test Pass Does NOT Prove", style={"color": "#e74c3c"}),
-            html.Ul(style={"color": "#bdc3c7", "lineHeight": "2.0"}, children=[
+            html.H4("What This Test Pass Does NOT Prove", style=METH_H4("#e74c3c")),
+            html.Ul(style=METH_LI, children=[
                 html.Li("That our Mutect2 calls will match Sid's exactly (different GATK versions, expected ~85-95% concordance)"),
                 html.Li("That the pipeline will work on prostate cancer data (different biology, but same engineering)"),
                 html.Li("That the treatment recommendations are medically sound (requires oncologist review)"),
@@ -786,8 +836,8 @@ def render_methodology():
                 html.Li("That the pipeline handles edge cases, corrupted files, or unusual tumor profiles"),
             ]),
 
-            html.H4("How to Poke Holes in This", style={"color": "#f39c12"}),
-            html.Ul(style={"color": "#bdc3c7", "lineHeight": "2.0"}, children=[
+            html.H4("How to Poke Holes in This", style=METH_H4("#f39c12")),
+            html.Ul(style=METH_LI, children=[
                 html.Li([html.Strong("'The STAR match is trivial.' "), "Correct. STAR is deterministic -- same inputs always produce same outputs. "
                          "The real test is Mutect2, where version differences cause genuine variation."]),
                 html.Li([html.Strong("'You only tested WES, not WGS.' "), "The variant explorer shows WES (T0) data. Mutect2 is currently running on WGS (T1). "
@@ -803,18 +853,18 @@ def render_methodology():
                          "We need to compare our target list against Sid's published findings (TP53, B7H3, FAP, etc.) after Mutect2 completes."]),
             ]),
 
-            html.H4("Data Provenance", style={"color": "#1abc9c"}),
+            html.H4("Data Provenance", style=METH_H4("#1abc9c")),
             html.Table(style={"width": "100%", "borderCollapse": "collapse"}, children=[
-                html.Tr([html.Td("Source", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("osteosarc.com (Sid Sijbrandij's open-sourced osteosarcoma data)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Storage", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("Backblaze B2 (b2://osteosarc-data) -> GCS (gs://precision-oncology-test)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Total Data", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("362.3 GB transferred (WGS BAMs, RNA-seq FASTQs, scRNA-seq, VCFs, references)", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Compute", style={"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"}),
-                         html.Td("Terra (Broad Institute) on Google Cloud, preemptible VMs", style={"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50"})]),
-                html.Tr([html.Td("Cost", style={"color": TEXT_SECONDARY, "padding": "8px"}),
-                         html.Td("~$15-20 total (storage + compute + data transfer)", style={"color": TEXT_PRIMARY, "padding": "8px"})]),
+                html.Tr([html.Td("Source", style=METH_TD_L),
+                         html.Td("osteosarc.com (Sid Sijbrandij's open-sourced osteosarcoma data)", style=METH_TD_R)]),
+                html.Tr([html.Td("Storage", style=METH_TD_L),
+                         html.Td("Backblaze B2 (b2://osteosarc-data) -> GCS (gs://precision-oncology-test)", style=METH_TD_R)]),
+                html.Tr([html.Td("Total Data", style=METH_TD_L),
+                         html.Td("362.3 GB transferred (WGS BAMs, RNA-seq FASTQs, scRNA-seq, VCFs, references)", style=METH_TD_R)]),
+                html.Tr([html.Td("Compute", style=METH_TD_L),
+                         html.Td("Terra (Broad Institute) on Google Cloud, preemptible VMs", style=METH_TD_R)]),
+                html.Tr([html.Td("Cost", style={**METH_TD_L, "borderBottom": "none"}),
+                         html.Td("~$15-20 total (storage + compute + data transfer)", style={**METH_TD_R, "borderBottom": "none"})]),
             ]),
         ]),
     ])
