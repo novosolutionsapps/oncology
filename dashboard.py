@@ -93,7 +93,24 @@ sid_star = parse_star_log(PROJECT / "data" / "validation" / "expression" / "sid_
 vcf_path = PROJECT / "data" / "validation" / "vcf" / "wes_t0_mutect2_vep.vcf.gz"
 variants = parse_vcf(vcf_path)
 pass_variants = [v for v in variants if v["filter"] == "PASS"]
-print(f"Loaded: STAR logs, {len(variants)} variants ({len(pass_variants)} PASS)")
+print(f"Loaded: STAR logs, {len(variants)} WES variants ({len(pass_variants)} PASS)")
+
+# Load WGS VEP-annotated data (our pipeline output)
+import pandas as pd
+vep_path = PROJECT / "data" / "processed" / "mutations" / "somatic-snvs" / "vep_annotated_pass.tsv"
+vep_hm_path = PROJECT / "data" / "processed" / "mutations" / "somatic-snvs" / "vep_high_moderate.tsv"
+wgs_loaded = False
+if vep_path.exists():
+    vep_df = pd.read_csv(vep_path, sep='\t')
+    vep_hm = pd.read_csv(vep_hm_path, sep='\t') if vep_hm_path.exists() else vep_df[vep_df['impact'].isin(['HIGH','MODERATE'])]
+    wgs_loaded = True
+    print(f"Loaded: WGS VEP-annotated {len(vep_df):,} PASS variants ({len(vep_hm)} HIGH/MODERATE)")
+
+# Load expression results
+driver_path = PROJECT / "data" / "processed" / "expression" / "bulk" / "differential-expression" / "driver_expression.csv"
+surface_path = PROJECT / "data" / "processed" / "expression" / "bulk" / "differential-expression" / "surface_protein_expression.csv"
+drivers_df = pd.read_csv(driver_path) if driver_path.exists() else None
+surface_df = pd.read_csv(surface_path) if surface_path.exists() else None
 
 # Load gene count data
 def load_gene_counts():
@@ -302,90 +319,145 @@ fig_pies.add_trace(go.Pie(labels=categories, values=[to_num(sid_star.get(k, "0")
 fig_pies.update_layout(title="Read Distribution", template="plotly_dark", height=400)
 
 # ============================================================
-# VARIANT FIGURES
+# VARIANT FIGURES (WGS VEP-annotated data when available)
 # ============================================================
 
-high_impact = [v for v in pass_variants if v["impact"] == "HIGH"]
-moderate_impact = [v for v in pass_variants if v["impact"] == "MODERATE"]
-high_mod_genes = set(v["gene"] for v in pass_variants if v["impact"] in ("HIGH", "MODERATE") and v["gene"])
-
-# Chromosome distribution
 chrom_order = [f"chr{i}" for i in range(1, 23)] + ["chrX", "chrY"]
-chrom_counts = Counter(v["chrom"] for v in pass_variants)
-fig_chrom = go.Figure(go.Bar(x=[c for c in chrom_order if c in chrom_counts], y=[chrom_counts[c] for c in chrom_order if c in chrom_counts], marker_color="#3498db"))
-fig_chrom.update_layout(title="PASS Variants by Chromosome", template="plotly_dark", height=350)
-
-# Mutation spectrum
-snv_types = Counter(v["mut_type"] for v in pass_variants if v["var_class"] == "SNV")
-type_order = ["C>A", "C>G", "C>T", "T>A", "T>C", "T>G"]
-type_colors = ["#3498db", "#1abc9c", "#e74c3c", "#9b59b6", "#f39c12", "#2ecc71"]
-fig_spectrum = go.Figure(go.Bar(x=type_order, y=[snv_types.get(t, 0) for t in type_order], marker_color=type_colors))
-fig_spectrum.update_layout(title="SNV Mutation Spectrum", template="plotly_dark", height=350)
-
-# Impact pie
-impact_counts = Counter(v["impact"] for v in pass_variants if v["impact"])
-impact_order = ["HIGH", "MODERATE", "LOW", "MODIFIER"]
-impact_colors = ["#e74c3c", "#f39c12", "#2ecc71", "#7f8c8d"]
-fig_impact = go.Figure(go.Pie(
-    labels=[i for i in impact_order if i in impact_counts],
-    values=[impact_counts[i] for i in impact_order if i in impact_counts],
-    marker_colors=[impact_colors[impact_order.index(i)] for i in impact_order if i in impact_counts], hole=0.4))
-fig_impact.update_layout(title="Variant Impact Distribution (PASS)", template="plotly_dark", height=350)
-
-# Consequence types
-conseq_counts = Counter(v["consequence"] for v in pass_variants if v["consequence"])
-top_conseq = conseq_counts.most_common(12)
-fig_conseq = go.Figure(go.Bar(x=[c[1] for c in top_conseq], y=[c[0] for c in top_conseq], orientation="h", marker_color="#1abc9c"))
-fig_conseq.update_layout(title="Top Consequence Types", template="plotly_dark", height=400, margin=dict(l=250))
-
-# Top genes
-gene_counts = Counter(v["gene"] for v in pass_variants if v["impact"] in ("HIGH", "MODERATE") and v["gene"])
-top_genes = gene_counts.most_common(25)
-fig_genes = go.Figure(go.Bar(
-    x=[g[0] for g in top_genes], y=[g[1] for g in top_genes],
-    marker_color=["#e74c3c" if any(v["gene"] == g[0] and v["impact"] == "HIGH" for v in pass_variants) else "#f39c12" for g in top_genes]))
-fig_genes.update_layout(title="Top 25 Genes (HIGH/MODERATE Impact)", template="plotly_dark", height=400)
-
-# Genome-wide scatter
 chrom_sizes = {f"chr{i}": s for i, s in enumerate([248956422, 242193529, 198295559, 190214555, 181538259, 170805979, 159345973, 145138636, 138394717, 133797422, 135086622, 133275309, 114364328, 107043718, 101991189, 90338345, 83257441, 80373285, 58617616, 64444167, 46709983, 50818468], 1)}
 chrom_sizes.update({"chrX": 156040895, "chrY": 57227415})
-offsets = {}
-cumulative = 0
-for c in chrom_order:
-    offsets[c] = cumulative
-    cumulative += chrom_sizes.get(c, 0)
-
-impact_cmap = {"HIGH": "#e74c3c", "MODERATE": "#f39c12", "LOW": "#2ecc71", "MODIFIER": "#7f8c8d"}
-scatter_x, scatter_color, scatter_text = [], [], []
-for v in pass_variants:
-    if v["chrom"] in offsets:
-        scatter_x.append(offsets[v["chrom"]] + v["pos"])
-        scatter_color.append(impact_cmap.get(v["impact"], "#7f8c8d"))
-        scatter_text.append(f"{v['chrom']}:{v['pos']} {v['gene']} {v['consequence']}")
-
-fig_genome = go.Figure()
-for i, c in enumerate(chrom_order):
-    if c in offsets:
-        fig_genome.add_vrect(x0=offsets[c], x1=offsets[c] + chrom_sizes.get(c, 0),
-                              fillcolor="#1a1a2e" if i % 2 == 0 else "#16213e", line_width=0, layer="below")
-fig_genome.add_trace(go.Scatter(x=scatter_x, y=[0]*len(scatter_x), mode="markers",
-                                 marker=dict(color=scatter_color, size=3, opacity=0.7), text=scatter_text, hoverinfo="text"))
-fig_genome.update_layout(title="Genome-Wide Variant Map", template="plotly_dark", height=200,
-                          xaxis=dict(tickvals=[offsets[c] + chrom_sizes.get(c, 0) // 2 for c in chrom_order if c in offsets],
-                                     ticktext=[c.replace("chr", "") for c in chrom_order if c in offsets]),
-                          yaxis=dict(visible=False), showlegend=False)
-
-# Known drivers
 known_drivers = {"TP53", "RB1", "ATRX", "DLG2", "CDKN2A", "MYC", "MDM2", "PTEN", "RUNX2", "RECQL4"}
-found_drivers = known_drivers & high_mod_genes
 
-# Variant table
-high_table = sorted([
-    {"Gene": v["gene"], "Location": f"{v['chrom']}:{v['pos']}", "Change": f"{v['ref']}>{v['alt']}",
-     "Protein": v["protein_change"], "Consequence": v["consequence"].replace("_", " "),
-     "Impact": v["impact"], "SIFT": v["sift"], "PolyPhen": v["polyphen"]}
-    for v in pass_variants if v["impact"] in ("HIGH", "MODERATE") and v["gene"]
-], key=lambda x: (0 if x["Impact"] == "HIGH" else 1, x["Gene"]))
+if wgs_loaded:
+    COMP = {'A':'T','T':'A','C':'G','G':'C'}
+    def canon(ref, alt):
+        if len(ref)==1 and len(alt)==1 and ref in ('A','G'):
+            return f"{COMP[ref]}>{COMP[alt]}"
+        return f"{ref}>{alt}" if len(ref)==1 and len(alt)==1 else None
+
+    n_total = len(vep_df)
+    n_high = int((vep_df['impact'] == 'HIGH').sum())
+    n_mod = int((vep_df['impact'] == 'MODERATE').sum())
+    n_snv = int(vep_df.apply(lambda r: len(str(r['ref']))==1 and len(str(r['alt']))==1, axis=1).sum())
+    n_indel = n_total - n_snv
+    high_mod_genes = set(vep_hm['gene'].dropna().unique())
+    found_drivers = known_drivers & high_mod_genes
+
+    # Chromosome distribution
+    chrom_counts = Counter(vep_df['chrom'])
+    fig_chrom = go.Figure(go.Bar(x=[c for c in chrom_order if c in chrom_counts],
+                                  y=[chrom_counts[c] for c in chrom_order if c in chrom_counts], marker_color="#3498db"))
+    fig_chrom.update_layout(title=f"PASS Variants by Chromosome (n={n_total:,})", template="plotly_dark", height=350)
+
+    # Mutation spectrum (pyrimidine context)
+    spec = Counter()
+    for _, r in vep_df.iterrows():
+        m = canon(str(r['ref']), str(r['alt']))
+        if m: spec[m] += 1
+    type_order = ["C>A", "C>G", "C>T", "T>A", "T>C", "T>G"]
+    type_colors = ["#3498db", "#1abc9c", "#e74c3c", "#9b59b6", "#f39c12", "#2ecc71"]
+    fig_spectrum = go.Figure(go.Bar(x=type_order, y=[spec.get(t,0) for t in type_order], marker_color=type_colors))
+    fig_spectrum.update_layout(title="SNV Mutation Spectrum (pyrimidine context)", template="plotly_dark", height=350)
+
+    # Impact pie
+    impact_counts = Counter(vep_df['impact'].dropna())
+    impact_order = ["HIGH", "MODERATE", "LOW", "MODIFIER"]
+    impact_colors_list = ["#e74c3c", "#f39c12", "#2ecc71", "#7f8c8d"]
+    fig_impact = go.Figure(go.Pie(
+        labels=[i for i in impact_order if i in impact_counts],
+        values=[impact_counts[i] for i in impact_order if i in impact_counts],
+        marker_colors=[impact_colors_list[impact_order.index(i)] for i in impact_order if i in impact_counts], hole=0.4))
+    fig_impact.update_layout(title="Variant Impact Distribution", template="plotly_dark", height=350)
+
+    # Consequence types
+    conseq_counts = Counter(vep_df['consequence'].dropna())
+    top_conseq = [(k,v) for k,v in conseq_counts.most_common(12) if k]
+    fig_conseq = go.Figure(go.Bar(x=[c[1] for c in top_conseq],
+                                   y=[c[0].replace('_',' ') for c in top_conseq], orientation="h", marker_color="#1abc9c"))
+    fig_conseq.update_layout(title="Top Consequence Types", template="plotly_dark", height=400, margin=dict(l=250))
+
+    # VAF distribution
+    vafs = pd.to_numeric(vep_df['af'], errors='coerce').dropna()
+    fig_vaf = go.Figure(go.Histogram(x=vafs, nbinsx=50, marker_color="#3498db"))
+    fig_vaf.update_layout(title=f"Variant Allele Frequency Distribution (median={vafs.median():.3f})",
+                           xaxis_title="VAF", yaxis_title="Count", template="plotly_dark", height=350)
+
+    # Top genes with HIGH/MODERATE
+    gene_counts = Counter(vep_hm['gene'].dropna())
+    top_genes = gene_counts.most_common(25)
+    fig_genes = go.Figure(go.Bar(
+        x=[g[0] for g in top_genes if g[0]], y=[g[1] for g in top_genes if g[0]],
+        marker_color=["#e74c3c" if any(vep_hm[vep_hm['gene']==g[0]]['impact']=='HIGH') else "#f39c12" for g in top_genes if g[0]]))
+    fig_genes.update_layout(title="Genes with HIGH/MODERATE Impact Variants", template="plotly_dark", height=400)
+
+    # Genome-wide scatter
+    offsets = {}
+    cumulative = 0
+    for c in chrom_order:
+        offsets[c] = cumulative
+        cumulative += chrom_sizes.get(c, 0)
+    impact_cmap = {"HIGH": "#e74c3c", "MODERATE": "#f39c12", "LOW": "#2ecc71", "MODIFIER": "#7f8c8d"}
+    gw_x, gw_color, gw_text = [], [], []
+    for _, v in vep_df.iterrows():
+        ch = str(v['chrom'])
+        if ch in offsets:
+            gw_x.append(offsets[ch] + int(v['pos']))
+            gw_color.append(impact_cmap.get(str(v.get('impact','')), '#7f8c8d'))
+            gw_text.append(f"{ch}:{v['pos']} {v.get('gene','')} {v.get('consequence','')}")
+    fig_genome = go.Figure()
+    for i, c in enumerate(chrom_order):
+        if c in offsets:
+            fig_genome.add_vrect(x0=offsets[c], x1=offsets[c]+chrom_sizes.get(c,0),
+                                  fillcolor="#1a1a2e" if i%2==0 else "#16213e", line_width=0, layer="below")
+    fig_genome.add_trace(go.Scattergl(x=gw_x, y=[0]*len(gw_x), mode="markers",
+                                       marker=dict(color=gw_color, size=2, opacity=0.5), text=gw_text, hoverinfo="text"))
+    fig_genome.update_layout(title=f"Genome-Wide Variant Map ({n_total:,} PASS variants)", template="plotly_dark", height=200,
+                              xaxis=dict(tickvals=[offsets[c]+chrom_sizes.get(c,0)//2 for c in chrom_order if c in offsets],
+                                         ticktext=[c.replace("chr","") for c in chrom_order if c in offsets]),
+                              yaxis=dict(visible=False), showlegend=False)
+
+    # Variant table from VEP annotations
+    high_table = vep_hm[['gene','chrom','pos','ref','alt','consequence','impact','protein_change','sift','polyphen','af']].copy()
+    high_table['consequence'] = high_table['consequence'].str.replace('_',' ')
+    high_table = high_table.sort_values(['impact','gene']).fillna('')
+    high_table = high_table.rename(columns={'gene':'Gene','chrom':'Chr','pos':'Position','ref':'Ref','alt':'Alt',
+                                             'consequence':'Consequence','impact':'Impact','protein_change':'Protein',
+                                             'sift':'SIFT','polyphen':'PolyPhen','af':'VAF'})
+    high_table = high_table.to_dict('records')
+
+else:
+    # Fallback to WES data
+    n_total = len(pass_variants)
+    n_high = len([v for v in pass_variants if v["impact"] == "HIGH"])
+    n_mod = len([v for v in pass_variants if v["impact"] == "MODERATE"])
+    n_snv = len([v for v in pass_variants if v["var_class"] == "SNV"])
+    n_indel = n_total - n_snv
+    high_mod_genes = set(v["gene"] for v in pass_variants if v["impact"] in ("HIGH","MODERATE") and v["gene"])
+    found_drivers = known_drivers & high_mod_genes
+    chrom_counts = Counter(v["chrom"] for v in pass_variants)
+    fig_chrom = go.Figure(go.Bar(x=[c for c in chrom_order if c in chrom_counts],
+                                  y=[chrom_counts[c] for c in chrom_order if c in chrom_counts], marker_color="#3498db"))
+    fig_chrom.update_layout(title="PASS Variants by Chromosome", template="plotly_dark", height=350)
+    snv_types = Counter(v["mut_type"] for v in pass_variants if v["var_class"]=="SNV")
+    type_order = ["C>A","C>G","C>T","T>A","T>C","T>G"]
+    type_colors = ["#3498db","#1abc9c","#e74c3c","#9b59b6","#f39c12","#2ecc71"]
+    fig_spectrum = go.Figure(go.Bar(x=type_order, y=[snv_types.get(t,0) for t in type_order], marker_color=type_colors))
+    fig_spectrum.update_layout(title="SNV Mutation Spectrum", template="plotly_dark", height=350)
+    impact_counts = Counter(v["impact"] for v in pass_variants if v["impact"])
+    fig_impact = go.Figure(go.Pie(labels=list(impact_counts.keys()), values=list(impact_counts.values()), hole=0.4))
+    fig_impact.update_layout(title="Impact Distribution", template="plotly_dark", height=350)
+    conseq_counts = Counter(v["consequence"] for v in pass_variants if v["consequence"])
+    top_conseq = conseq_counts.most_common(12)
+    fig_conseq = go.Figure(go.Bar(x=[c[1] for c in top_conseq], y=[c[0] for c in top_conseq], orientation="h", marker_color="#1abc9c"))
+    fig_conseq.update_layout(title="Top Consequence Types", template="plotly_dark", height=400, margin=dict(l=250))
+    fig_vaf = go.Figure()
+    gene_counts = Counter(v["gene"] for v in pass_variants if v["impact"] in ("HIGH","MODERATE") and v["gene"])
+    top_genes = gene_counts.most_common(25)
+    fig_genes = go.Figure(go.Bar(x=[g[0] for g in top_genes], y=[g[1] for g in top_genes], marker_color="#f39c12"))
+    fig_genes.update_layout(title="Top Genes (HIGH/MODERATE)", template="plotly_dark", height=400)
+    offsets = {}; cumulative = 0
+    for c in chrom_order: offsets[c] = cumulative; cumulative += chrom_sizes.get(c,0)
+    fig_genome = go.Figure()
+    high_table = []
 
 # ============================================================
 # STYLING
@@ -582,13 +654,15 @@ def render_validation():
 
 
 def render_variants():
+    data_label = "WGS (our Mutect2 pipeline)" if wgs_loaded else "WES (reference)"
     return html.Div([
+        card([html.P(f"Data source: {data_label}", style={"color": TEXT_SECONDARY, "margin": "0", "fontSize": "clamp(11px, 1.5vw, 13px)"})]),
         stat_row([
-            stat_card(f"{len(variants):,}", "Total Variants", "#3498db"),
-            stat_card(f"{len(pass_variants):,}", "PASS", "#2ecc71"),
-            stat_card(str(len(high_impact)), "HIGH", "#e74c3c"),
-            stat_card(str(len(moderate_impact)), "MODERATE", "#f39c12"),
-            stat_card(str(len(high_mod_genes)), "Genes", "#9b59b6"),
+            stat_card(f"{n_total:,}", "PASS Variants", "#3498db"),
+            stat_card(f"{n_snv:,}", "SNVs", "#2ecc71"),
+            stat_card(f"{n_indel:,}", "Indels", "#1abc9c"),
+            stat_card(str(n_high), "HIGH", "#e74c3c"),
+            stat_card(str(n_mod), "MODERATE", "#f39c12"),
         ]),
 
         card([
@@ -607,21 +681,22 @@ def render_variants():
         dcc.Graph(figure=fig_genome, config={"responsive": True}),
 
         chart_pair(
-            dcc.Graph(figure=fig_chrom, config={"responsive": True}),
+            dcc.Graph(figure=fig_vaf, config={"responsive": True}) if wgs_loaded else html.Div(),
             dcc.Graph(figure=fig_spectrum, config={"responsive": True}),
         ),
         chart_pair(
+            dcc.Graph(figure=fig_chrom, config={"responsive": True}),
             dcc.Graph(figure=fig_impact, config={"responsive": True}),
-            dcc.Graph(figure=fig_conseq, config={"responsive": True}),
         ),
+        dcc.Graph(figure=fig_conseq, config={"responsive": True}),
 
         dcc.Graph(figure=fig_genes, config={"responsive": True}),
 
-        html.H3("HIGH & MODERATE Impact Variants", style={"color": TEXT_PRIMARY, "marginTop": "20px", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+        html.H3(f"HIGH & MODERATE Impact Variants ({n_high + n_mod})", style={"color": TEXT_PRIMARY, "marginTop": "20px", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
         html.Div(style={"overflowX": "auto"}, children=[
             dash_table.DataTable(
-                data=high_table[:200],
-                columns=[{"name": c, "id": c} for c in ["Gene", "Location", "Change", "Protein", "Consequence", "Impact", "SIFT", "PolyPhen"]],
+                data=high_table[:200] if isinstance(high_table, list) else high_table,
+                columns=[{"name": c, "id": c} for c in (["Gene","Chr","Position","Ref","Alt","Consequence","Impact","Protein","SIFT","PolyPhen","VAF"] if wgs_loaded else ["Gene","Location","Change","Protein","Consequence","Impact","SIFT","PolyPhen"])],
                 style_table={"overflowX": "auto", "maxHeight": "500px", "overflowY": "auto"},
                 style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50", "position": "sticky", "top": 0},
                 style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",

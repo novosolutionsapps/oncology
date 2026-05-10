@@ -1,0 +1,115 @@
+chrom	pos	ref	alt	af	dp	gene	consequence	impact	protein_change	sift	polyphen	biotype	transcript
+chr1	15425915	A	T	0.016	64	EFHD2	missense_variant	MODERATE	K118I	deleterious(0.000)	probably_damaging(0.995)	protein_coding	ENST00000375980
+chr1	23362762	G	C	0.012	90	ZNF436	missense_variant	MODERATE	S207C	deleterious(0.010)	possibly_damaging(0.709)	protein_coding	ENST00000314011
+chr1	30995054	C	A	0.015	72	PUM1	missense_variant	MODERATE	S296I	deleterious_low_confidence(0.000)	possibly_damaging(0.740)	protein_coding	ENST00000257075
+chr1	109316850	C	A	0.016	66	SORT1	missense_variant	MODERATE	Q750H	tolerated(0.060)	benign(0.007)	protein_coding	ENST00000256637
+chr1	151242178	AG	A	0.013	86	PIP5K1A	frameshift_variant	HIGH	G461X			protein_coding	ENST00000349792
+chr1	152812486	C	T	0.015	71	LCE1B	missense_variant	MODERATE	P14S	tolerated_low_confidence(0.110)	unknown(0.000)	protein_coding	ENST00000360090
+chr1	152910324	C	T	0.018	59	IVL	missense_variant	MODERATE	P176L	tolerated(0.280)	unknown(0.000)	protein_coding	ENST00000368764
+chr1	156940285	T	A	0.015	72	ARHGEF11	missense_variant	MODERATE	R1179W	deleterious_low_confidence(0.000)	possibly_damaging(0.778)	protein_coding	ENST00000361409
+chr1	160129375	C	T	0.014	75	ATP1A2	missense_variant	MODERATE	P479L	deleterious_low_confidence(0.000)	probably_damaging(1.000)	protein_coding	ENST00000361216
+chr1	167126143	C	G	0.016	66	STYXL2	missense_variant	MODERATE	P338A	tolerated(0.280)	benign(0.175)	protein_coding	ENST00000271385
+chr1	172578297	G	T	0.019	54	SUCO	splice_acceptor_variant	HIGH				protein_coding	ENST00000263688
+chr1	173811223	G	T	0.015	68	CENPL	missense_variant	MODERATE	P26H	tolerated(0.630)	benign(0.010)	protein_coding	ENST00000345664
+chr1	206022947	C	A	0.019	55	CTSE	missense_variant	MODERATE	C60F	tolerated(0.310)	possibly_damaging(0.724)	protein_coding	ENST00000358184
+chr1	228309267	G	T	0.016	63	OBSCN	missense_variant	MODERATE	G4303V			protein_coding	ENST00000284548
+chr1	248294753	A	G	0.017	65	OR2T12	missense_variant	MODERATE	Y276H	deleterious(0.000)	probably_damaging(0.997)	protein_coding	ENST00000641276
+chr2	31203097	T	C	0.017	63	CAPN14	missense_variant	MODERATE	R90G	deleterious(0.000)	probably_damaging(0.999)	nonsense_mediated_decay	ENST00000398824
+chr2	84880932	T	A	0.017	61	TRABD2A	missense_variant	MODERATE	Q36H	deleterious(0.010)	possibly_damaging(0.882)	protein_coding	ENST00000335459
+chr2	102235233	CT	AC	0.015	74	IL1RL2	frameshift_variant	HIGH	P545PX			protein_coding	ENST00000264257
+chr2	119546187	A	ATTTTTTC	0.016	64	CFAP221	frameshift_variant	HIGH	N19NFFX			nonsense_mediated_decay	ENST00000295220
+chr2	119546189	A	ATTACTCCACTAATAGTATTTTTAGCTCCTTCAACTGGTGTTACCATAGCACTTTTAACACCATTCCACACAGAAGTAGTTACAGACTTTATACTATTCCATATAG	0.016	64	CFAP221	protein_altering_variant	MODERATE	N20ITPLIVFLAPSTGVTIALLTPFHTEVVTDFILFHID			nonsense_mediated_decay	ENST00000295220
+chr2	159840947	T	A	0.016	67	LY75	missense_variant	MODERATE	S1097C	deleterious(0.040)	benign(0.212)	protein_coding	ENST00000263636
+chr3	9104715	G	A	0.016	68	SRGAP3	stop_gained	HIGH	Q130*			protein_coding	ENST00000360413
+chr3	15645183	T	G	0.015	73	BTD	missense_variant	MODERATE	F423V	deleterious(0.000)	possibly_damaging(0.879)	protein_coding	ENST00000303498
+chr3	63770421	C	T	0.018	55	CDHR18P	splice_acceptor_variant	HIGH				transcribed_unitary_pseudogene	ENST00000430831
+chr3	64198863	C	T	0.015	76	PRICKLE2	missense_variant	MODERATE	R78K	deleterious(0.000)	probably_damaging(0.925)	protein_coding	ENST00000295902
+chr3	77607853	C	A	0.018	57	ROBO2	missense_variant	MODERATE	N1068K	deleterious_low_confidence(0.000)	benign(0.003)	protein_coding	ENST00000332191
+chr3	100850671	C	A	0.014	76	ABI3BP	missense_variant	MODERATE	R423M	deleterious_low_confidence(0.000)	probably_damaging(0.997)	protein_coding	ENST00000284322
+chr3	136855622	C	T	0.020	53	SLC35G2	missense_variant	MODERATE	L388F	deleterious(0.020)	probably_damaging(0.999)	protein_coding	ENST00000393079
+chr3	174279509	C	T	0.017	64	NLGN1	missense_variant	MODERATE	A503V	deleterious_low_confidence(0.000)	possibly_damaging(0.885)	protein_coding	ENST00000361589
+chr4	5810438	C	G	0.020	54	EVC	stop_gained	HIGH	S961*			protein_coding	ENST00000264956
+chr4	9450500	C	A	0.019	56	DEFB131A	missense_variant	MODERATE	Q67K	tolerated(1.000)	benign(0.000)	protein_coding	ENST00000334879
+chr4	114870902	C	A	0.015	75	NDST4	missense_variant	MODERATE	G529W	deleterious_low_confidence(0.000)	probably_damaging(0.997)	protein_coding	ENST00000264363
+chr5	23527195	T	C	0.080	14	PRDM9	missense_variant	MODERATE	W703R	tolerated(0.670)	benign(0.005)	protein_coding	ENST00000296682
+chr5	141526090	C	A	0.015	77	DIAPH1	missense_variant	MODERATE	K1174N	deleterious(0.050)	unknown(0.000)	protein_coding	ENST00000389054
+chr5	168399513	T	G	0.017	63	WWC1	missense_variant	MODERATE	V179G	deleterious_low_confidence(0.000)	benign(0.117)	protein_coding	ENST00000265293
+chr5	175441851	A	G	0.016	66	DRD1	missense_variant	MODERATE	S417P	tolerated_low_confidence(0.150)	benign(0.421)	protein_coding	ENST00000393752
+chr5	176565381	T	A	0.019	51	CDHR2	missense_variant	MODERATE	L10H	deleterious(0.000)	probably_damaging(0.994)	protein_coding	ENST00000261944
+chr6	25769158	T	A	0.017	63	SLC17A4	missense_variant	MODERATE	W89R	tolerated(0.390)	benign(0.000)	protein_coding	ENST00000377905
+chr6	26055824	ACCTTGGGCTTAGCGG	A	0.016	72	H1-2	inframe_deletion	MODERATE	AAKPKV197V			protein_coding	ENST00000343677
+chr6	33688135	G	T	0.016	69	ITPR3	missense_variant	MODERATE	A2115S	deleterious_low_confidence(0.000)	benign(0.013)	protein_coding	ENST00000374316
+chr6	38789878	A	T	0.015	87	DNAH8	stop_gained	HIGH	K887*			protein_coding	ENST00000327475
+chr6	65405193	T	C	0.020	51	EYS	missense_variant	MODERATE	D346G	tolerated(0.270)	benign(0.056)	protein_coding	ENST00000342421
+chr6	73818405	G	T	0.017	61	CD109	missense_variant	MODERATE	R1310M	deleterious(0.010)	benign(0.124)	protein_coding	ENST00000287097
+chr6	110228838	G	C	0.014	78	CDC40	missense_variant	MODERATE	W475S	deleterious(0.030)	benign(0.070)	protein_coding	ENST00000307731
+chr7	73434684	G	A	0.015	68	FZD9	missense_variant	MODERATE	R226H	tolerated(0.120)	possibly_damaging(0.730)	protein_coding	ENST00000344575
+chr7	73498699	C	A	0.019	54	BAZ1B	splice_acceptor_variant	HIGH				protein_coding	ENST00000339594
+chr7	82952074	G	T	0.018	57	PCLO	missense_variant	MODERATE	T2960N		unknown(0.000)	protein_coding	ENST00000333891
+chr7	133274996	G	T	0.014	81	EXOC4	missense_variant	MODERATE	S34I	deleterious(0.000)	probably_damaging(0.997)	protein_coding	ENST00000253861
+chr8	10611724	G	C	0.016	66	RP1L1	missense_variant	MODERATE	L792V	tolerated(0.100)	possibly_damaging(0.840)	protein_coding	ENST00000382483
+chr8	22192067	T	A	0.014	74	BMP1	missense_variant	MODERATE	S366T	tolerated_low_confidence(0.430)	benign(0.093)	protein_coding	ENST00000306349
+chr8	25862710	T	C	0.018	56	EBF2	missense_variant	MODERATE	K218R	deleterious_low_confidence(0.000)	benign(0.125)	protein_coding	ENST00000408929
+chr8	99861923	C	T	0.017	59	VPS13B	missense_variant	MODERATE	S3731F	deleterious_low_confidence(0.000)	probably_damaging(0.999)	protein_coding	ENST00000357162
+chr8	100213209	CG	C	0.017	62	SPAG1	frameshift_variant	HIGH	R406X			protein_coding	ENST00000251809
+chr8	143728543	CC	TT	0.014	80	FAM83H	frameshift_variant	HIGH	G306GX			protein_coding	ENST00000388913
+chr9	3856151	GA	G	0.018	54	GLIS3	frameshift_variant	HIGH	I622X			protein_coding	ENST00000324333
+chr9	3856153	TGTGGTGA	T	0.017	60	GLIS3	frameshift_variant	HIGH	PHH619X			protein_coding	ENST00000324333
+chr9	34726391	G	T	0.020	47	SPATA31F1	missense_variant	MODERATE	H283Q	deleterious(0.030)	possibly_damaging(0.869)	protein_coding	ENST00000378788
+chr9	36087719	A	T	0.016	71	RECK	missense_variant	MODERATE	E221D	tolerated(0.100)	benign(0.230)	protein_coding	ENST00000377966
+chr9	37746472	C	A	0.015	71	FRMPD1	missense_variant	MODERATE	D1480E	tolerated(1.000)	possibly_damaging(0.722)	protein_coding	ENST00000377765
+chr9	70298024	G	A	0.016	63	SMC5	missense_variant	MODERATE	R371K	tolerated(1.000)	benign(0.000)	protein_coding	ENST00000361138
+chr9	121115135	G	T	0.017	66	CNTRL	stop_gained	HIGH	E464*			protein_coding	ENST00000373847
+chr9	121678782	GTAACT	G	0.015	74	DAB2IP	splice_donor_variant	HIGH				protein_coding	ENST00000259371
+chr9	133057893	GGAGGAGGAGGAA	G	0.015	68	GTF3C5	inframe_deletion	MODERATE	EEEE430-			protein_coding	ENST00000342018
+chr9	133652279	C	T	0.013	80	DBH	missense_variant	MODERATE	H457Y	tolerated(0.140)	benign(0.000)	protein_coding	ENST00000393056
+chr10	47325480	A	T	0.016	69	GDF2	missense_variant	MODERATE	K329M	deleterious(0.030)	probably_damaging(0.997)	protein_coding	ENST00000581492
+chr10	54079389	C	A	0.018	56	PCDH15	missense_variant	MODERATE	R678M	deleterious_low_confidence(0.000)	probably_damaging(0.999)	protein_coding	ENST00000320301
+chr11	20080142	C	T	0.014	78	NAV2	missense_variant	MODERATE	A1753V	deleterious_low_confidence(0.000)		protein_coding	ENST00000349880
+chr11	35619371	G	T	0.017	60	FJX1	missense_variant	MODERATE	W245C	deleterious(0.000)	probably_damaging(0.988)	protein_coding	ENST00000317811
+chr11	68601969	G	T	0.013	88	PPP6R3	missense_variant	MODERATE	A687S	deleterious_low_confidence(0.010)	benign(0.001)	protein_coding	ENST00000265636
+chr11	124029746	CT	AC	0.014	73	OR10G8	frameshift_variant	HIGH	L42PX			protein_coding	ENST00000431524
+chr11	125038474	AG	GT	0.017	62	CCDC15	frameshift_variant	HIGH	R819MX			protein_coding	ENST00000344762
+chr12	5494381	AG	GT	0.014	81	NTF3	frameshift_variant	HIGH	K56NX			protein_coding	ENST00000331010
+chr12	55637502	C	A	0.016	67	OR10P1	missense_variant	MODERATE	T204N	deleterious(0.000)	probably_damaging(0.956)	protein_coding	ENST00000309675
+chr12	57732961	G	T	0.012	88	AGAP2	missense_variant	MODERATE	S187Y	deleterious_low_confidence(0.000)	benign(0.036)	protein_coding	ENST00000257897
+chr12	106247557	ACGCCGAGGACGAGGCGGCGGCGGCGGCAGCGGCGGCGGAGGCGGAGGAGGAGGAGGAGGACTTGCCGCCGCCGCCGCCGC	A	0.056	17	CKAP4	frameshift_variant	HIGH	GGGGGGKSSSSSSASAAAAAAAASSSA72X			protein_coding	ENST00000378026
+chr12	107642169	C	T	0.012	89	ABTB3	stop_gained	HIGH	Q974*			protein_coding	ENST00000280758
+chr12	113179285	C	T	0.017	68	DDX54	missense_variant	MODERATE	R141Q	deleterious(0.000)	probably_damaging(0.998)	protein_coding	ENST00000306014
+chr12	132066931	G	A	0.013	80	EP400	missense_variant	MODERATE	G155E	deleterious_low_confidence(0.000)	probably_damaging(1.000)	protein_coding	ENST00000330386
+chr13	29522401	C	T	0.019	53	SLC7A1	missense_variant	MODERATE	G369R	deleterious_low_confidence(0.000)	probably_damaging(1.000)	protein_coding	ENST00000380752
+chr13	77918105	T	G	0.014	75	EDNRB	missense_variant	MODERATE	I247L	deleterious_low_confidence(0.000)	benign(0.245)	protein_coding	ENST00000377211
+chr13	109140773	C	T	0.021	50	MYO16	missense_variant	MODERATE	P1499S	deleterious(0.000)	possibly_damaging(0.598)	protein_coding	ENST00000356711
+chr13	110449715	G	A	0.016	70	COL4A2	missense_variant	MODERATE	G372E	deleterious(0.000)	unknown(0.000)	protein_coding	ENST00000360467
+chr14	20403873	C	A	0.013	84	TEP1	missense_variant	MODERATE	E348D	tolerated(0.440)	benign(0.050)	protein_coding	ENST00000262715
+chr14	20429267	T	A	0.012	88	KLHL33	missense_variant	MODERATE	E395V	deleterious(0.000)	benign(0.026)	protein_coding	ENST00000344581
+chr14	23576389	G	T	0.019	54	JPH4	stop_gained	HIGH	Y149*			protein_coding	ENST00000356300
+chr14	39431722	G	T	0.016	64	FBXO33	missense_variant	MODERATE	N147K	deleterious(0.040)	benign(0.039)	protein_coding	ENST00000298097
+chr14	101980529	G	A	0.016	70	DYNC1H1	missense_variant	MODERATE	V314I		possibly_damaging(0.750)	protein_coding	ENST00000360184
+chr14	102030200	G	T	0.013	75	DYNC1H1	missense_variant	MODERATE	Q3267H		possibly_damaging(0.790)	protein_coding	ENST00000360184
+chr15	48843429	C	T	0.015	65	SHC4	missense_variant	MODERATE	G488E	tolerated(0.070)		protein_coding	ENST00000332408
+chr15	57451531	TATTGGAACAGAAAAGCA	T	0.022	53	CGNL1	frameshift_variant	HIGH	LLEQKSK612LX			protein_coding	ENST00000281282
+chr15	64915850	A	G	0.013	86	ANKDD1A	missense_variant	MODERATE	R30G	deleterious(0.020)	possibly_damaging(0.569)	protein_coding	ENST00000319580
+chr15	96332299	G	T	0.018	56	NR2F2	missense_variant	MODERATE	G65V	tolerated_low_confidence(0.080)	benign(0.051)	protein_coding	ENST00000394166
+chr16	24172304	G	A	0.014	76	PRKCB	missense_variant	MODERATE	G425E	deleterious_low_confidence(0.000)	probably_damaging(0.999)	protein_coding	ENST00000321728
+chr16	30557995	C	T	0.018	62	ZNF764	missense_variant	MODERATE	S63N	deleterious(0.000)	benign(0.061)	protein_coding	ENST00000252797
+chr17	18804199	A	T	0.026	43	TVP23B	missense_variant	MODERATE	K175M	deleterious(0.000)	probably_damaging(0.978)	protein_coding	ENST00000307767
+chr17	41422418	C	T	0.017	60	KRT37	missense_variant	MODERATE	R250K	tolerated(0.240)	benign(0.005)	protein_coding	ENST00000225550
+chr17	42163643	G	A	0.016	61	KCNH4	missense_variant	MODERATE	P814S	tolerated_low_confidence(1.000)		protein_coding	ENST00000264661
+chr17	48816988	C	T	0.018	54	TTLL6	missense_variant	MODERATE	G31R	deleterious_low_confidence(0.040)	benign(0.001)	nonsense_mediated_decay	ENST00000376681
+chr17	51154443	G	A	0.016	69	NME1	missense_variant	MODERATE	G24R	tolerated_low_confidence(0.370)	benign(0.000)	protein_coding	ENST00000013034
+chr17	63497361	T	A	0.014	74	ACE	missense_variant	MODERATE	S732T	deleterious_low_confidence(0.030)	probably_damaging(0.928)	protein_coding	ENST00000290863
+chr17	76161924	G	A	0.016	65	RNF157	missense_variant	MODERATE	P291S	deleterious_low_confidence(0.000)	probably_damaging(0.972)	protein_coding	ENST00000269391
+chr17	80327830	ATAC	A	0.012	87	RNF213	inframe_deletion	MODERATE	IL1119I			protein_coding	ENST00000508628
+chr18	63915540	G	T	0.017	63	SERPINB10	missense_variant	MODERATE	Q10H	deleterious(0.040)	possibly_damaging(0.842)	protein_coding	ENST00000238508
+chr19	1065339	G	A	0.014	74	ABCA7	missense_variant	MODERATE	G2119R	tolerated(0.170)	benign(0.006)	protein_coding	ENST00000263094
+chr19	2214506	G	A	0.018	55	DOT1L	stop_gained	HIGH	W611*			protein_coding	ENST00000398665
+chr19	6697794	C	A	0.017	59	C3	missense_variant	MODERATE	G814V	deleterious(0.000)	probably_damaging(1.000)	protein_coding	ENST00000245907
+chr19	15807703	G	T	0.020	54	OR10H1	missense_variant	MODERATE	S112Y	deleterious(0.020)	probably_damaging(0.970)	protein_coding	ENST00000334920
+chr19	55861444	C	G	0.014	78	NLRP4	missense_variant	MODERATE	H639D	tolerated(0.950)	benign(0.000)	protein_coding	ENST00000301295
+chr20	34987254	C	T	0.019	55	MYH7B	missense_variant	MODERATE	R372W	deleterious_low_confidence(0.000)	probably_damaging(0.985)	protein_coding	ENST00000262873
+chr22	30285831	C	A	0.013	82	CASTOR1	splice_donor_variant	HIGH				protein_coding	ENST00000404953
+chrX	12717076	C	A	0.022	49	FRMPD4	missense_variant	MODERATE	L873M	deleterious_low_confidence(0.000)	probably_damaging(0.982)	protein_coding	ENST00000380682
+chrX	46501045	G	A	0.037	25	ZNF674	missense_variant	MODERATE	L176F	tolerated(1.000)	possibly_damaging(0.598)	protein_coding	ENST00000414387
+chrX	101286650	GT	G	0.025	42	TAF7L	frameshift_variant	HIGH	E23X			protein_coding	ENST00000324762
+chrX	129754476	G	T	0.036	27	XPNPEP2	missense_variant	MODERATE	R371L	deleterious(0.000)	benign(0.139)	protein_coding	ENST00000371106
