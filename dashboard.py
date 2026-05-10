@@ -701,7 +701,16 @@ def render_variants():
                 style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50", "position": "sticky", "top": 0},
                 style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
                              "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)",
-                             "minWidth": "50px", "whiteSpace": "normal"},
+                             "whiteSpace": "normal", "overflow": "hidden", "textOverflow": "ellipsis"},
+                style_cell_conditional=[
+                    {"if": {"column_id": "Ref"}, "maxWidth": "60px"},
+                    {"if": {"column_id": "Alt"}, "maxWidth": "60px"},
+                    {"if": {"column_id": "Gene"}, "minWidth": "70px"},
+                    {"if": {"column_id": "Consequence"}, "minWidth": "100px"},
+                    {"if": {"column_id": "VAF"}, "maxWidth": "60px"},
+                    {"if": {"column_id": "Position"}, "maxWidth": "90px"},
+                    {"if": {"column_id": "Chr"}, "maxWidth": "55px"},
+                ],
                 style_data_conditional=[
                     {"if": {"filter_query": '{Impact} = "HIGH"', "column_id": "Impact"}, "color": "#e74c3c", "fontWeight": "bold"},
                     {"if": {"filter_query": '{Impact} = "MODERATE"', "column_id": "Impact"}, "color": "#f39c12"},
