@@ -815,13 +815,106 @@ def render_targets():
             cosmic_summary.append({'Gene': row.get('GENE_SYMBOL', ''), 'Role': row.get('ROLE_IN_CANCER', ''),
                                    'Tier': row.get('TIER', ''), 'Tumor Types': str(row.get('TUMOUR_TYPES_SOMATIC', ''))[:60]})
 
+    # Build cross-database synthesis
+    synthesis = []
+    all_target_genes = set()
+    if len(dgidb_df) > 0: all_target_genes |= set(dgidb_df['gene'].unique())
+    if len(civic_df) > 0: all_target_genes |= set(civic_df['gene'].unique())
+    if len(cosmic_df) > 0: all_target_genes |= set(cosmic_df['GENE_SYMBOL'].unique())
+    if len(trials_df) > 0: all_target_genes |= set(trials_df['gene_target'].unique())
+
+    for gene in sorted(all_target_genes):
+        evidence = []
+        n_drugs = 0
+        top_drugs = []
+        civic_levels = ""
+        civic_therapies = ""
+        cosmic_role = ""
+        n_trials = 0
+        tpm = ""
+        source = ""
+
+        if len(dgidb_df) > 0:
+            gd = dgidb_df[dgidb_df['gene'] == gene]
+            if len(gd) > 0:
+                n_drugs = len(gd)
+                top_drugs = [d for d in gd.head(3)['drug'].tolist() if not d.startswith('CHEMBL')]
+                evidence.append("DGIdb")
+                source = gd.iloc[0].get('source', '')
+        if len(civic_df) > 0:
+            gc_ = civic_df[civic_df['gene'] == gene]
+            if len(gc_) > 0:
+                civic_levels = ', '.join(sorted(gc_['evidence_level'].unique()))
+                civic_therapies = ', '.join([t for t in gc_['therapies'].dropna().unique() if t][:2])
+                evidence.append("CIViC")
+        if len(cosmic_df) > 0:
+            cc = cosmic_df[cosmic_df['GENE_SYMBOL'] == gene]
+            if len(cc) > 0:
+                cosmic_role = str(cc.iloc[0].get('ROLE_IN_CANCER', ''))
+                evidence.append("COSMIC")
+        if len(trials_df) > 0:
+            gt = trials_df[trials_df['gene_target'] == gene]
+            if len(gt) > 0:
+                n_trials = len(gt)
+                evidence.append("Trials")
+        if surface_df is not None:
+            sf = surface_df[surface_df['gene'] == gene]
+            if len(sf) > 0:
+                tpm = f"{sf.iloc[0]['tpm']:.0f}"
+        if drivers_df is not None:
+            dd = drivers_df[drivers_df['gene'] == gene]
+            if len(dd) > 0:
+                tpm = f"{dd.iloc[0]['tpm']:.0f}"
+                if not source: source = "DRIVER"
+
+        if len(evidence) >= 2:
+            synthesis.append({
+                'Gene': gene,
+                'Databases': len(evidence),
+                'Evidence': ', '.join(evidence),
+                'Drugs': n_drugs,
+                'Top Drugs': ', '.join(top_drugs) if top_drugs else '',
+                'CIViC Levels': civic_levels,
+                'CIViC Therapies': civic_therapies,
+                'COSMIC Role': cosmic_role,
+                'Trials': n_trials,
+                'TPM': tpm,
+                'Source': source,
+            })
+    synthesis = sorted(synthesis, key=lambda x: (-x['Databases'], -x['Drugs']))
+
     return html.Div([
-        html.H2("Clinical Database Integration", style={"color": TEXT_PRIMARY, "fontSize": "clamp(18px, 3.5vw, 28px)", "marginBottom": "5px"}),
-        html.P("Cross-referencing pipeline outputs against five clinical genomics databases to identify actionable targets.",
+        html.H2("Clinical Target Discovery", style={"color": TEXT_PRIMARY, "fontSize": "clamp(18px, 3.5vw, 28px)", "marginBottom": "5px"}),
+        html.P("Cross-referencing somatic variants, gene expression, and five clinical databases to identify actionable therapeutic targets.",
                style={"color": TEXT_SECONDARY, "fontSize": "clamp(11px, 1.5vw, 14px)", "marginBottom": "20px"}),
 
         # Database status cards
         stat_row([stat_card(f"{s[1]:,}", s[0], s[3]) for s in db_stats]),
+
+        # Synthesized top targets
+        card([
+            html.H3("Multi-Database Actionable Targets", style={"color": "#2ecc71", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P(f"{len(synthesis)} genes flagged by 2 or more clinical databases. "
+                   "These represent the highest-confidence targets where mutation status, drug availability, "
+                   "clinical evidence, and active trials converge.",
+                   style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=synthesis[:30],
+                    columns=[{"name": c, "id": c} for c in ["Gene", "Databases", "Evidence", "Top Drugs", "CIViC Therapies", "COSMIC Role", "Trials", "TPM"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                    style_data_conditional=[
+                        {"if": {"filter_query": "{Databases} >= 4"}, "backgroundColor": "#0f3460"},
+                        {"if": {"filter_query": "{Databases} >= 3"}, "backgroundColor": "#16213e"},
+                    ],
+                    sort_action="native",
+                    filter_action="native",
+                    page_size=15,
+                ),
+            ]),
+        ], style={"border": "1px solid #2ecc71"}),
 
         # OncoKB callout
         card([
