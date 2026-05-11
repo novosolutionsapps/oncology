@@ -121,6 +121,12 @@ trials_df = pd.read_csv(targets_dir / "clinical_trials_matches.csv") if (targets
 oncokb_df = pd.read_csv(targets_dir / "oncokb_matches.csv") if (targets_dir / "oncokb_matches.csv").exists() else pd.DataFrame()
 print(f"Clinical DBs: DGIdb={len(dgidb_df)}, CIViC={len(civic_df)}, COSMIC={len(cosmic_df)}, Trials={len(trials_df)}, OncoKB={len(oncokb_df)}")
 
+# Integrated targets (Phase 5 output)
+ladder_path = targets_dir / "integrated_targets.csv"
+ladder_df = pd.read_csv(ladder_path) if ladder_path.exists() else pd.DataFrame()
+if len(ladder_df) > 0:
+    print(f"Therapeutic ladder: {len(ladder_df)} targets (Tier A: {(ladder_df['tier']=='A').sum()}, B: {(ladder_df['tier']=='B').sum()})")
+
 # Load gene count data
 def load_gene_counts():
     our_path = PROJECT / "data" / "processed" / "expression" / "bulk" / "normalized-counts" / "ReadsPerGene.out.tab"
@@ -553,7 +559,8 @@ app.layout = html.Div(style={"backgroundColor": DARK_BG, "minHeight": "100vh", "
     dcc.Tabs(id="tabs", value="validation", style={"margin": "0 clamp(5px, 2vw, 20px)"}, children=[
         dcc.Tab(label="Validation", value="validation", style=TAB_STYLE, selected_style=TAB_SELECTED),
         dcc.Tab(label="Somatic Variants", value="variants", style=TAB_STYLE, selected_style=TAB_SELECTED),
-        dcc.Tab(label="Clinical Targets", value="targets", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Therapeutic Ladder", value="ladder", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Clinical Databases", value="targets", style=TAB_STYLE, selected_style=TAB_SELECTED),
         dcc.Tab(label="Methodology", value="methodology", style=TAB_STYLE, selected_style=TAB_SELECTED),
     ]),
 
@@ -569,6 +576,8 @@ def render_tab(tab):
         return render_validation()
     elif tab == "variants":
         return render_variants()
+    elif tab == "ladder":
+        return render_ladder()
     elif tab == "targets":
         return render_targets()
     elif tab == "methodology":
@@ -772,6 +781,178 @@ METH_P2 = {"color": TEXT_SECONDARY, "lineHeight": "1.8", "fontSize": "clamp(12px
 METH_LI = {"color": "#bdc3c7", "lineHeight": "2.0", "fontSize": "clamp(12px, 2vw, 15px)"}
 METH_TD_L = {"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)"}
 METH_TD_R = {"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)", "wordBreak": "break-word"}
+
+def render_ladder():
+    if len(ladder_df) == 0:
+        return html.Div([card([html.P("Phase 5 integration not yet complete.", style=METH_P)])])
+
+    tier_a = ladder_df[ladder_df['tier'] == 'A'].head(20)
+    tier_b = ladder_df[ladder_df['tier'] == 'B'].head(20)
+    n_a = int((ladder_df['tier'] == 'A').sum())
+    n_b = int((ladder_df['tier'] == 'B').sum())
+    n_c = int((ladder_df['tier'] == 'C').sum())
+    n_d = int((ladder_df['tier'] == 'D').sum())
+
+    def ladder_table(df):
+        data = []
+        for _, r in df.iterrows():
+            data.append({
+                'Gene': r.get('gene', ''),
+                'Score': int(r.get('score', 0)),
+                'Modalities': int(r.get('modalities', 0)),
+                'TPM': str(r.get('tpm', '')),
+                'Surface': r.get('surface', ''),
+                'Drugs': int(r.get('n_drugs', 0)),
+                'Top Drugs': str(r.get('top_drugs', '')),
+                'CIViC': r.get('civic_levels', ''),
+                'Trials': int(r.get('n_trials', 0)),
+                'COSMIC': r.get('cosmic_role', ''),
+                'Driver': r.get('driver', ''),
+            })
+        return data
+
+    return html.Div([
+        html.H2("Therapeutic Target Ladder", style={"color": TEXT_PRIMARY, "fontSize": "clamp(18px, 3.5vw, 28px)", "marginBottom": "5px"}),
+        html.P("Cross-modal integration of somatic variants, gene expression, surface protein status, drug availability, "
+               "clinical evidence, and cancer gene census membership. Targets are scored and tiered by converging evidence strength.",
+               style={"color": TEXT_SECONDARY, "fontSize": "clamp(11px, 1.5vw, 14px)", "marginBottom": "5px"}),
+
+        # Preliminary notice
+        card([
+            html.Div(style={"display": "flex", "alignItems": "center", "gap": "10px"}, children=[
+                html.Span("PRELIMINARY", style={"backgroundColor": "#f39c12", "color": "#0a0a1a", "padding": "3px 10px",
+                           "borderRadius": "4px", "fontWeight": "bold", "fontSize": "clamp(10px, 1.5vw, 13px)"}),
+                html.Span("These tier assignments will be updated when OncoKB FDA evidence levels become available. "
+                          "OncoKB adds variant-level FDA-approved therapy matching that may promote or demote targets between tiers.",
+                          style={"color": TEXT_SECONDARY, "fontSize": "clamp(10px, 1.5vw, 13px)"}),
+            ]),
+        ]),
+
+        stat_row([
+            stat_card(str(n_a), "Tier A", "#e74c3c"),
+            stat_card(str(n_b), "Tier B", "#f39c12"),
+            stat_card(str(n_c), "Tier C", "#2ecc71"),
+            stat_card(str(n_d), "Tier D", "#7f8c8d"),
+            stat_card(str(len(ladder_df)), "Total", "#3498db"),
+        ]),
+
+        # Tier definitions
+        card([
+            html.H3("Tier Definitions", style={"color": TEXT_PRIMARY, "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 18px)"}),
+            html.Table(style={"width": "100%", "borderCollapse": "collapse"}, children=[
+                html.Tr([
+                    html.Td("A", style={"color": "#e74c3c", "fontWeight": "bold", "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(12px, 1.5vw, 15px)", "width": "40px"}),
+                    html.Td("Actionable", style={"fontWeight": "bold", "color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)", "width": "100px"}),
+                    html.Td("Score >= 7, 3+ evidence modalities. Confirmed across mutation, expression, and drug availability. "
+                            "Immediate discussion with treating oncologist.",
+                            style={"color": "#bdc3c7", "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(10px, 1.3vw, 13px)"}),
+                ]),
+                html.Tr([
+                    html.Td("B", style={"color": "#f39c12", "fontWeight": "bold", "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(12px, 1.5vw, 15px)"}),
+                    html.Td("Accessible", style={"fontWeight": "bold", "color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)"}),
+                    html.Td("Score >= 5, 2+ modalities. Drug exists but may require clinical trial enrollment or FDA Form 3926 expanded access.",
+                            style={"color": "#bdc3c7", "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(10px, 1.3vw, 13px)"}),
+                ]),
+                html.Tr([
+                    html.Td("C", style={"color": "#2ecc71", "fontWeight": "bold", "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(12px, 1.5vw, 15px)"}),
+                    html.Td("Candidate", style={"fontWeight": "bold", "color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)"}),
+                    html.Td("Score >= 4. Strong expression or surface protein signal but fewer confirming modalities. Consider IHC validation or diagnostic imaging.",
+                            style={"color": "#bdc3c7", "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(10px, 1.3vw, 13px)"}),
+                ]),
+                html.Tr([
+                    html.Td("D", style={"color": "#7f8c8d", "fontWeight": "bold", "padding": "8px", "fontSize": "clamp(12px, 1.5vw, 15px)"}),
+                    html.Td("Watchlist", style={"fontWeight": "bold", "color": TEXT_PRIMARY, "padding": "8px", "fontSize": "clamp(11px, 1.5vw, 14px)"}),
+                    html.Td("Score 2-3. Preliminary signal from one modality. Monitor for additional evidence. Revisit with new data or new therapies.",
+                            style={"color": "#bdc3c7", "padding": "8px", "fontSize": "clamp(10px, 1.3vw, 13px)"}),
+                ]),
+            ]),
+        ]),
+
+        # Tier A table
+        card([
+            html.H3(f"Tier A: Actionable Targets ({n_a})", style={"color": "#e74c3c", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P("Highest-confidence targets with converging evidence from multiple independent data sources. "
+                   "Each target has confirmed expression, drug availability, and clinical or census support.",
+                   style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=ladder_table(tier_a),
+                    columns=[{"name": c, "id": c} for c in ["Gene","Score","Modalities","TPM","Surface","Drugs","Top Drugs","CIViC","Trials","COSMIC","Driver"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                    style_data_conditional=[
+                        {"if": {"filter_query": "{Driver} = YES", "column_id": "Gene"}, "color": "#e74c3c", "fontWeight": "bold"},
+                        {"if": {"filter_query": "{Surface} = YES", "column_id": "Surface"}, "color": "#2ecc71"},
+                    ],
+                    sort_action="native",
+                    page_size=20,
+                ),
+            ]),
+        ], style={"border": "1px solid #e74c3c"}),
+
+        # Tier B table
+        card([
+            html.H3(f"Tier B: Accessible Targets ({n_b})", style={"color": "#f39c12", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P("Strong candidates with drug availability and supporting evidence. May require trial enrollment or expanded access for drug access.",
+                   style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=ladder_table(tier_b),
+                    columns=[{"name": c, "id": c} for c in ["Gene","Score","Modalities","TPM","Surface","Drugs","Top Drugs","CIViC","COSMIC"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                    sort_action="native",
+                    page_size=15,
+                ),
+            ]),
+        ]),
+
+        # Scoring methodology
+        card([
+            html.H3("Scoring Methodology", style={"color": TEXT_PRIMARY, "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 18px)"}),
+            html.P("Each gene is scored across seven independent evidence modalities. Higher scores indicate stronger, "
+                   "more clinically supported targets.", style=METH_P),
+            html.Table(style={"width": "100%", "borderCollapse": "collapse"}, children=[
+                html.Tr([html.Td("Modality", style={**METH_TD_L, "fontWeight": "bold"}), html.Td("Points", style={**METH_TD_R, "fontWeight": "bold"})]),
+                html.Tr([html.Td("Somatic mutation (HIGH impact)", style=METH_TD_L), html.Td("+3 (2 for mutation + 1 HIGH bonus)", style=METH_TD_R)]),
+                html.Tr([html.Td("Somatic mutation (MODERATE)", style=METH_TD_L), html.Td("+2", style=METH_TD_R)]),
+                html.Tr([html.Td("Overexpressed (>=95th percentile TPM)", style=METH_TD_L), html.Td("+2", style=METH_TD_R)]),
+                html.Tr([html.Td("Cell surface protein (HPA) + overexpressed", style=METH_TD_L), html.Td("+3", style=METH_TD_R)]),
+                html.Tr([html.Td("Cell surface protein (HPA) + not overexpressed", style=METH_TD_L), html.Td("+1", style=METH_TD_R)]),
+                html.Tr([html.Td("Drug interactions (DGIdb)", style=METH_TD_L), html.Td("+2", style=METH_TD_R)]),
+                html.Tr([html.Td("Clinical evidence (CIViC Level A/B)", style=METH_TD_L), html.Td("+3 (1 base + 2 level bonus)", style=METH_TD_R)]),
+                html.Tr([html.Td("Clinical evidence (CIViC Level C/D/E)", style=METH_TD_L), html.Td("+1", style=METH_TD_R)]),
+                html.Tr([html.Td("COSMIC Cancer Gene Census", style=METH_TD_L), html.Td("+1", style=METH_TD_R)]),
+                html.Tr([html.Td("Known cancer driver", style=METH_TD_L), html.Td("+1", style=METH_TD_R)]),
+                html.Tr([html.Td("Active recruiting trials", style={**METH_TD_L, "borderBottom": "none"}),
+                         html.Td("+1", style={**METH_TD_R, "borderBottom": "none"})]),
+            ]),
+            html.P("Tier A requires score >= 7 AND 3+ independent modalities confirming the target. "
+                   "This prevents single high-scoring modalities from inflating a target's tier without cross-validation.",
+                   style={**METH_P2, "marginTop": "10px"}),
+        ]),
+
+        # Data sources
+        card([
+            html.H3("Data Sources", style={"color": TEXT_PRIMARY, "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 18px)"}),
+            html.Table(style={"width": "100%", "borderCollapse": "collapse"}, children=[
+                html.Tr([html.Td("Somatic variants", style=METH_TD_L), html.Td("GATK Mutect2 4.5.0.0 -> FilterMutectCalls -> Ensembl VEP release 113", style=METH_TD_R)]),
+                html.Tr([html.Td("Gene expression", style=METH_TD_L), html.Td("STAR 2.7.11b -> TPM from GENCODE v47 gene lengths (78,724 genes)", style=METH_TD_R)]),
+                html.Tr([html.Td("Surface proteins", style=METH_TD_L), html.Td("Human Protein Atlas v23 (7,255 membrane/surface proteins)", style=METH_TD_R)]),
+                html.Tr([html.Td("Drug interactions", style=METH_TD_L), html.Td("DGIdb GraphQL API (3,040 interactions)", style=METH_TD_R)]),
+                html.Tr([html.Td("Clinical evidence", style=METH_TD_L), html.Td("CIViC GraphQL API (238 accepted evidence items)", style=METH_TD_R)]),
+                html.Tr([html.Td("Cancer gene census", style=METH_TD_L), html.Td("COSMIC v103 GRCh38 (763 curated cancer genes)", style=METH_TD_R)]),
+                html.Tr([html.Td("Clinical trials", style=METH_TD_L), html.Td("ClinicalTrials.gov API v2 (50 recruiting, osteosarcoma/sarcoma)", style=METH_TD_R)]),
+                html.Tr([html.Td("OncoKB", style={**METH_TD_L, "borderBottom": "none"}),
+                         html.Td("PENDING — demo API only (78 entries). Full integration will add FDA evidence levels (1-4) "
+                                 "and may significantly alter tier assignments.",
+                                 style={**METH_TD_R, "borderBottom": "none", "color": "#e74c3c"})]),
+            ]),
+        ]),
+    ])
+
 
 def render_targets():
     db_stats = [
