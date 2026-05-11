@@ -692,7 +692,13 @@ def render_variants():
 
         dcc.Graph(figure=fig_genes, config={"responsive": True}),
 
-        html.H3(f"HIGH & MODERATE Impact Variants ({n_high + n_mod})", style={"color": TEXT_PRIMARY, "marginTop": "20px", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+        html.Div(style={"display": "flex", "justifyContent": "space-between", "alignItems": "center", "flexWrap": "wrap", "marginTop": "20px"}, children=[
+            html.H3(f"HIGH & MODERATE Impact Variants ({n_high + n_mod})", style={"color": TEXT_PRIMARY, "margin": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.A("View BAM Evidence", href="/variant_review.html", target="_blank",
+                   style={"backgroundColor": "#2ecc71", "color": "#0a0a1a", "padding": "8px 16px", "borderRadius": "6px",
+                          "textDecoration": "none", "fontWeight": "bold", "fontSize": "clamp(11px, 1.5vw, 14px)",
+                          "fontFamily": "monospace"}),
+        ]),
         html.Div(style={"overflowX": "auto"}, children=[
             dash_table.DataTable(
                 data=high_table[:200] if isinstance(high_table, list) else high_table,
@@ -979,6 +985,11 @@ def render_methodology():
 
 
 server = app.server
+
+from flask import send_from_directory
+@server.route('/variant_review.html')
+def serve_variant_review():
+    return send_from_directory(str(PROJECT), 'variant_review.html')
 
 if __name__ == "__main__":
     import os
