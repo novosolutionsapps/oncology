@@ -1,220 +1,109 @@
-gene,score,tier,modalities,mutated,tpm,surface,n_drugs,top_drugs,civic_levels,civic_therapies,cosmic_role,n_trials,driver,evidence_summary
-PTEN,13,A,5,,106.6,YES,149,"BUPARLISIB, PP-242, PANITUMUMAB","B,C,D","Everolimus, Epidermal Growth Factor Receptor Tyrosine Kinase Inhibitor",TSG,1,YES,"Overexpressed (107 TPM, p97) | Surface protein (HPA) | Druggable (149 drugs) | CIViC (60 items, levels B,C,D) | COSMIC (TSG) | Known Osteosarcoma driver | 1 recruiting trial(s)"
-CTNNB1,12,A,5,,1234.3,YES,62,"PP1, PF-670462, MPI-0479605","B,C,D","Anti-CTLA-4 Monoclonal Antibody, Anti-PD-L1 Monoclonal Antibody, Meloxicam","oncogene, fusion",2,,"Overexpressed (1234 TPM, p100) | Surface protein (HPA) | Druggable (62 drugs) | CIViC (15 items, levels B,C,D) | COSMIC (oncogene, fusion) | 2 recruiting trial(s)"
-PDGFRA,12,A,5,,318.4,YES,60,"IMATINIB, TOVETUMAB, DASATINIB ANHYDROUS","B,C,D","Sunitinib, Crenolanib","oncogene, fusion",2,,"Overexpressed (318 TPM, p99) | Surface protein (HPA) | Druggable (60 drugs) | CIViC (30 items, levels B,C,D) | COSMIC (oncogene, fusion) | 2 recruiting trial(s)"
-CALR,11,A,4,,971.9,YES,8,"TRETINOIN, PEGINTERFERON ALFA-2A, ANGIOGENESIS INHIBITOR","A,B",Peginterferon Alfa-2a,oncogene,0,,"Overexpressed (972 TPM, p100) | Surface protein (HPA) | Druggable (8 drugs) | CIViC (4 items, levels A,B) | COSMIC (oncogene)"
-GNAS,11,A,4,,216.6,YES,15,"AMITRIPTYLINE HYDROCHLORIDE, FLUOROURACIL, NICLOSAMIDE","B,C","Radioactive Iodine, Cisplatin, Fluorouracil",oncogene,0,,"Overexpressed (217 TPM, p99) | Surface protein (HPA) | Druggable (15 drugs) | CIViC (11 items, levels B,C) | COSMIC (oncogene)"
-IGF1R,11,A,4,,170.0,YES,48,"MECASERMIN, AEW-541, ERLOTINIB","B,D","Gefitinib, IGF1R Monoclonal Antibody",,1,,"Overexpressed (170 TPM, p98) | Surface protein (HPA) | Druggable (48 drugs) | CIViC (3 items, levels B,D) | 1 recruiting trial(s)"
-SF3B1,11,A,4,,345.4,YES,3,"H3B-8800, ETOPOSIDE, OLAPARIB","A,B,D","Spliceostatin A, Olaparib, Etoposide",oncogene,0,,"Overexpressed (345 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs) | CIViC (8 items, levels A,B,D) | COSMIC (oncogene)"
-MDM2,10,A,5,,530.2,,25,"DIPLAMINE B, NUTLIN-3, TCDD",B,"Pemetrexed, Cisplatin",oncogene,4,YES,"Overexpressed (530 TPM, p100) | Druggable (25 drugs) | CIViC (4 items, levels B) | COSMIC (oncogene) | Known Osteosarcoma driver | 4 recruiting trial(s)"
-RB1,10,A,5,,140.8,,36,"BAY 61-3606, PALBOCICLIB, TOPOTECAN HYDROCHLORIDE","B,D","Palbociclib, Chemotherapy",TSG,6,YES,"Overexpressed (141 TPM, p98) | Druggable (36 drugs) | CIViC (7 items, levels B,D) | COSMIC (TSG) | Known Osteosarcoma driver | 6 recruiting trial(s)"
-HLA-DRA,10,A,3,,1534.4,YES,7,"NIVOLUMAB, CLAVULANIC ACID, FLOXACILLIN",B,"Nivolumab, Pembrolizumab, Atezolizumab",,0,,"Overexpressed (1534 TPM, p100) | Surface protein (HPA) | Druggable (7 drugs) | CIViC (1 items, levels B)"
-HSPA5,10,A,3,,1663.7,YES,13,"MIANSERIN, 4-METHYLDAPHNETIN, AG 490",B,Fluorouracil,,0,,"Overexpressed (1664 TPM, p100) | Surface protein (HPA) | Druggable (13 drugs) | CIViC (1 items, levels B)"
-ATRX,9,A,4,,196.3,,12,"CISPLATIN, TEMOZOLOMIDE, FLUOROURACIL","B,D","Fluorouracil, Cisplatin, Temozolomide, PCV Regimen",TSG,0,YES,"Overexpressed (196 TPM, p99) | Druggable (12 drugs) | CIViC (5 items, levels B,D) | COSMIC (TSG) | Known Osteosarcoma driver"
-B2M,9,A,4,,1190.8,YES,4,"THYROGLOBULIN, AMIKACIN, ANTI-PD-L1 MONOCLONAL ANTIBODY",C,Pembrolizumab,TSG,0,,"Overexpressed (1191 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs) | CIViC (1 items, levels C) | COSMIC (TSG)"
-CSF1R,9,A,4,,188.0,YES,52,"CEDIRANIB, CABIRALIZUMAB, PEXIDARTINIB",,,oncogene,2,,"Overexpressed (188 TPM, p99) | Surface protein (HPA) | Druggable (52 drugs) | COSMIC (oncogene) | 2 recruiting trial(s)"
-PDGFRB,9,A,4,,168.2,YES,78,"IMATINIB, REGORAFENIB, PETROSIOL A",C,Sunitinib,"oncogene, fusion",0,,"Overexpressed (168 TPM, p98) | Surface protein (HPA) | Druggable (78 drugs) | CIViC (1 items, levels C) | COSMIC (oncogene, fusion)"
-PTPRD,9,A,4,,371.7,YES,8,"TRANDOLAPRIL, TEPROTUMUMAB, ANTIHYPERTENSIVE AGENT","C,D","JSI-124, Cixutumumab, Teprotumumab",TSG,0,,"Overexpressed (372 TPM, p100) | Surface protein (HPA) | Druggable (8 drugs) | CIViC (2 items, levels C,D) | COSMIC (TSG)"
-RHOA,9,A,4,,183.5,YES,7,"QUINIDINE, PRAVASTATIN SODIUM, NS004",E,,"oncogene, TSG",0,,"Overexpressed (183 TPM, p99) | Surface protein (HPA) | Druggable (7 drugs) | CIViC (1 items, levels E) | COSMIC (oncogene, TSG)"
-EDNRB,9,A,3,YES,73.1,YES,14,"ENDOTHELIN-1, ENRASENTAN, MACITENTAN",,,,0,,"Mutated (MODERATE) | Overexpressed (73 TPM, p96) | Surface protein (HPA) | Druggable (14 drugs)"
-CDKN2A,8,A,4,,0.5,,28,"RIBOCICLIB, PACLITAXEL, ULIXERTINIB","A,B,C,D","Palbociclib, Alvocidib",TSG,4,YES,"Druggable (28 drugs) | CIViC (27 items, levels A,B,C,D) | COSMIC (TSG) | Known Osteosarcoma driver | 4 recruiting trial(s)"
-TP53,8,A,4,,40.2,,364,"VEMURAFENIB, CHK1 INHIBITOR GDC-0575, FENTICLOR","B,D,E","Carboplatin, Cisplatin, Tamoxifen","oncogene, TSG, fusion",6,YES,"Expressed (40 TPM) | Druggable (364 drugs) | CIViC (52 items, levels B,D,E) | COSMIC (oncogene, TSG, fusion) | Known Osteosarcoma driver | 6 recruiting trial(s)"
-ABI1,8,A,3,,219.8,YES,4,"DASATINIB ANHYDROUS, IMATINIB, NILOTINIB",,,"TSG, fusion",0,,"Overexpressed (220 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs) | COSMIC (TSG, fusion)"
-CD276,8,A,3,,194.8,YES,5,"ENOBLITUZUMAB, 8H9 131I, OMBURTAMAB I-131",,,,1,,"Overexpressed (195 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs) | 1 recruiting trial(s)"
-CD74,8,A,3,,960.6,YES,5,"DIOA, MILATUZUMAB, VU0240551",,,"oncogene, fusion",0,,"Overexpressed (961 TPM, p100) | Surface protein (HPA) | Druggable (5 drugs) | COSMIC (oncogene, fusion)"
-CTNNA1,8,A,3,,166.5,YES,13,"EDAXETERKIB, RAVOXERTINIB, SCH772984",,,"TSG, fusion",0,,"Overexpressed (167 TPM, p98) | Surface protein (HPA) | Druggable (13 drugs) | COSMIC (TSG, fusion)"
-DDX6,8,A,3,,225.3,YES,1,INCB3619,,,"oncogene, fusion",0,,"Overexpressed (225 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (oncogene, fusion)"
-EZR,8,A,3,,303.0,YES,2,"RO 31-8220, TNF-ALPHA",,,fusion,0,,"Overexpressed (303 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs) | COSMIC (fusion)"
-FAT1,8,A,3,,1268.5,YES,1,CAPECITABINE,,,TSG,0,,"Overexpressed (1268 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)"
-FLNA,8,A,3,,413.0,YES,2,"SIMUFILAM, SIMUFILAM",,,,0,,"Overexpressed (413 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs) | COSMIC (nan)"
-HNRNPA2B1,8,A,3,,552.8,YES,5,"LOBELINE, STM2457, STC-15",,,"oncogene, fusion",0,,"Overexpressed (553 TPM, p100) | Surface protein (HPA) | Druggable (5 drugs) | COSMIC (oncogene, fusion)"
-HSP90AB1,8,A,3,,1876.1,YES,43,"SILIBININ, NOVOBIOCIN, TANESPIMYCIN",,,fusion,0,,"Overexpressed (1876 TPM, p100) | Surface protein (HPA) | Druggable (43 drugs) | COSMIC (fusion)"
-IFNGR1,8,A,3,,252.2,YES,2,"INTERFERON GAMMA-1B, INDOLE-3-CARBINOL",D,Ipilimumab,,0,,"Overexpressed (252 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs) | CIViC (1 items, levels D)"
-IL6ST,8,A,3,,618.7,YES,3,"BAZEDOXIFENE, RALOXIFENE HYDROCHLORIDE, SATRALIZUMAB",,,oncogene,0,,"Overexpressed (619 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs) | COSMIC (oncogene)"
-ITGB1,8,A,3,,722.0,YES,12,"VOLOCIXIMAB, NATALIZUMAB, FIRATEGRAST",,,,0,,"Overexpressed (722 TPM, p100) | Surface protein (HPA) | Druggable (12 drugs) | COSMIC (nan)"
-LIFR,8,A,3,,826.8,YES,1,EMFILERMIN,,,fusion,0,,"Overexpressed (827 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (fusion)"
-MERTK,8,A,3,,337.0,YES,5,"HESPERADIN, NINGETINIB, TAMNORZATINIB",D,UNC1062,,0,,"Overexpressed (337 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs) | CIViC (1 items, levels D)"
-NCOA1,8,A,3,,158.8,YES,3,"TAMOXIFEN, METHYLENE BLUE ANHYDROUS, ETOPOSIDE",,,fusion,0,,"Overexpressed (159 TPM, p98) | Surface protein (HPA) | Druggable (3 drugs) | COSMIC (fusion)"
-NOTCH2,8,A,3,,289.1,YES,7,"TAREXTUMAB, NOTCH SIGNALING PATHWAY INHIBITOR MK0752, MK-0752",,,"oncogene, TSG",0,,"Overexpressed (289 TPM, p99) | Surface protein (HPA) | Druggable (7 drugs) | COSMIC (oncogene, TSG)"
-PTPN13,8,A,3,,207.1,YES,1,ANTIESTROGEN,,,TSG,0,,"Overexpressed (207 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)"
-RNF213,8,A,3,YES,98.7,YES,0,,,,fusion,0,,"Mutated (MODERATE) | Overexpressed (99 TPM, p97) | Surface protein (HPA) | COSMIC (fusion)"
-TGFBR1,8,A,3,,534.6,YES,7,"4-(3-PYRIDIN-2-YL-1H-PYRAZOL-4-YL)QUINOLINE, VACTOSERTIB, LY-2382770",,,,0,,"Overexpressed (535 TPM, p100) | Surface protein (HPA) | Druggable (7 drugs) | COSMIC (nan)"
-TGFBR2,8,A,3,,604.8,YES,2,"IRINOTECAN HYDROCHLORIDE, HESPERETIN",,,TSG,0,,"Overexpressed (605 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs) | COSMIC (TSG)"
-XPC,8,A,3,,186.1,YES,1,DOXORUBICIN HYDROCHLORIDE,,,TSG,0,,"Overexpressed (186 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)"
-CKAP4,8,B,2,YES,304.5,YES,0,,,,,0,,"Mutated (HIGH) | Overexpressed (304 TPM, p99) | Surface protein (HPA)"
-PIP5K1A,8,B,2,YES,106.4,YES,0,,,,,0,,"Mutated (HIGH) | Overexpressed (106 TPM, p97) | Surface protein (HPA)"
-SUCO,8,B,2,YES,122.5,YES,0,,,,,0,,"Mutated (HIGH) | Overexpressed (122 TPM, p98) | Surface protein (HPA)"
-MYC,7,A,4,,89.5,,70,"UBENIMEX, DIETHYLSTILBESTROL, METHYLPREDNISOLONE",D,"Prexasertib, Olaparib, Cisplatin, JQ-1","oncogene, fusion",0,YES,"Overexpressed (90 TPM, p97) | Druggable (70 drugs) | CIViC (2 items, levels D) | COSMIC (oncogene, fusion) | Known Osteosarcoma driver"
-ABCA1,7,B,2,,355.3,YES,104,"MRS1066, PBF-509, CYCLOSPORINE",,,,0,,"Overexpressed (355 TPM, p100) | Surface protein (HPA) | Druggable (104 drugs)"
-ADAM10,7,B,2,,267.1,YES,16,"GI254023X, MARIMASTAT, ILOMASTAT",,,,0,,"Overexpressed (267 TPM, p99) | Surface protein (HPA) | Druggable (16 drugs)"
-ADAM17,7,B,2,,181.7,YES,5,"APRATASTAT, MARIMASTAT, INFLIXIMAB",,,,0,,"Overexpressed (182 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)"
-ADD3,7,B,2,,204.6,YES,20,"3-HYDROXY CAPRIC ACID, 3-HYDROXYLAURIC ACID, DL-175",,,,0,,"Overexpressed (205 TPM, p99) | Surface protein (HPA) | Druggable (20 drugs)"
-ANXA1,7,B,2,,348.8,YES,44,"METHYLPREDNISOLONE, EFWSLAAPQRF-NH2, BIBP3226",,,,0,,"Overexpressed (349 TPM, p100) | Surface protein (HPA) | Druggable (44 drugs)"
-APLP2,7,B,2,,531.0,YES,20,"2-O-ETHYL-PAF C-16, SDZ 64-412, ENANTIO PAF C-16",,,,0,,"Overexpressed (531 TPM, p100) | Surface protein (HPA) | Druggable (20 drugs)"
-APOD,7,B,2,,183.8,YES,8,"RWJ-56110, F16357, TFLLR-NH2",,,,0,,"Overexpressed (184 TPM, p99) | Surface protein (HPA) | Druggable (8 drugs)"
-APP,7,B,2,,548.2,YES,64,"VALILTRAMIPROSATE, CLIOQUINOL, PROPOFOL",,,,0,,"Overexpressed (548 TPM, p100) | Surface protein (HPA) | Druggable (64 drugs)"
-APPL1,7,B,2,,182.7,YES,23,"EUROPIUM-LABELLED INSL3, (DES 1-8) A-CHAIN INSL3 ANALOGUE, NANOLUC-INSL3",,,,0,,"Overexpressed (183 TPM, p99) | Surface protein (HPA) | Druggable (23 drugs)"
-ARF1,7,B,2,,213.2,YES,3,"GEFITINIB, AFATINIB, ERLOTINIB",,,,0,,"Overexpressed (213 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)"
-ARHGEF11,7,B,2,YES,76.7,YES,0,,,,,0,,"Mutated (MODERATE) | Overexpressed (77 TPM, p96) | Surface protein (HPA)"
-ARID5B,7,B,2,,268.9,YES,3,"HALOPERIDOL DECANOATE, GLUCARPIDASE, IMATINIB",,,,0,,"Overexpressed (269 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)"
-ASPH,7,B,2,,196.9,YES,21,"WARFARIN, LY404187, [3H]AMPA",,,,0,,"Overexpressed (197 TPM, p99) | Surface protein (HPA) | Druggable (21 drugs)"
-ATP2B1,7,B,2,,601.5,YES,32,"METHYLPREDNISOLONE, CHLORPROMAZINE, DAIDZEIN",,,,0,,"Overexpressed (602 TPM, p100) | Surface protein (HPA) | Druggable (32 drugs)"
-BMPR2,7,B,2,,168.2,YES,6,"L-TRP-TRP-TRP, L-PHE-PHE-PHE, EPTOTERMIN ALFA",,,,0,,"Overexpressed (168 TPM, p98) | Surface protein (HPA) | Druggable (6 drugs)"
-BNIP3L,7,B,2,,1049.8,YES,3,"OFLOXACIN, PIRENZEPINE, PROCAINAMIDE",,,,0,,"Overexpressed (1050 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)"
-BST2,7,B,2,,204.7,YES,19,"ZN2+, PB2+, ETHYLISOPROPYLAMILORIDE",,,,0,,"Overexpressed (205 TPM, p99) | Surface protein (HPA) | Druggable (19 drugs)"
-CALU,7,B,2,,607.5,YES,1,ACENOCOUMAROL,,,,0,,"Overexpressed (608 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-CAMK2D,7,B,2,,385.4,YES,14,"SNS-314, GEFITINIB, ILORASERTIB",,,,0,,"Overexpressed (385 TPM, p100) | Surface protein (HPA) | Druggable (14 drugs)"
-CANX,7,B,2,,585.6,YES,1,LERIDISTIM,,,,0,,"Overexpressed (586 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-CCT3,7,B,2,,213.4,YES,2,"BEVACIZUMAB, RANIBIZUMAB",,,,0,,"Overexpressed (213 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)"
-CD109,7,B,2,YES,204.4,YES,0,,,,,0,,"Mutated (MODERATE) | Overexpressed (204 TPM, p99) | Surface protein (HPA)"
-CD163,7,B,2,,1232.2,YES,2,"THERAPEUTIC GLUCOCORTICOID, FLUTICASONE",,,,0,,"Overexpressed (1232 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-CD47,7,B,2,,186.5,YES,9,"MAGROLIMAB, THROMBOSPONDIN 1, ANTI-CD47 MONOCLONAL ANTIBODY CC-90002",,,,0,,"Overexpressed (186 TPM, p99) | Surface protein (HPA) | Druggable (9 drugs)"
-CD63,7,B,2,,1251.2,YES,2,"COMPOUND 6B [PMID: 22749870], NONSTEROIDAL ANTIINFLAMMATORY DRUG",,,,0,,"Overexpressed (1251 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-CD9,7,B,2,,206.3,YES,44,"DESIPRAMINE, MILNACIPRAN, PAROXETINE HYDROCHLORIDE, HEMIHYDRATE",,,,0,,"Overexpressed (206 TPM, p99) | Surface protein (HPA) | Druggable (44 drugs)"
-CDC42BPA,7,B,2,,165.6,YES,11,"PF-562271, ALSTERPAULLONE, LAUROGUADINE",,,,0,,"Overexpressed (166 TPM, p98) | Surface protein (HPA) | Druggable (11 drugs)"
-CERS6,7,B,2,,211.3,YES,4,"CERTOLIZUMAB PEGOL, INFLIXIMAB, ADALIMUMAB",,,,0,,"Overexpressed (211 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs)"
-CLK1,7,B,2,,237.2,YES,4,"HARMINE, LEUCETTAMINE B, CDC2-LIKE KINASE INHIBITOR",,,,0,,"Overexpressed (237 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs)"
-CMPK1,7,B,2,,358.0,YES,1,LAMIVUDINE,,,,0,,"Overexpressed (358 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-COL6A2,7,B,2,,184.8,YES,3,"COLLAGENASE CLOSTRIDIUM HISTOLYTICUM, OCRIPLASMIN, ESI-09",,,,0,,"Overexpressed (185 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)"
-CPD,7,B,2,,170.0,YES,11,"ENDOXIFEN, ANASTROZOLE, EXEMESTANE",,,,0,,"Overexpressed (170 TPM, p98) | Surface protein (HPA) | Druggable (11 drugs)"
-CSPG4,7,B,2,,181.3,YES,5,"LEUCOVORIN CALCIUM, ALTEPLASE, IRINOTECAN HYDROCHLORIDE",,,,0,,"Overexpressed (181 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)"
-CTSK,7,B,2,,185.6,YES,7,"MIV-701, RELACATIB, ONO-5334",,,,0,,"Overexpressed (186 TPM, p99) | Surface protein (HPA) | Druggable (7 drugs)"
-CYBB,7,B,2,,230.9,YES,5,"COMPOUND 14N [PMID: 25589934], APIGENIN, SANOFI-14H",,,,0,,"Overexpressed (231 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)"
-DIAPH1,7,B,2,YES,83.4,YES,0,,,,,0,,"Mutated (MODERATE) | Overexpressed (83 TPM, p96) | Surface protein (HPA)"
-DPYSL2,7,B,2,,196.3,YES,40,"LACOSAMIDE, DERAZANTINIB, COMPOUND 29 [PMID: 36356320]",,,,0,,"Overexpressed (196 TPM, p99) | Surface protein (HPA) | Druggable (40 drugs)"
-DYRK2,7,B,2,,335.2,YES,2,"HARMINE, LEUCETTAMINE B",,,,0,,"Overexpressed (335 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)"
-EDNRA,7,B,2,,514.2,YES,23,"NEBENTAN, ATRASENTAN, TBC-3711",,,,0,,"Overexpressed (514 TPM, p100) | Surface protein (HPA) | Druggable (23 drugs)"
-EEF2,7,B,2,,3325.9,YES,18,"LMB-100, CYCLOHEXIMIDE, BI-847325",,,,0,,"Overexpressed (3326 TPM, p100) | Surface protein (HPA) | Druggable (18 drugs)"
-EFR3A,7,B,2,,350.6,YES,2,"ASPIRIN, CLOPIDOGREL",,,,0,,"Overexpressed (351 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-EIF4B,7,B,2,,428.2,YES,2,"RGB-286638, ZOTIRACICLIB",,,,0,,"Overexpressed (428 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-EIF5,7,B,2,,252.0,YES,1,URMC-099,,,,0,,"Overexpressed (252 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-EMP1,7,B,2,,176.6,YES,5,"COMPOUND 20 [PMID: 30998356], COMPOUND 1A [PMID: 24900749], GEFITINIB",,,,0,,"Overexpressed (177 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)"
-ENO1,7,B,2,,272.1,YES,3,"LORLATINIB, COMPOUND 8E [PMID: 24432909], COMPOUND 25B [PMID: 22564207]",,,,0,,"Overexpressed (272 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)"
-ENPEP,7,B,2,,195.5,YES,4,"FIRIBASTAT, QGC-001, SGI-1776",,,,0,,"Overexpressed (196 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs)"
-EPB41L2,7,B,2,,607.3,YES,1,HSL119,,,,0,,"Overexpressed (607 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-EPS8,7,B,2,,171.8,YES,21,"PF-06447475, GSK2646264, URMC-099",,,,0,,"Overexpressed (172 TPM, p99) | Surface protein (HPA) | Druggable (21 drugs)"
-ESYT2,7,B,2,,381.7,YES,1,METHYLPHENIDATE HYDROCHLORIDE,,,,0,,"Overexpressed (382 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-FBN1,7,B,2,,372.6,YES,2,"RN486, DANUSERTIB",,,,0,,"Overexpressed (373 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-GALNT3,7,B,2,,244.7,YES,2,"GSK-264220A, COMPOUND 12 [PMID: 31990537]",,,,0,,"Overexpressed (245 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)"
-GANAB,7,B,2,,191.4,YES,1,MIGLUSTAT,,,,0,,"Overexpressed (191 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-GDI2,7,B,2,,564.3,YES,1,PF-9363,,,,0,,"Overexpressed (564 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-GJA1,7,B,2,,991.1,YES,11,"SELENIUM, CARVEDILOL, PROPYLTHIOURACIL",,,,0,,"Overexpressed (991 TPM, p100) | Surface protein (HPA) | Druggable (11 drugs)"
-GLG1,7,B,2,,282.0,YES,9,"CBPD-409, TTK21, COMPOUND 50 [PMID: 24313754]",,,,0,,"Overexpressed (282 TPM, p99) | Surface protein (HPA) | Druggable (9 drugs)"
-GLO1,7,B,2,,640.5,YES,6,"N-METHYLFORMAMIDE, SMD-3040, GNE-235",,,,0,,"Overexpressed (641 TPM, p100) | Surface protein (HPA) | Druggable (6 drugs)"
-GPNMB,7,B,2,,707.2,YES,2,"GLEMBATUMUMAB, GLEMBATUMUMAB VEDOTIN",,,,0,,"Overexpressed (707 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-GPR34,7,B,2,,362.6,YES,3,"AMG28, APILIMOD, COMPOUND 17 [PMID: 36111834]",,,,0,,"Overexpressed (363 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)"
-GUSB,7,B,2,,210.0,YES,2,"RITONAVIR, VESTRONIDASE ALFA",,,,0,,"Overexpressed (210 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)"
-HEXB,7,B,2,,484.2,YES,9,"CORTISONE, GENTAMICIN, THYROXINE",,,,0,,"Overexpressed (484 TPM, p100) | Surface protein (HPA) | Druggable (9 drugs)"
-HIPK2,7,B,2,,224.0,YES,15,"ILORASERTIB, BAY 61-3606, TAMATINIB",,,,0,,"Overexpressed (224 TPM, p99) | Surface protein (HPA) | Druggable (15 drugs)"
-HLA-E,7,B,2,,348.0,YES,6,"ETANERCEPT, CEDAZURIDINE, METHOTREXATE",,,,0,,"Overexpressed (348 TPM, p100) | Surface protein (HPA) | Druggable (6 drugs)"
-HSP90B1,7,B,2,,241.3,YES,1,VIAGENPUMATUCEL-L,,,,0,,"Overexpressed (241 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-HSPA1A,7,B,2,,3420.0,YES,4,"CD24FC, CARBAMAZEPINE, AG-858",,,,0,,"Overexpressed (3420 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs)"
-HTRA1,7,B,2,,515.9,YES,2,"GALEGENIMAB, HYDROGEN PEROXIDE",,,,0,,"Overexpressed (516 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-IGF2R,7,B,2,,182.5,YES,2,"MANNOSE 6-PHOSPHATE, ALBUTEROL SULFATE",,,,0,,"Overexpressed (182 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)"
-IL1R1,7,B,2,,317.3,YES,13,"THERAPEUTIC CORTICOSTEROID, ANAKINRA, EPOETIN ALFA",,,,0,,"Overexpressed (317 TPM, p99) | Surface protein (HPA) | Druggable (13 drugs)"
-INSR,7,B,2,,277.9,YES,71,"TESOFENSINE, INSULIN SUSP ISOPHANE SEMISYNTHETIC PURIFIED HUMAN, GO-6976",,,,0,,"Overexpressed (278 TPM, p99) | Surface protein (HPA) | Druggable (71 drugs)"
-ITGA2,7,B,2,,277.7,YES,2,"E-7820, VATELIZUMAB",,,,0,,"Overexpressed (278 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)"
-ITGB5,7,B,2,,353.3,YES,4,"CILENGITIDE, INTETUMUMAB, ABITUZUMAB",,,,0,,"Overexpressed (353 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs)"
-JAG1,7,B,2,,232.1,YES,3,"MARALIXIBAT, ODEVIXIBAT, HYDROCORTISONE BUTYRATE",,,,0,,"Overexpressed (232 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)"
-KCNJ2,7,B,2,,185.5,YES,1,DRONEDARONE HYDROCHLORIDE,,,,0,,"Overexpressed (186 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-KCNK2,7,B,2,,182.5,YES,6,"SEVOFLURANE, ISOFLURANE, ENFLURANE",,,,0,,"Overexpressed (182 TPM, p99) | Surface protein (HPA) | Druggable (6 drugs)"
-KLF9,7,B,2,,772.1,YES,1,HG2+,,,,0,,"Overexpressed (772 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-KMT2E,7,B,2,,312.3,YES,1,DULOXETINE HYDROCHLORIDE,,,,0,,"Overexpressed (312 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-LAMA4,7,B,2,,491.8,YES,1,OCRIPLASMIN,,,,0,,"Overexpressed (492 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-LAMC1,7,B,2,,390.4,YES,1,OCRIPLASMIN,,,,0,,"Overexpressed (390 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-LAMP1,7,B,2,,296.9,YES,1,DIMETHYL SULFOXIDE,,,,0,,"Overexpressed (297 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-LGALS3,7,B,2,,221.2,YES,4,"OLITIGALTIN, DAVANAT, BELAPECTIN",,,,0,,"Overexpressed (221 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs)"
-LIPA,7,B,2,,217.3,YES,6,"THERAPEUTIC HORMONE, SEBELIPASE ALFA, LOVASTATIN",,,,0,,"Overexpressed (217 TPM, p99) | Surface protein (HPA) | Druggable (6 drugs)"
-LNPEP,7,B,2,,344.5,YES,3,"TOSEDOSTAT, COMPOUND 17 [PMID: 23916253], INHIBITOR 19 [PMID: 21476495]",,,,0,,"Overexpressed (345 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)"
-LPAR1,7,B,2,,565.6,YES,4,"BMS-986202, SAR100842, BMS-986020",,,,0,,"Overexpressed (566 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs)"
-LRP1,7,B,2,,1276.9,YES,3,"WARFARIN, ANG1005, ANTISENSE OLIGONUCLEOTIDES",,,,0,,"Overexpressed (1277 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)"
-MAOB,7,B,2,,210.8,YES,33,"SAFINAMIDE, LEVODOPA, MOCLOBEMIDE",,,,0,,"Overexpressed (211 TPM, p99) | Surface protein (HPA) | Druggable (33 drugs)"
-METAP2,7,B,2,,165.3,YES,8,"TOSEDOSTAT, BELORANIB, PPI-2458",,,,0,,"Overexpressed (165 TPM, p98) | Surface protein (HPA) | Druggable (8 drugs)"
-MMP14,7,B,2,,498.2,YES,7,"CTS-1027, EPIGALLOCATECHIN GALLATE, PYROGALLOL RED",,,,0,,"Overexpressed (498 TPM, p100) | Surface protein (HPA) | Druggable (7 drugs)"
-MSR1,7,B,2,,166.1,YES,1,H2O2,,,,0,,"Overexpressed (166 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)"
-NDUFA1,7,B,2,,866.3,YES,3,"NV-128, METFORMIN HYDROCHLORIDE, ME-344",,,,0,,"Overexpressed (866 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)"
-NRP1,7,B,2,,300.6,YES,3,"PEGAPTANIB, VESENCUMAB, PALIFERMIN",,,,0,,"Overexpressed (301 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)"
-P4HA1,7,B,2,,658.9,YES,3,"SAFIRONIL, PYRIDINE-2,5-DICARBOXYLIC ACID, LUFIRONIL",,,,0,,"Overexpressed (659 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)"
-P4HB,7,B,2,,251.1,YES,11,"LOMITAPIDE MESYLATE, LIQUIRITIN, ASTRAGALIN",,,,0,,"Overexpressed (251 TPM, p99) | Surface protein (HPA) | Druggable (11 drugs)"
-PAK1,7,B,2,,184.1,YES,10,"MLN-8054, CENISERTIB, NVP-TAE684",,,,0,,"Overexpressed (184 TPM, p99) | Surface protein (HPA) | Druggable (10 drugs)"
-PANX3,7,B,2,,2089.5,YES,2,"CARBENOXOLONE, FLUFENAMIC ACID",,,,0,,"Overexpressed (2090 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-PAPOLA,7,B,2,,214.4,YES,1,ETOPOSIDE,,,,0,,"Overexpressed (214 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-PDGFC,7,B,2,,328.2,YES,1,SUNITINIB,,,,0,,"Overexpressed (328 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-PECAM1,7,B,2,,163.3,YES,1,RESVERATROL,,,,0,,"Overexpressed (163 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)"
-PHOSPHO1,7,B,2,,250.6,YES,2,"LANSOPRAZOLE, EBSELEN",,,,0,,"Overexpressed (251 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)"
-PIP4K2A,7,B,2,,166.5,YES,1,FLUPIRTINE MALEATE,,,,0,,"Overexpressed (166 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)"
-PKD2,7,B,2,,225.8,YES,1,ALLOPURINOL,,,,0,,"Overexpressed (226 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-PPP6R3,7,B,2,YES,199.8,YES,0,,,,,0,,"Mutated (MODERATE) | Overexpressed (200 TPM, p99) | Surface protein (HPA)"
-PPT1,7,B,2,,457.3,YES,2,"PLITIDEPSIN, LAMOTRIGINE",,,,0,,"Overexpressed (457 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-PRDX4,7,B,2,,243.7,YES,1,DOCETAXEL ANHYDROUS,,,,0,,"Overexpressed (244 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-PRKD3,7,B,2,,197.8,YES,39,"DOVITINIB, TIGILANOL TIGLATE, GW441756X",,,,0,,"Overexpressed (198 TPM, p99) | Surface protein (HPA) | Druggable (39 drugs)"
-PRNP,7,B,2,,456.6,YES,1,BREFELDIN A,,,,0,,"Overexpressed (457 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-PTH1R,7,B,2,,695.5,YES,12,"9-AMINOCAMPTOTHECIN, PARATHYROID HORMONE, ABALOPARATIDE",,,,0,,"Overexpressed (696 TPM, p100) | Surface protein (HPA) | Druggable (12 drugs)"
-PTPN12,7,B,2,,604.7,YES,2,"CRIZOTINIB, SUNITINIB",,,,0,,"Overexpressed (605 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-PTPRM,7,B,2,,158.9,YES,1,COMPOUND 8A [PMID: 23713581],,,,0,,"Overexpressed (159 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)"
-PTPRS,7,B,2,,172.9,YES,1,ETIDRONIC ACID,,,,0,,"Overexpressed (173 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-PTPRZ1,7,B,2,,271.3,YES,3,"TETRADECANOYLPHORBOL ACETATE, TRETINOIN, VITAMIN D",,,,0,,"Overexpressed (271 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)"
-RALA,7,B,2,,161.0,YES,1,VITAMIN E,,,,0,,"Overexpressed (161 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)"
-RRM2B,7,B,2,,190.6,YES,10,"FLUDARABINE, GALLIUM NITRATE, HYDROXYUREA",,,,0,,"Overexpressed (191 TPM, p99) | Surface protein (HPA) | Druggable (10 drugs)"
-RTN4,7,B,2,,482.9,YES,5,"ATI-355, ANTISENSE OLIGONUCLEOTIDES, ATINUMAB",,,,0,,"Overexpressed (483 TPM, p100) | Surface protein (HPA) | Druggable (5 drugs)"
-S100A10,7,B,2,,1055.3,YES,2,"DEXAMETHASONE, THERAPEUTIC GONADOTROPIN",,,,0,,"Overexpressed (1055 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-SDC2,7,B,2,,381.3,YES,1,HEPARAN SULFATE,,,,0,,"Overexpressed (381 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-SERPINH1,7,B,2,,188.1,YES,6,"DL-TBOA, ANTISENSE OLIGONUCLEOTIDES, ASPARTIC ACID",,,,0,,"Overexpressed (188 TPM, p99) | Surface protein (HPA) | Druggable (6 drugs)"
-SGPP1,7,B,2,,161.1,YES,1,SONEPCIZUMAB,,,,0,,"Overexpressed (161 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)"
-SLC30A9,7,B,2,,202.9,YES,1,ASPIRIN,,,,0,,"Overexpressed (203 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-SLC38A2,7,B,2,,695.3,YES,1,ALANINE,,,,0,,"Overexpressed (695 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-SLC38A4,7,B,2,,252.2,YES,2,"GLYCINE, ALANINE",,,,0,,"Overexpressed (252 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)"
-SLC39A6,7,B,2,,330.0,YES,1,LADIRATUZUMAB VEDOTIN,,,,0,,"Overexpressed (330 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-SLK,7,B,2,,300.7,YES,30,"CEDIRANIB, CYC-116, BAY 61-3606",,,,0,,"Overexpressed (301 TPM, p99) | Surface protein (HPA) | Druggable (30 drugs)"
-SORT1,7,B,2,YES,124.7,YES,0,,,,,0,,"Mutated (MODERATE) | Overexpressed (125 TPM, p98) | Surface protein (HPA)"
-STK17A,7,B,2,,198.0,YES,16,"AZD-1080, CYC-116, RG-1530",,,,0,,"Overexpressed (198 TPM, p99) | Surface protein (HPA) | Druggable (16 drugs)"
-STOM,7,B,2,,263.9,YES,9,"SR8185, MPI-0485520, BX-795",,,,0,,"Overexpressed (264 TPM, p99) | Surface protein (HPA) | Druggable (9 drugs)"
-TAOK1,7,B,2,,236.5,YES,29,"RG-1530, TAMATINIB, SOTRASTAURIN",,,,0,,"Overexpressed (236 TPM, p99) | Surface protein (HPA) | Druggable (29 drugs)"
-TGFB1,7,B,2,,389.8,YES,59,"INTERFERON ALFA-2B, PIOGLITAZONE HYDROCHLORIDE, SILYMARIN",,,,0,,"Overexpressed (390 TPM, p100) | Surface protein (HPA) | Druggable (59 drugs)"
-TMEM167A,7,B,2,,211.1,YES,1,FLUOROURACIL,,,,0,,"Overexpressed (211 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-TPP1,7,B,2,,323.1,YES,1,CERLIPONASE ALFA,,,,0,,"Overexpressed (323 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-TXN,7,B,2,,210.4,YES,4,"GAMBOGENIC ACID, PX-12, GAMBOGIC ACID",,,,0,,"Overexpressed (210 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs)"
-TXNIP,7,B,2,,2812.7,YES,1,RECOMBINANT FAS LIGAND,,,,0,,"Overexpressed (2813 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)"
-UBE2K,7,B,2,,181.7,YES,3,"HISTIDINE, DEXTROAMPHETAMINE SULFATE, HISTAMINE",,,,0,,"Overexpressed (182 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)"
-UGCG,7,B,2,,269.7,YES,10,"VENGLUSTAT, PRALICIGUAT, ADRIAMYCIN",,,,0,,"Overexpressed (270 TPM, p99) | Surface protein (HPA) | Druggable (10 drugs)"
-UTRN,7,B,2,,391.9,YES,2,"ENZYME INHIBITOR, EZUTROMID",,,,0,,"Overexpressed (392 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)"
-XBP1,7,B,2,,170.5,YES,11,"ANGUSTIBALIN, PROTOAPIGENONE, DITHIAZANINE IODIDE",,,,0,,"Overexpressed (170 TPM, p98) | Surface protein (HPA) | Druggable (11 drugs)"
-YBX1,7,B,2,,293.7,YES,1,ABIRATERONE ACETATE,,,,0,,"Overexpressed (294 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)"
-YES1,7,B,2,,343.7,YES,175,"SB203580, SB-633825, GW643971X",,,,0,,"Overexpressed (344 TPM, p100) | Surface protein (HPA) | Druggable (175 drugs)"
-PRKCB,6,B,4,YES,3.2,,16,"RUBOXISTAURIN, CEP-2563 DIHYDROCHLORIDE, QUERCETIN",D,,,0,,"Mutated (MODERATE) | Expressed (3 TPM) | Druggable (16 drugs) | CIViC (1 items, levels D) | COSMIC (nan)"
-BMP1,6,B,3,YES,85.5,,1,COMPOUND 2 [PMID: 11934595],,,,0,,"Mutated (MODERATE) | Overexpressed (86 TPM, p96) | Druggable (1 drugs)"
-COL4A2,6,B,3,YES,83.0,,3,"OCRIPLASMIN, COLLAGENASE CLOSTRIDIUM HISTOLYTICUM, NAVOXIMOD",,,,0,,"Mutated (MODERATE) | Overexpressed (83 TPM, p96) | Druggable (3 drugs)"
-H1-2,6,B,3,YES,880.0,,8,"DASA-58, COMPOUND 16 [PMID: 31977207], COMPOUND 1 [PMID: 31465224]",,,,0,,"Mutated (MODERATE) | Overexpressed (880 TPM, p100) | Druggable (8 drugs)"
-AFDN,6,B,2,,203.8,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (204 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)"
-ARHGEF12,6,B,2,,188.4,YES,0,,,,"TSG, fusion",0,,"Overexpressed (188 TPM, p99) | Surface protein (HPA) | COSMIC (TSG, fusion)"
-CREB3L2,6,B,2,,225.7,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (226 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)"
-DDX3X,6,B,2,,301.0,YES,0,,,,TSG,0,,"Overexpressed (301 TPM, p99) | Surface protein (HPA) | COSMIC (TSG)"
-EIF3E,6,B,2,,165.1,YES,0,,,,"TSG, fusion",0,,"Overexpressed (165 TPM, p98) | Surface protein (HPA) | COSMIC (TSG, fusion)"
-EVC,6,B,2,YES,36.8,YES,1,COMPOUND 22 [PMID: 20462760],,,,0,,Mutated (HIGH) | Expressed (37 TPM) | Surface protein (HPA) | Druggable (1 drugs)
-FAT3,6,B,2,,192.1,YES,0,,,,,0,,"Overexpressed (192 TPM, p99) | Surface protein (HPA) | COSMIC (nan)"
-FAT4,6,B,2,,204.5,YES,0,,,,TSG,0,,"Overexpressed (204 TPM, p99) | Surface protein (HPA) | COSMIC (TSG)"
-GOLGA5,6,B,2,,208.3,YES,0,,,,fusion,0,,"Overexpressed (208 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)"
-HERPUD1,6,B,2,,194.5,YES,0,,,,fusion,0,,"Overexpressed (195 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)"
-IL1RL2,6,B,2,YES,3.2,YES,3,"IMSIDOLIMAB, SPESOLIMAB, SPESOLIMAB",,,,0,,Mutated (HIGH) | Expressed (3 TPM) | Surface protein (HPA) | Druggable (3 drugs)
-KTN1,6,B,2,,206.7,YES,0,,,,fusion,0,,"Overexpressed (207 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)"
-LPP,6,B,2,,175.6,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (176 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)"
-MLLT10,6,B,2,,157.6,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (158 TPM, p98) | Surface protein (HPA) | COSMIC (oncogene, fusion)"
-MSN,6,B,2,,160.3,YES,0,,,,fusion,0,,"Overexpressed (160 TPM, p98) | Surface protein (HPA) | COSMIC (fusion)"
-MYH9,6,B,2,,332.3,YES,0,,,,"TSG, fusion",0,,"Overexpressed (332 TPM, p99) | Surface protein (HPA) | COSMIC (TSG, fusion)"
-RPN1,6,B,2,,225.9,YES,0,,,,fusion,0,,"Overexpressed (226 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)"
-NR2F2,5,B,3,YES,28.4,,3,"PYRIDABEN, RESACTIN A, CYCLOHEXIMIDE",,,,0,,Mutated (MODERATE) | Expressed (28 TPM) | Druggable (3 drugs) | COSMIC (nan)
-ACE,5,B,2,YES,3.0,YES,59,"SALVIANOLIC ACID B, CANDOXATRIL, CILAZAPRIL",,,,0,,Mutated (MODERATE) | Expressed (3 TPM) | Surface protein (HPA) | Druggable (59 drugs)
-ATP1A2,5,B,2,YES,0.3,YES,7,"OLANZAPINE, DESLANOSIDE, DIGITOXIN",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (7 drugs)
-BAZ1B,5,B,2,YES,562.0,,0,,,,,0,,"Mutated (HIGH) | Overexpressed (562 TPM, p100)"
-CNTRL,5,B,2,YES,20.2,YES,0,,,,fusion,0,,Mutated (HIGH) | Expressed (20 TPM) | Surface protein (HPA) | COSMIC (fusion)
-DAB2IP,5,B,2,YES,68.0,,0,,,,,0,,"Mutated (HIGH) | Overexpressed (68 TPM, p95)"
-DBH,5,B,2,YES,1.2,YES,15,"ETAMICASTAT, DISULFIRAM, SUMATRIPTAN",,,,0,,Mutated (MODERATE) | Expressed (1 TPM) | Surface protein (HPA) | Druggable (15 drugs)
-DOT1L,5,B,2,YES,29.7,,1,CANDESARTAN CILEXETIL,,,,0,,Mutated (HIGH) | Expressed (30 TPM) | Druggable (1 drugs)
-DRD1,5,B,2,YES,0.4,YES,187,"PEXIDARTINIB, PROPIOMAZINE, LINIFANIB",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (187 drugs)
-KCNH4,5,B,2,YES,0.5,YES,6,"NERISPIRDINE, AMIFAMPRIDINE PHOSPHATE, AMIFAMPRIDINE",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (6 drugs)
-LY75,5,B,2,YES,2.3,YES,1,RASDEGAFUSP ALFA,,,,0,,Mutated (MODERATE) | Expressed (2 TPM) | Surface protein (HPA) | Druggable (1 drugs)
-NLGN1,5,B,2,YES,3.6,YES,1,FLUOROURACIL,,,,0,,Mutated (MODERATE) | Expressed (4 TPM) | Surface protein (HPA) | Druggable (1 drugs)
-NTF3,5,B,2,YES,1.7,,26,"ALTEPLASE, RISPERIDONE, NALOXONE HYDROCHLORIDE",,,,0,,Mutated (HIGH) | Expressed (2 TPM) | Druggable (26 drugs)
-OR10P1,5,B,2,YES,,YES,2,"METOPROLOL, ATENOLOL",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (2 drugs)
-RUNX2,5,B,2,,1142.6,,1,ANTISENSE OLIGONUCLEOTIDES,,,,0,YES,"Overexpressed (1143 TPM, p100) | Druggable (1 drugs) | Known Osteosarcoma driver"
-XPNPEP2,5,B,2,YES,,YES,1,TOSEDOSTAT,,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (1 drugs)
+gene,score,tier,modalities,mutated,tpm,surface,n_drugs,top_drugs,civic_levels,civic_therapies,cosmic_role,n_trials,driver,evidence_summary,tissue_specificity,housekeeping
+PDGFRA,12,A,5,,318.4,YES,60,"IMATINIB, TOVETUMAB, DASATINIB ANHYDROUS","B,C,D","Sunitinib, Crenolanib","oncogene, fusion",2,,"Overexpressed (318 TPM, p99) | Surface protein (HPA) | Druggable (60 drugs) | CIViC (30 items, levels B,C,D) | COSMIC (oncogene, fusion) | 2 recruiting trial(s)",Tissue enhanced,False
+IGF1R,11,A,4,,170.0,YES,48,"MECASERMIN, AEW-541, ERLOTINIB","B,D","Gefitinib, IGF1R Monoclonal Antibody",,1,,"Overexpressed (170 TPM, p98) | Surface protein (HPA) | Druggable (48 drugs) | CIViC (3 items, levels B,D) | 1 recruiting trial(s)",Low tissue specificity,False
+HLA-DRA,10,A,3,,1534.4,YES,7,"NIVOLUMAB, CLAVULANIC ACID, FLOXACILLIN",B,"Nivolumab, Pembrolizumab, Atezolizumab",,0,,"Overexpressed (1534 TPM, p100) | Surface protein (HPA) | Druggable (7 drugs) | CIViC (1 items, levels B)",Tissue enhanced,False
+CSF1R,9,A,4,,188.0,YES,52,"CEDIRANIB, CABIRALIZUMAB, PEXIDARTINIB",,,oncogene,2,,"Overexpressed (188 TPM, p99) | Surface protein (HPA) | Druggable (52 drugs) | COSMIC (oncogene) | 2 recruiting trial(s)",Tissue enhanced,False
+PDGFRB,9,A,4,,168.2,YES,78,"IMATINIB, REGORAFENIB, PETROSIOL A",C,Sunitinib,"oncogene, fusion",0,,"Overexpressed (168 TPM, p98) | Surface protein (HPA) | Druggable (78 drugs) | CIViC (1 items, levels C) | COSMIC (oncogene, fusion)",Low tissue specificity,False
+PTPRD,9,A,4,,371.7,YES,8,"TRANDOLAPRIL, TEPROTUMUMAB, ANTIHYPERTENSIVE AGENT","C,D","JSI-124, Cixutumumab, Teprotumumab",TSG,0,,"Overexpressed (372 TPM, p100) | Surface protein (HPA) | Druggable (8 drugs) | CIViC (2 items, levels C,D) | COSMIC (TSG)",Tissue enhanced,False
+EDNRB,9,A,3,YES,73.1,YES,14,"ENDOTHELIN-1, ENRASENTAN, MACITENTAN",,,,0,,"Mutated (MODERATE) | Overexpressed (73 TPM, p96) | Surface protein (HPA) | Druggable (14 drugs)",Tissue enhanced,False
+CDKN2A,8,A,4,,0.5,,28,"RIBOCICLIB, PACLITAXEL, ULIXERTINIB","A,B,C,D","Palbociclib, Alvocidib",TSG,4,YES,"Druggable (28 drugs) | CIViC (27 items, levels A,B,C,D) | COSMIC (TSG) | Known Osteosarcoma driver | 4 recruiting trial(s)",Tissue enhanced,False
+CD276,8,A,3,,194.8,YES,5,"ENOBLITUZUMAB, 8H9 131I, OMBURTAMAB I-131",,,,1,,"Overexpressed (195 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs) | 1 recruiting trial(s)",Low tissue specificity,False
+CD74,8,A,3,,960.6,YES,5,"DIOA, MILATUZUMAB, VU0240551",,,"oncogene, fusion",0,,"Overexpressed (961 TPM, p100) | Surface protein (HPA) | Druggable (5 drugs) | COSMIC (oncogene, fusion)",Tissue enhanced,False
+FAT1,8,A,3,,1268.5,YES,1,CAPECITABINE,,,TSG,0,,"Overexpressed (1268 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)",Tissue enhanced,False
+FLNA,8,A,3,,413.0,YES,2,"SIMUFILAM, SIMUFILAM",,,,0,,"Overexpressed (413 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs) | COSMIC (nan)",Tissue enhanced,False
+LIFR,8,A,3,,826.8,YES,1,EMFILERMIN,,,fusion,0,,"Overexpressed (827 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (fusion)",Low tissue specificity,False
+MERTK,8,A,3,,337.0,YES,5,"HESPERADIN, NINGETINIB, TAMNORZATINIB",D,UNC1062,,0,,"Overexpressed (337 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs) | CIViC (1 items, levels D)",Tissue enhanced,False
+PTPN13,8,A,3,,207.1,YES,1,ANTIESTROGEN,,,TSG,0,,"Overexpressed (207 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)",Tissue enhanced,False
+SUCO,8,B,2,YES,122.5,YES,0,,,,,0,,"Mutated (HIGH) | Overexpressed (122 TPM, p98) | Surface protein (HPA)",Tissue enhanced,False
+MYC,7,A,4,,89.5,,70,"UBENIMEX, DIETHYLSTILBESTROL, METHYLPREDNISOLONE",D,"Prexasertib, Olaparib, Cisplatin, JQ-1","oncogene, fusion",0,YES,"Overexpressed (90 TPM, p97) | Druggable (70 drugs) | CIViC (2 items, levels D) | COSMIC (oncogene, fusion) | Known Osteosarcoma driver",Tissue enhanced,False
+ADAM17,7,B,2,,181.7,YES,5,"APRATASTAT, MARIMASTAT, INFLIXIMAB",,,,0,,"Overexpressed (182 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)",Low tissue specificity,False
+ANXA1,7,B,2,,348.8,YES,44,"METHYLPREDNISOLONE, EFWSLAAPQRF-NH2, BIBP3226",,,,0,,"Overexpressed (349 TPM, p100) | Surface protein (HPA) | Druggable (44 drugs)",Tissue enhanced,False
+APOD,7,B,2,,183.8,YES,8,"RWJ-56110, F16357, TFLLR-NH2",,,,0,,"Overexpressed (184 TPM, p99) | Surface protein (HPA) | Druggable (8 drugs)",Tissue enhanced,False
+ARID5B,7,B,2,,268.9,YES,3,"HALOPERIDOL DECANOATE, GLUCARPIDASE, IMATINIB",,,,0,,"Overexpressed (269 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)",Tissue enhanced,False
+ASPH,7,B,2,,196.9,YES,21,"WARFARIN, LY404187, [3H]AMPA",,,,0,,"Overexpressed (197 TPM, p99) | Surface protein (HPA) | Druggable (21 drugs)",Tissue enhanced,False
+ATP2B1,7,B,2,,601.5,YES,32,"METHYLPREDNISOLONE, CHLORPROMAZINE, DAIDZEIN",,,,0,,"Overexpressed (602 TPM, p100) | Surface protein (HPA) | Druggable (32 drugs)",Tissue enhanced,False
+BST2,7,B,2,,204.7,YES,19,"ZN2+, PB2+, ETHYLISOPROPYLAMILORIDE",,,,0,,"Overexpressed (205 TPM, p99) | Surface protein (HPA) | Druggable (19 drugs)",Tissue enhanced,False
+CAMK2D,7,B,2,,385.4,YES,14,"SNS-314, GEFITINIB, ILORASERTIB",,,,0,,"Overexpressed (385 TPM, p100) | Surface protein (HPA) | Druggable (14 drugs)",Tissue enhanced,False
+CD109,7,B,2,YES,204.4,YES,0,,,,,0,,"Mutated (MODERATE) | Overexpressed (204 TPM, p99) | Surface protein (HPA)",Tissue enriched,False
+CD163,7,B,2,,1232.2,YES,2,"THERAPEUTIC GLUCOCORTICOID, FLUTICASONE",,,,0,,"Overexpressed (1232 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enhanced,False
+COL6A2,7,B,2,,184.8,YES,3,"COLLAGENASE CLOSTRIDIUM HISTOLYTICUM, OCRIPLASMIN, ESI-09",,,,0,,"Overexpressed (185 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)",Low tissue specificity,False
+CSPG4,7,B,2,,181.3,YES,5,"LEUCOVORIN CALCIUM, ALTEPLASE, IRINOTECAN HYDROCHLORIDE",,,,0,,"Overexpressed (181 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)",Tissue enhanced,False
+CTSK,7,B,2,,185.6,YES,7,"MIV-701, RELACATIB, ONO-5334",,,,0,,"Overexpressed (186 TPM, p99) | Surface protein (HPA) | Druggable (7 drugs)",Tissue enhanced,False
+CYBB,7,B,2,,230.9,YES,5,"COMPOUND 14N [PMID: 25589934], APIGENIN, SANOFI-14H",,,,0,,"Overexpressed (231 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)",Tissue enhanced,False
+DPYSL2,7,B,2,,196.3,YES,40,"LACOSAMIDE, DERAZANTINIB, COMPOUND 29 [PMID: 36356320]",,,,0,,"Overexpressed (196 TPM, p99) | Surface protein (HPA) | Druggable (40 drugs)",Tissue enhanced,False
+EDNRA,7,B,2,,514.2,YES,23,"NEBENTAN, ATRASENTAN, TBC-3711",,,,0,,"Overexpressed (514 TPM, p100) | Surface protein (HPA) | Druggable (23 drugs)",Tissue enhanced,False
+EFR3A,7,B,2,,350.6,YES,2,"ASPIRIN, CLOPIDOGREL",,,,0,,"Overexpressed (351 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enhanced,False
+EMP1,7,B,2,,176.6,YES,5,"COMPOUND 20 [PMID: 30998356], COMPOUND 1A [PMID: 24900749], GEFITINIB",,,,0,,"Overexpressed (177 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)",Tissue enhanced,False
+ENPEP,7,B,2,,195.5,YES,4,"FIRIBASTAT, QGC-001, SGI-1776",,,,0,,"Overexpressed (196 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs)",Tissue enhanced,False
+EPB41L2,7,B,2,,607.3,YES,1,HSL119,,,,0,,"Overexpressed (607 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+EPS8,7,B,2,,171.8,YES,21,"PF-06447475, GSK2646264, URMC-099",,,,0,,"Overexpressed (172 TPM, p99) | Surface protein (HPA) | Druggable (21 drugs)",Low tissue specificity,False
+FBN1,7,B,2,,372.6,YES,2,"RN486, DANUSERTIB",,,,0,,"Overexpressed (373 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enhanced,False
+GALNT3,7,B,2,,244.7,YES,2,"GSK-264220A, COMPOUND 12 [PMID: 31990537]",,,,0,,"Overexpressed (245 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enhanced,False
+GJA1,7,B,2,,991.1,YES,11,"SELENIUM, CARVEDILOL, PROPYLTHIOURACIL",,,,0,,"Overexpressed (991 TPM, p100) | Surface protein (HPA) | Druggable (11 drugs)",Low tissue specificity,False
+GPNMB,7,B,2,,707.2,YES,2,"GLEMBATUMUMAB, GLEMBATUMUMAB VEDOTIN",,,,0,,"Overexpressed (707 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enhanced,False
+GPR34,7,B,2,,362.6,YES,3,"AMG28, APILIMOD, COMPOUND 17 [PMID: 36111834]",,,,0,,"Overexpressed (363 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)",Tissue enhanced,False
+HIPK2,7,B,2,,224.0,YES,15,"ILORASERTIB, BAY 61-3606, TAMATINIB",,,,0,,"Overexpressed (224 TPM, p99) | Surface protein (HPA) | Druggable (15 drugs)",Tissue enriched,False
+HLA-E,7,B,2,,348.0,YES,6,"ETANERCEPT, CEDAZURIDINE, METHOTREXATE",,,,0,,"Overexpressed (348 TPM, p100) | Surface protein (HPA) | Druggable (6 drugs)",Low tissue specificity,False
+HSP90B1,7,B,2,,241.3,YES,1,VIAGENPUMATUCEL-L,,,,0,,"Overexpressed (241 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+HSPA1A,7,B,2,,3420.0,YES,4,"CD24FC, CARBAMAZEPINE, AG-858",,,,0,,"Overexpressed (3420 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs)",Low tissue specificity,False
+HTRA1,7,B,2,,515.9,YES,2,"GALEGENIMAB, HYDROGEN PEROXIDE",,,,0,,"Overexpressed (516 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enhanced,False
+ITGA2,7,B,2,,277.7,YES,2,"E-7820, VATELIZUMAB",,,,0,,"Overexpressed (278 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)",Low tissue specificity,False
+ITGB5,7,B,2,,353.3,YES,4,"CILENGITIDE, INTETUMUMAB, ABITUZUMAB",,,,0,,"Overexpressed (353 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs)",Tissue enhanced,False
+KCNJ2,7,B,2,,185.5,YES,1,DRONEDARONE HYDROCHLORIDE,,,,0,,"Overexpressed (186 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+KCNK2,7,B,2,,182.5,YES,6,"SEVOFLURANE, ISOFLURANE, ENFLURANE",,,,0,,"Overexpressed (182 TPM, p99) | Surface protein (HPA) | Druggable (6 drugs)",Tissue enriched,False
+LAMA4,7,B,2,,491.8,YES,1,OCRIPLASMIN,,,,0,,"Overexpressed (492 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+LAMC1,7,B,2,,390.4,YES,1,OCRIPLASMIN,,,,0,,"Overexpressed (390 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+LGALS3,7,B,2,,221.2,YES,4,"OLITIGALTIN, DAVANAT, BELAPECTIN",,,,0,,"Overexpressed (221 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs)",Tissue enhanced,False
+LIPA,7,B,2,,217.3,YES,6,"THERAPEUTIC HORMONE, SEBELIPASE ALFA, LOVASTATIN",,,,0,,"Overexpressed (217 TPM, p99) | Surface protein (HPA) | Druggable (6 drugs)",Tissue enhanced,False
+LPAR1,7,B,2,,565.6,YES,4,"BMS-986202, SAR100842, BMS-986020",,,,0,,"Overexpressed (566 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs)",Tissue enriched,False
+LRP1,7,B,2,,1276.9,YES,3,"WARFARIN, ANG1005, ANTISENSE OLIGONUCLEOTIDES",,,,0,,"Overexpressed (1277 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)",Tissue enhanced,False
+MAOB,7,B,2,,210.8,YES,33,"SAFINAMIDE, LEVODOPA, MOCLOBEMIDE",,,,0,,"Overexpressed (211 TPM, p99) | Surface protein (HPA) | Druggable (33 drugs)",Tissue enhanced,False
+MSR1,7,B,2,,166.1,YES,1,H2O2,,,,0,,"Overexpressed (166 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enriched,False
+NDUFA1,7,B,2,,866.3,YES,3,"NV-128, METFORMIN HYDROCHLORIDE, ME-344",,,,0,,"Overexpressed (866 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs)",Tissue enhanced,False
+P4HB,7,B,2,,251.1,YES,11,"LOMITAPIDE MESYLATE, LIQUIRITIN, ASTRAGALIN",,,,0,,"Overexpressed (251 TPM, p99) | Surface protein (HPA) | Druggable (11 drugs)",Tissue enhanced,False
+PAK1,7,B,2,,184.1,YES,10,"MLN-8054, CENISERTIB, NVP-TAE684",,,,0,,"Overexpressed (184 TPM, p99) | Surface protein (HPA) | Druggable (10 drugs)",Tissue enhanced,False
+PANX3,7,B,2,,2089.5,YES,2,"CARBENOXOLONE, FLUFENAMIC ACID",,,,0,,"Overexpressed (2090 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)",Not detected,False
+PDGFC,7,B,2,,328.2,YES,1,SUNITINIB,,,,0,,"Overexpressed (328 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+PECAM1,7,B,2,,163.3,YES,1,RESVERATROL,,,,0,,"Overexpressed (163 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+PHOSPHO1,7,B,2,,250.6,YES,2,"LANSOPRAZOLE, EBSELEN",,,,0,,"Overexpressed (251 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enriched,False
+PIP4K2A,7,B,2,,166.5,YES,1,FLUPIRTINE MALEATE,,,,0,,"Overexpressed (166 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+PKD2,7,B,2,,225.8,YES,1,ALLOPURINOL,,,,0,,"Overexpressed (226 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+PRDX4,7,B,2,,243.7,YES,1,DOCETAXEL ANHYDROUS,,,,0,,"Overexpressed (244 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enriched,False
+PRNP,7,B,2,,456.6,YES,1,BREFELDIN A,,,,0,,"Overexpressed (457 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+PTH1R,7,B,2,,695.5,YES,12,"9-AMINOCAMPTOTHECIN, PARATHYROID HORMONE, ABALOPARATIDE",,,,0,,"Overexpressed (696 TPM, p100) | Surface protein (HPA) | Druggable (12 drugs)",Tissue enriched,False
+PTPRZ1,7,B,2,,271.3,YES,3,"TETRADECANOYLPHORBOL ACETATE, TRETINOIN, VITAMIN D",,,,0,,"Overexpressed (271 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)",Tissue enriched,False
+S100A10,7,B,2,,1055.3,YES,2,"DEXAMETHASONE, THERAPEUTIC GONADOTROPIN",,,,0,,"Overexpressed (1055 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enhanced,False
+SDC2,7,B,2,,381.3,YES,1,HEPARAN SULFATE,,,,0,,"Overexpressed (381 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+SGPP1,7,B,2,,161.1,YES,1,SONEPCIZUMAB,,,,0,,"Overexpressed (161 TPM, p98) | Surface protein (HPA) | Druggable (1 drugs)",Low tissue specificity,False
+SLC38A4,7,B,2,,252.2,YES,2,"GLYCINE, ALANINE",,,,0,,"Overexpressed (252 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs)",Tissue enriched,False
+STK17A,7,B,2,,198.0,YES,16,"AZD-1080, CYC-116, RG-1530",,,,0,,"Overexpressed (198 TPM, p99) | Surface protein (HPA) | Druggable (16 drugs)",Low tissue specificity,False
+TGFB1,7,B,2,,389.8,YES,59,"INTERFERON ALFA-2B, PIOGLITAZONE HYDROCHLORIDE, SILYMARIN",,,,0,,"Overexpressed (390 TPM, p100) | Surface protein (HPA) | Druggable (59 drugs)",Low tissue specificity,False
+TXN,7,B,2,,210.4,YES,4,"GAMBOGENIC ACID, PX-12, GAMBOGIC ACID",,,,0,,"Overexpressed (210 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs)",Tissue enhanced,False
+UGCG,7,B,2,,269.7,YES,10,"VENGLUSTAT, PRALICIGUAT, ADRIAMYCIN",,,,0,,"Overexpressed (270 TPM, p99) | Surface protein (HPA) | Druggable (10 drugs)",Tissue enhanced,False
+XBP1,7,B,2,,170.5,YES,11,"ANGUSTIBALIN, PROTOAPIGENONE, DITHIAZANINE IODIDE",,,,0,,"Overexpressed (170 TPM, p98) | Surface protein (HPA) | Druggable (11 drugs)",Tissue enhanced,False
+YBX1,7,B,2,,293.7,YES,1,ABIRATERONE ACETATE,,,,0,,"Overexpressed (294 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+PRKCB,6,B,4,YES,3.2,,16,"RUBOXISTAURIN, CEP-2563 DIHYDROCHLORIDE, QUERCETIN",D,,,0,,"Mutated (MODERATE) | Expressed (3 TPM) | Druggable (16 drugs) | CIViC (1 items, levels D) | COSMIC (nan)",Tissue enhanced,False
+BMP1,6,B,3,YES,85.5,,1,COMPOUND 2 [PMID: 11934595],,,,0,,"Mutated (MODERATE) | Overexpressed (86 TPM, p96) | Druggable (1 drugs)",Low tissue specificity,False
+COL4A2,6,B,3,YES,83.0,,3,"OCRIPLASMIN, COLLAGENASE CLOSTRIDIUM HISTOLYTICUM, NAVOXIMOD",,,,0,,"Mutated (MODERATE) | Overexpressed (83 TPM, p96) | Druggable (3 drugs)",Tissue enhanced,False
+EVC,6,B,2,YES,36.8,YES,1,COMPOUND 22 [PMID: 20462760],,,,0,,Mutated (HIGH) | Expressed (37 TPM) | Surface protein (HPA) | Druggable (1 drugs),Low tissue specificity,False
+FAT3,6,B,2,,192.1,YES,0,,,,,0,,"Overexpressed (192 TPM, p99) | Surface protein (HPA) | COSMIC (nan)",Tissue enhanced,False
+FAT4,6,B,2,,204.5,YES,0,,,,TSG,0,,"Overexpressed (204 TPM, p99) | Surface protein (HPA) | COSMIC (TSG)",Low tissue specificity,False
+IL1RL2,6,B,2,YES,3.2,YES,3,"IMSIDOLIMAB, SPESOLIMAB, SPESOLIMAB",,,,0,,Mutated (HIGH) | Expressed (3 TPM) | Surface protein (HPA) | Druggable (3 drugs),Tissue enhanced,False
+LPP,6,B,2,,175.6,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (176 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)",Tissue enhanced,False
+MLLT10,6,B,2,,157.6,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (158 TPM, p98) | Surface protein (HPA) | COSMIC (oncogene, fusion)",Tissue enhanced,False
+MYH9,6,B,2,,332.3,YES,0,,,,"TSG, fusion",0,,"Overexpressed (332 TPM, p99) | Surface protein (HPA) | COSMIC (TSG, fusion)",Tissue enhanced,False
+NR2F2,5,B,3,YES,28.4,,3,"PYRIDABEN, RESACTIN A, CYCLOHEXIMIDE",,,,0,,Mutated (MODERATE) | Expressed (28 TPM) | Druggable (3 drugs) | COSMIC (nan),Low tissue specificity,False
+ACE,5,B,2,YES,3.0,YES,59,"SALVIANOLIC ACID B, CANDOXATRIL, CILAZAPRIL",,,,0,,Mutated (MODERATE) | Expressed (3 TPM) | Surface protein (HPA) | Druggable (59 drugs),Tissue enhanced,False
+ATP1A2,5,B,2,YES,0.3,YES,7,"OLANZAPINE, DESLANOSIDE, DIGITOXIN",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (7 drugs),Group enriched,False
+CNTRL,5,B,2,YES,20.2,YES,0,,,,fusion,0,,Mutated (HIGH) | Expressed (20 TPM) | Surface protein (HPA) | COSMIC (fusion),Tissue enhanced,False
+DAB2IP,5,B,2,YES,68.0,,0,,,,,0,,"Mutated (HIGH) | Overexpressed (68 TPM, p95)",Tissue enhanced,False
+DBH,5,B,2,YES,1.2,YES,15,"ETAMICASTAT, DISULFIRAM, SUMATRIPTAN",,,,0,,Mutated (MODERATE) | Expressed (1 TPM) | Surface protein (HPA) | Druggable (15 drugs),Tissue enriched,False
+DOT1L,5,B,2,YES,29.7,,1,CANDESARTAN CILEXETIL,,,,0,,Mutated (HIGH) | Expressed (30 TPM) | Druggable (1 drugs),Tissue enhanced,False
+DRD1,5,B,2,YES,0.4,YES,187,"PEXIDARTINIB, PROPIOMAZINE, LINIFANIB",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (187 drugs),Group enriched,False
+KCNH4,5,B,2,YES,0.5,YES,6,"NERISPIRDINE, AMIFAMPRIDINE PHOSPHATE, AMIFAMPRIDINE",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (6 drugs),Tissue enriched,False
+LY75,5,B,2,YES,2.3,YES,1,RASDEGAFUSP ALFA,,,,0,,Mutated (MODERATE) | Expressed (2 TPM) | Surface protein (HPA) | Druggable (1 drugs),Tissue enriched,False
+NLGN1,5,B,2,YES,3.6,YES,1,FLUOROURACIL,,,,0,,Mutated (MODERATE) | Expressed (4 TPM) | Surface protein (HPA) | Druggable (1 drugs),Tissue enhanced,False
+NTF3,5,B,2,YES,1.7,,26,"ALTEPLASE, RISPERIDONE, NALOXONE HYDROCHLORIDE",,,,0,,Mutated (HIGH) | Expressed (2 TPM) | Druggable (26 drugs),Tissue enhanced,False
+OR10P1,5,B,2,YES,,YES,2,"METOPROLOL, ATENOLOL",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (2 drugs),Not detected,False
+RUNX2,5,B,2,,1142.6,,1,ANTISENSE OLIGONUCLEOTIDES,,,,0,YES,"Overexpressed (1143 TPM, p100) | Druggable (1 drugs) | Known Osteosarcoma driver",Low tissue specificity,False
+XPNPEP2,5,B,2,YES,,YES,1,TOSEDOSTAT,,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (1 drugs),Group enriched,False
