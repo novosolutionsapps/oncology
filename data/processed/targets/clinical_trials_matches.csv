@@ -1,0 +1,51 @@
+gene_target,cancer_type,nct_id,title,phase,status
+TP53,Osteosarcoma,NCT04116541,A Study Evaluating the Activity of Anti-cancer Treatments Targeting Tumor Molecular Alterations/Characteristics in Advanced / Metastatic Tumors.,PHASE2,RECRUITING
+TP53,Sarcoma,NCT06158399,AZA Combined With RCHOP in P53-mutated DLBCL.,PHASE2,RECRUITING
+TP53,Sarcoma,NCT06578624,Safety and Preliminary Efficacy of SA53-OS in Patients With Locally Advanced or Metastatic Solid Tumors,"PHASE1, PHASE2",RECRUITING
+TP53,Sarcoma,NCT05304585,Chemotherapy for the Treatment of Patients With Newly Diagnosed Very Low-Risk and Low Risk Fusion Negative Rhabdomyosarcoma,PHASE3,RECRUITING
+TP53,Sarcoma,NCT04776525,Sequential Neoadjuvant Chemotherapy in Soft Tissue Sarcoma,PHASE2,RECRUITING
+TP53,Sarcoma,NCT06494540,NIS to Examine the Effectiveness of TDC in Patients With Metastatic Non-squamous NSCLC and High-risk Genetic Alterations,,RECRUITING
+PTEN,Sarcoma,NCT03050268,Familial Investigations of Childhood Cancer Predisposition,,RECRUITING
+MDM2,Sarcoma,NCT04224064,Identification of a New Blood Biomarker for the Diagnosis and Prognosis of Liposarcomas,NA,RECRUITING
+MDM2,Sarcoma,NCT04458792,Establishment of a Prospective Clinical-biological Database,NA,RECRUITING
+MDM2,Sarcoma,NCT06436846,Genomic Risk in Retroperitoneal Sarcoma,,RECRUITING
+MDM2,Sarcoma,NCT04025541,Analysis of Circulating Tumor Markers in Blood,NA,RECRUITING
+CD276,Sarcoma,NCT05999396,"FIH, Bispecific CD276xCD3 Antibody CC-3 in Patients With Colorectal Cancer",PHASE1,RECRUITING
+PDGFRA,Sarcoma,NCT04771520,Avapritinib for the Treatment of CKIT or PDGFRA Mutation-Positive Locally Advanced or Metastatic Malignant Solid Tumors,PHASE2,RECRUITING
+PDGFRA,Sarcoma,NCT04557969,"Surgery in Gastrointestinal Stromal Tumors (GISTs) for Treatment, Tumor Modeling, and Genomic Analysis",,RECRUITING
+FAP,Sarcoma,NCT05919264,FOG-001 in Locally Advanced or Metastatic Solid Tumors,"PHASE1, PHASE2",RECRUITING
+FAP,Sarcoma,NCT04939610,A Study of 177Lu-FAP-2286 in Advanced Solid Tumors,"PHASE1, PHASE2",RECRUITING
+FAP,Sarcoma,NCT04969835,"A Study Evaluating the Safety, Pharmacokinetics and Early Efficacy of AVA6000 in Solid Tumours",PHASE1,RECRUITING
+FAP,Sarcoma,NCT06298916,64Cu-LNTH-1363S in Patients With Sarcoma or Gastrointestinal Tract Cancer,"PHASE1, PHASE2",RECRUITING
+RB1,Osteosarcoma,NCT07197554,"A Phase 1/1B Study of ST-01156, a Small Molecule RBM39 Degrader, in Patients With Advanced Solid Malignancies",PHASE1,RECRUITING
+RB1,Osteosarcoma,NCT01050296,Molecular Analysis Of Solid Tumors,,RECRUITING
+RB1,Osteosarcoma,NCT06492954,Atezolizumab in Combination With Stereotactic Body Radiation Therapy (SBRT) and Surgery for Relapsed Osteosarcoma,PHASE1,RECRUITING
+RB1,Osteosarcoma,NCT04959097,Retinoblastoma Patient Clinical Database and Tissue Repository,,RECRUITING
+RB1,Osteosarcoma,NCT03739827,Natural History and Biospecimen Acquisition for Children and Adults With Rare Solid Tumors,,RECRUITING
+RB1,Sarcoma,NCT01109394,Comprehensive Omics Analysis of Pediatric and Adult Solid Tumors and Establishment of a Repository for Related Biological Studies,,RECRUITING
+CDKN2A,Sarcoma,NCT06113809,Palbociclib and Pembrolizumab in Sarcoma,PHASE1,RECRUITING
+CDKN2A,Sarcoma,NCT06222203,Surveillance for Malignant Transformation of Neurofibromatosis Type 1 (NF1) Related Peripheral Nerve Sheath Tumors (PNST),,RECRUITING
+CDKN2A,Sarcoma,NCT02693535,TAPUR: Testing the Use of Food and Drug Administration (FDA) Approved Drugs That Target a Specific Abnormality in a Tumor Gene in People With Advanced Stage Cancer,PHASE2,RECRUITING
+CDKN2A,Sarcoma,NCT07480902,Comparison Between Liquid-Based Cytology And Molecular Screening For Detecting Precursor Lesions and Cervical Cancer,NA,RECRUITING
+ERBB2,Osteosarcoma,NCT07066982,Sequential Infusion of CD146-Targeted and HER2-Targeted CAR T Cells in Patients With Advanced Sarcomas,"PHASE1, PHASE2",RECRUITING
+ERBB2,Osteosarcoma,NCT04995003,HER2 Chimeric Antigen Receptor (CAR) T Cells in Combination With Checkpoint Blockade in Patients With Advanced Sarcoma,PHASE1,RECRUITING
+ERBB2,Sarcoma,NCT05824975,"A Study to Evaluate the Safety and Therapeutic Activity of GI-102 As a Single Agent and in Combination with Conventional Anti-cancer Drugs, Pembrolizumab or Trastuzumab Deruxtecan(T-DXd) in Patients with Advanced Solid Tumors (KEYNOTE-G08)","PHASE1, PHASE2",RECRUITING
+ERBB2,Sarcoma,NCT06760819,A Study to Learn More About How Well Treatment With Sevabertinib (BAY 2927088) Tablets Works and How Safe it is in Participants Who Have a Solid Tumor With Mutations of the Human Epidermal Growth Factor Receptor 2 (HER2),PHASE2,RECRUITING
+ERBB2,Sarcoma,NCT07192068,Clinical Trial Evaluating the Activity of Zanidatamab for the Treatment of Patients With Solid Tumors With an Alteration of the HER2 Gene.,PHASE2,RECRUITING
+ERBB2,Sarcoma,NCT07195695,Beamion LUNG-3: Adjuvant Zongertinib vs Standard Treatment in People With Completely Resected Stage II-IIIB NSCLC Harboring Activating HER2 TKD Mutations,PHASE3,RECRUITING
+ERBB2,Sarcoma,NCT07309770,Trastuzumab Rezetecan in Advanced Solid Tumors Refractory to Standard Therapies,PHASE2,RECRUITING
+EGFR,Sarcoma,NCT03874026,Study of Folfiri/Cetuximab in FcGammaRIIIa V/V Stage IV Colorectal Cancer Patients,PHASE2,RECRUITING
+EGFR,Sarcoma,NCT06843967,A Study of Mirdametinib in Combination With Palbociclib in People With Liposarcoma,"PHASE1, PHASE2",RECRUITING
+EGFR,Sarcoma,NCT06196424,A Study to Investigate the Family History of Cancer in Patients With Non-small Cell Lung Cancer (FAHIC - Lung).,,RECRUITING
+EGFR,Sarcoma,NCT06047379,"Safety and Efficacy of NEO212 in Patients With Astrocytoma IDH-mutant, Glioblastoma IDH-wildtype or Brain Metastasis","PHASE1, PHASE2",RECRUITING
+MET,Osteosarcoma,NCT04040205,Abemaciclib for Bone and Soft Tissue Sarcoma With Cyclin-Dependent Kinase (CDK) Pathway Alteration,PHASE2,RECRUITING
+MET,Osteosarcoma,NCT06709495,Phase 1/2 Trial to Evaluate the Safety and Efficacy of PEEL-224 in Combination With Vincristine and Temozolomide in Adolescents and Young Adults With Relapsed or Refractory Sarcomas,"PHASE1, PHASE2",RECRUITING
+MET,Osteosarcoma,NCT05691478,A Study to Test the Addition of the Drug Cabozantinib to Chemotherapy in Patients With Newly Diagnosed Osteosarcoma,"PHASE2, PHASE3",RECRUITING
+MET,Sarcoma,NCT02792270,Caloric Restriction In Sarcoma Patients Treated With Pre-Operative RT,NA,RECRUITING
+MET,Sarcoma,NCT06942442,A Phase II Trial of Tebentafusp in HLA-A*02:01 Positive Patients With Advanced Clear Cell Sarcoma,PHASE2,RECRUITING
+MET,Sarcoma,NCT07153887,Vebreltinib for Advanced or Metastatic CCS,PHASE2,RECRUITING
+IGF1R,Sarcoma,NCT04199026,Implantable Microdevice for the Delivery of Drugs and Their Effect on Tumors in Patients With Metastatic or Recurrent Sarcoma,NA,RECRUITING
+CSF1R,Sarcoma,NCT06712810,Q702 for the Treatment of Patients With Hematologic Malignancies,PHASE1,RECRUITING
+CSF1R,Sarcoma,NCT04072042,BIOmarker Driven Trial of VEGFR2 Inhibitor in Advanced or Metastatic Sarcoma,PHASE2,RECRUITING
+CTNNB1,Osteosarcoma,NCT04851119,"Tegavivint for the Treatment of Recurrent or Refractory Solid Tumors, Including Lymphomas and Desmoid Tumors","PHASE1, PHASE2",RECRUITING
+CTNNB1,Sarcoma,NCT07463599,Safety and Efficacy of Tegavivint in Patients With Metastatic Colorectal Carcinoma,"PHASE1, PHASE2",RECRUITING

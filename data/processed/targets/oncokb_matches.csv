@@ -1,0 +1,12 @@
+gene,variant,protein_change,level,cancer_type,drugs,description,source
+TP53,Y220C,Y220C,3A,All Solid Tumors,Rezatapopt,"Rezatapopt is an orally available, small-molecule structural corrector specific for the Y220C-mutant p53 protein. There are promising clinical data of response to rezatapopt in patients with TP53 Y220",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,AML with Myelodysplasia-Related Changes,,"This assertion is supported by (PMID: 25860933, 25412851).",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Acute Myeloid Leukemia,,"This assertion is supported by (PMID: 22186996, 18596741).",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Chronic Lymphocytic Leukemia/Small Lymphocytic Lymphoma,,"This assertion is supported by (PMID: 19188171, 20697090, 24652989, 23243274, 24004666).",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Essential Thrombocythemia,,"This assertion is supported by (PMID: 22887079, 29296692, 24478400).",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Myelodysplastic Syndromes,,"This assertion is supported by (PMID: 24220272, 21714648, 25092778).",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Myeloproliferative Neoplasms,,"This assertion is supported by (PMID: 22887079, 25516983, 22052707).",DRIVER
+TP53,Deletion,Deletion,Px1,Plasma Cell Myeloma,,"This assertion is supported by (PMID: 9680348, 18337559, 17209057 Abstract: Hofste op Bruinink, D. et al. Abstract# Blood 128:3271, 2017. http://www.bloodjournal.org/content/128/22/3271?sso-checked=tr",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Primary Myelofibrosis,,"This assertion is supported by (PMID: 22887079, 25516983, 22052707).",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Therapy-Related Myeloid Neoplasms,,"This assertion is supported by (PMID: 25412846, 25952993).",DRIVER
+TP53,Oncogenic Mutations,Oncogenic Mutations,Px3,Mantle Cell Lymphoma,,"This assertion is supported by (PMID: 28819011, 26022239, 24684350, 8639789, 7579380).",DRIVER

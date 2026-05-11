@@ -112,6 +112,15 @@ surface_path = PROJECT / "data" / "processed" / "expression" / "bulk" / "differe
 drivers_df = pd.read_csv(driver_path) if driver_path.exists() else None
 surface_df = pd.read_csv(surface_path) if surface_path.exists() else None
 
+# Clinical database results
+targets_dir = PROJECT / "data" / "processed" / "targets"
+dgidb_df = pd.read_csv(targets_dir / "dgidb_drug_matches.csv") if (targets_dir / "dgidb_drug_matches.csv").exists() else pd.DataFrame()
+civic_df = pd.read_csv(targets_dir / "civic_matches.csv") if (targets_dir / "civic_matches.csv").exists() else pd.DataFrame()
+cosmic_df = pd.read_csv(targets_dir / "cosmic_census_matches.csv") if (targets_dir / "cosmic_census_matches.csv").exists() else pd.DataFrame()
+trials_df = pd.read_csv(targets_dir / "clinical_trials_matches.csv") if (targets_dir / "clinical_trials_matches.csv").exists() else pd.DataFrame()
+oncokb_df = pd.read_csv(targets_dir / "oncokb_matches.csv") if (targets_dir / "oncokb_matches.csv").exists() else pd.DataFrame()
+print(f"Clinical DBs: DGIdb={len(dgidb_df)}, CIViC={len(civic_df)}, COSMIC={len(cosmic_df)}, Trials={len(trials_df)}, OncoKB={len(oncokb_df)}")
+
 # Load gene count data
 def load_gene_counts():
     our_path = PROJECT / "data" / "processed" / "expression" / "bulk" / "normalized-counts" / "ReadsPerGene.out.tab"
@@ -542,6 +551,7 @@ app.layout = html.Div(style={"backgroundColor": DARK_BG, "minHeight": "100vh", "
     dcc.Tabs(id="tabs", value="validation", style={"margin": "0 clamp(5px, 2vw, 20px)"}, children=[
         dcc.Tab(label="STAR", value="validation", style=TAB_STYLE, selected_style=TAB_SELECTED),
         dcc.Tab(label="Variants", value="variants", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Targets", value="targets", style=TAB_STYLE, selected_style=TAB_SELECTED),
         dcc.Tab(label="Methods", value="methodology", style=TAB_STYLE, selected_style=TAB_SELECTED),
     ]),
 
@@ -557,6 +567,8 @@ def render_tab(tab):
         return render_validation()
     elif tab == "variants":
         return render_variants()
+    elif tab == "targets":
+        return render_targets()
     elif tab == "methodology":
         return render_methodology()
 
@@ -736,6 +748,151 @@ METH_P2 = {"color": TEXT_SECONDARY, "lineHeight": "1.8", "fontSize": "clamp(12px
 METH_LI = {"color": "#bdc3c7", "lineHeight": "2.0", "fontSize": "clamp(12px, 2vw, 15px)"}
 METH_TD_L = {"color": TEXT_SECONDARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)"}
 METH_TD_R = {"color": TEXT_PRIMARY, "padding": "8px", "borderBottom": "1px solid #2c3e50", "fontSize": "clamp(11px, 1.5vw, 14px)", "wordBreak": "break-word"}
+
+def render_targets():
+    db_stats = [
+        ("DGIdb", len(dgidb_df), f"{len(dgidb_df['gene'].unique()) if len(dgidb_df) > 0 else 0} genes", "#2ecc71", "Drug-Gene Interaction Database"),
+        ("CIViC", len(civic_df), f"{len(civic_df['gene'].unique()) if len(civic_df) > 0 else 0} genes", "#3498db", "Clinical Interpretation of Variants in Cancer"),
+        ("COSMIC", len(cosmic_df), f"{len(cosmic_df)} census genes", "#9b59b6", "Cancer Gene Census v103"),
+        ("Trials", len(trials_df), f"{len(trials_df['nct_id'].unique()) if len(trials_df) > 0 else 0} recruiting", "#1abc9c", "ClinicalTrials.gov"),
+        ("OncoKB", len(oncokb_df), "DEMO ONLY", "#e74c3c", "FDA-Recognized Precision Oncology KB"),
+    ]
+
+    # DGIdb top genes
+    dgidb_summary = []
+    if len(dgidb_df) > 0:
+        for gene, gdf in dgidb_df.groupby('gene'):
+            dgidb_summary.append({'Gene': gene, 'Drugs': len(gdf), 'Top Drugs': ', '.join(gdf.head(3)['drug'].tolist()),
+                                  'Source': gdf.iloc[0].get('source', '')})
+        dgidb_summary = sorted(dgidb_summary, key=lambda x: -x['Drugs'])[:25]
+
+    # CIViC summary
+    civic_summary = []
+    if len(civic_df) > 0:
+        for gene, gdf in civic_df.groupby('gene'):
+            levels = sorted(gdf['evidence_level'].unique())
+            therapies = [t for t in gdf['therapies'].dropna().unique() if t][:3]
+            civic_summary.append({'Gene': gene, 'Evidence Items': len(gdf), 'Levels': ', '.join(levels),
+                                  'Therapies': ', '.join(therapies), 'Source': gdf.iloc[0].get('source', '')})
+        civic_summary = sorted(civic_summary, key=lambda x: -x['Evidence Items'])
+
+    # Trials summary
+    trials_summary = []
+    if len(trials_df) > 0:
+        for gene, gdf in trials_df.groupby('gene_target'):
+            trials_summary.append({'Gene': gene, 'Trials': len(gdf),
+                                   'Example': gdf.iloc[0].get('title', '')[:70]})
+        trials_summary = sorted(trials_summary, key=lambda x: -x['Trials'])
+
+    # COSMIC census genes from our data
+    cosmic_summary = []
+    if len(cosmic_df) > 0:
+        for _, row in cosmic_df.iterrows():
+            cosmic_summary.append({'Gene': row.get('GENE_SYMBOL', ''), 'Role': row.get('ROLE_IN_CANCER', ''),
+                                   'Tier': row.get('TIER', ''), 'Tumor Types': str(row.get('TUMOUR_TYPES_SOMATIC', ''))[:60]})
+
+    return html.Div([
+        html.H2("Clinical Database Integration", style={"color": TEXT_PRIMARY, "fontSize": "clamp(18px, 3.5vw, 28px)", "marginBottom": "5px"}),
+        html.P("Cross-referencing pipeline outputs against five clinical genomics databases to identify actionable targets.",
+               style={"color": TEXT_SECONDARY, "fontSize": "clamp(11px, 1.5vw, 14px)", "marginBottom": "20px"}),
+
+        # Database status cards
+        stat_row([stat_card(f"{s[1]:,}", s[0], s[3]) for s in db_stats]),
+
+        # OncoKB callout
+        card([
+            html.H3("OncoKB Integration: Awaiting API Access", style={"color": "#e74c3c", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P("OncoKB is the FDA-recognized precision oncology knowledge base that maps somatic variants directly to "
+                   "FDA-approved therapies with tiered evidence levels (Level 1: FDA-approved, Level 2: standard care, "
+                   "Level 3A: compelling evidence, Level 3B: standard care in another tumor type). "
+                   "It is the clinical-grade annotation layer that completes this pipeline.",
+                   style=METH_P),
+            html.P("Our pipeline is validated and producing results from DGIdb, CIViC, COSMIC, and ClinicalTrials.gov. "
+                   "OncoKB integration is the final step to deliver FDA-level therapeutic actionability scoring. "
+                   "API access has been approved and is pending key delivery.",
+                   style={**METH_P2, "fontStyle": "italic"}),
+            html.Div(style={"display": "flex", "gap": "15px", "flexWrap": "wrap", "marginTop": "15px"}, children=[
+                html.Div(style={"flex": "1", "minWidth": "200px", "padding": "10px", "backgroundColor": "#0d1117", "borderRadius": "5px", "borderLeft": "3px solid #2ecc71"}, children=[
+                    html.P("What we have now", style={"color": "#2ecc71", "fontWeight": "bold", "margin": "0 0 5px 0", "fontSize": "clamp(11px, 1.5vw, 13px)"}),
+                    html.P("DGIdb: Drug-gene interactions (3,040 matches)", style={"color": TEXT_SECONDARY, "margin": "2px 0", "fontSize": "clamp(10px, 1.3vw, 12px)"}),
+                    html.P("CIViC: Clinical variant evidence (238 items)", style={"color": TEXT_SECONDARY, "margin": "2px 0", "fontSize": "clamp(10px, 1.3vw, 12px)"}),
+                    html.P("COSMIC: Cancer Gene Census (57 confirmed drivers)", style={"color": TEXT_SECONDARY, "margin": "2px 0", "fontSize": "clamp(10px, 1.3vw, 12px)"}),
+                    html.P("ClinicalTrials.gov: 50 recruiting trials", style={"color": TEXT_SECONDARY, "margin": "2px 0", "fontSize": "clamp(10px, 1.3vw, 12px)"}),
+                ]),
+                html.Div(style={"flex": "1", "minWidth": "200px", "padding": "10px", "backgroundColor": "#0d1117", "borderRadius": "5px", "borderLeft": "3px solid #e74c3c"}, children=[
+                    html.P("What OncoKB adds", style={"color": "#e74c3c", "fontWeight": "bold", "margin": "0 0 5px 0", "fontSize": "clamp(11px, 1.5vw, 13px)"}),
+                    html.P("FDA evidence levels (1-4) per variant", style={"color": TEXT_SECONDARY, "margin": "2px 0", "fontSize": "clamp(10px, 1.3vw, 12px)"}),
+                    html.P("Direct FDA-approved therapy matching", style={"color": TEXT_SECONDARY, "margin": "2px 0", "fontSize": "clamp(10px, 1.3vw, 12px)"}),
+                    html.P("Resistance mutation identification", style={"color": TEXT_SECONDARY, "margin": "2px 0", "fontSize": "clamp(10px, 1.3vw, 12px)"}),
+                    html.P("Tumor-type-specific actionability scoring", style={"color": TEXT_SECONDARY, "margin": "2px 0", "fontSize": "clamp(10px, 1.3vw, 12px)"}),
+                ]),
+            ]),
+        ], style={"border": "1px solid #e74c3c"}),
+
+        # DGIdb results
+        card([
+            html.H3("DGIdb: Drug-Gene Interactions", style={"color": "#2ecc71", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P(f"{len(dgidb_df):,} drug-gene interactions across {len(dgidb_df['gene'].unique()) if len(dgidb_df) > 0 else 0} genes. "
+                   "Top druggable targets from our mutation and expression analysis:", style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=dgidb_summary[:20],
+                    columns=[{"name": c, "id": c} for c in ["Gene", "Drugs", "Top Drugs", "Source"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                ),
+            ]) if dgidb_summary else html.P("No results", style=METH_P2),
+        ]),
+
+        # CIViC results
+        card([
+            html.H3("CIViC: Clinical Evidence", style={"color": "#3498db", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P(f"{len(civic_df)} accepted evidence items across {len(civic_df['gene'].unique()) if len(civic_df) > 0 else 0} genes. "
+                   "Curated clinical interpretations linking variants to therapeutic response:", style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=civic_summary,
+                    columns=[{"name": c, "id": c} for c in ["Gene", "Evidence Items", "Levels", "Therapies", "Source"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                ),
+            ]) if civic_summary else html.P("No results", style=METH_P2),
+        ]),
+
+        # COSMIC Census
+        card([
+            html.H3("COSMIC: Cancer Gene Census v103", style={"color": "#9b59b6", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P(f"{len(cosmic_df)} of our target genes are confirmed in the COSMIC Cancer Gene Census -- "
+                   "a curated catalog of genes with strong evidence for causal roles in cancer:", style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=cosmic_summary[:25],
+                    columns=[{"name": c, "id": c} for c in ["Gene", "Role", "Tier", "Tumor Types"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                ),
+            ]) if cosmic_summary else html.P("No results", style=METH_P2),
+        ]),
+
+        # Clinical Trials
+        card([
+            html.H3("ClinicalTrials.gov: Recruiting Studies", style={"color": "#1abc9c", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P(f"{len(trials_df)} actively recruiting clinical trials matched to our target genes in osteosarcoma/sarcoma:", style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=trials_summary,
+                    columns=[{"name": c, "id": c} for c in ["Gene", "Trials", "Example"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                ),
+            ]) if trials_summary else html.P("No results", style=METH_P2),
+        ]),
+    ])
+
 
 def meth_table(rows):
     """Build a methodology table. Last row gets no bottom border."""
