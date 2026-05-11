@@ -1375,6 +1375,9 @@ def render_methodology():
                 ("Inclusion criteria", "Plasma membrane localization, predicted membrane protein, CD marker, or secretome membrane annotation"),
                 ("Total surface proteins in database", "7,255 genes"),
                 ("Expression threshold", "95th percentile of all expressed genes (TPM > 0)"),
+                ("Housekeeping filter", "Genes with 'Low tissue specificity' AND 'Detected in all' tissues (per HPA) are excluded "
+                                        "from actionable tiers to remove ubiquitously expressed proteins (ribosomal, chaperones, translation factors). "
+                                        "Exception: COSMIC Census genes, CIViC-evidenced genes, and known cancer drivers are retained."),
             ]),
         ]),
 
