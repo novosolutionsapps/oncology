@@ -1,12 +1,24 @@
 gene,score,tier,modalities,mutated,tpm,surface,n_drugs,top_drugs,civic_levels,civic_therapies,cosmic_role,n_trials,driver,evidence_summary,tissue_specificity,housekeeping
 PDGFRA,12,A,5,,318.4,YES,60,"IMATINIB, TOVETUMAB, DASATINIB ANHYDROUS","B,C,D","Sunitinib, Crenolanib","oncogene, fusion",2,,"Overexpressed (318 TPM, p99) | Surface protein (HPA) | Druggable (60 drugs) | CIViC (30 items, levels B,C,D) | COSMIC (oncogene, fusion) | 2 recruiting trial(s)",Tissue enhanced,False
+CTNNB1,12,A,5,,1234.3,YES,62,"PP1, PF-670462, MPI-0479605","B,C,D","Anti-CTLA-4 Monoclonal Antibody, Anti-PD-L1 Monoclonal Antibody, Meloxicam","oncogene, fusion",2,,"Overexpressed (1234 TPM, p100) | Surface protein (HPA) | Druggable (62 drugs) | CIViC (15 items, levels B,C,D) | COSMIC (oncogene, fusion) | 2 recruiting trial(s)",Low tissue specificity,False
 IGF1R,11,A,4,,170.0,YES,48,"MECASERMIN, AEW-541, ERLOTINIB","B,D","Gefitinib, IGF1R Monoclonal Antibody",,1,,"Overexpressed (170 TPM, p98) | Surface protein (HPA) | Druggable (48 drugs) | CIViC (3 items, levels B,D) | 1 recruiting trial(s)",Low tissue specificity,False
+CALR,11,A,4,,971.9,YES,8,"TRETINOIN, PEGINTERFERON ALFA-2A, ANGIOGENESIS INHIBITOR","A,B",Peginterferon Alfa-2a,oncogene,0,,"Overexpressed (972 TPM, p100) | Surface protein (HPA) | Druggable (8 drugs) | CIViC (4 items, levels A,B) | COSMIC (oncogene)",Low tissue specificity,False
+GNAS,11,A,4,,216.6,YES,15,"AMITRIPTYLINE HYDROCHLORIDE, FLUOROURACIL, NICLOSAMIDE","B,C","Radioactive Iodine, Cisplatin, Fluorouracil",oncogene,0,,"Overexpressed (217 TPM, p99) | Surface protein (HPA) | Druggable (15 drugs) | CIViC (11 items, levels B,C) | COSMIC (oncogene)",Low tissue specificity,False
+SF3B1,11,A,4,,345.4,YES,3,"H3B-8800, ETOPOSIDE, OLAPARIB","A,B,D","Spliceostatin A, Olaparib, Etoposide",oncogene,0,,"Overexpressed (345 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs) | CIViC (8 items, levels A,B,D) | COSMIC (oncogene)",Low tissue specificity,False
+MDM2,10,A,5,,530.2,,25,"DIPLAMINE B, NUTLIN-3, TCDD",B,"Pemetrexed, Cisplatin",oncogene,4,YES,"Overexpressed (530 TPM, p100) | Druggable (25 drugs) | CIViC (4 items, levels B) | COSMIC (oncogene) | Known Osteosarcoma driver | 4 recruiting trial(s)",Low tissue specificity,False
 HLA-DRA,10,A,3,,1534.4,YES,7,"NIVOLUMAB, CLAVULANIC ACID, FLOXACILLIN",B,"Nivolumab, Pembrolizumab, Atezolizumab",,0,,"Overexpressed (1534 TPM, p100) | Surface protein (HPA) | Druggable (7 drugs) | CIViC (1 items, levels B)",Tissue enhanced,False
+HSPA5,10,A,3,,1663.7,YES,13,"MIANSERIN, 4-METHYLDAPHNETIN, AG 490",B,Fluorouracil,,0,,"Overexpressed (1664 TPM, p100) | Surface protein (HPA) | Druggable (13 drugs) | CIViC (1 items, levels B)",Low tissue specificity,False
 CSF1R,9,A,4,,188.0,YES,52,"CEDIRANIB, CABIRALIZUMAB, PEXIDARTINIB",,,oncogene,2,,"Overexpressed (188 TPM, p99) | Surface protein (HPA) | Druggable (52 drugs) | COSMIC (oncogene) | 2 recruiting trial(s)",Tissue enhanced,False
 PDGFRB,9,A,4,,168.2,YES,78,"IMATINIB, REGORAFENIB, PETROSIOL A",C,Sunitinib,"oncogene, fusion",0,,"Overexpressed (168 TPM, p98) | Surface protein (HPA) | Druggable (78 drugs) | CIViC (1 items, levels C) | COSMIC (oncogene, fusion)",Low tissue specificity,False
 PTPRD,9,A,4,,371.7,YES,8,"TRANDOLAPRIL, TEPROTUMUMAB, ANTIHYPERTENSIVE AGENT","C,D","JSI-124, Cixutumumab, Teprotumumab",TSG,0,,"Overexpressed (372 TPM, p100) | Surface protein (HPA) | Druggable (8 drugs) | CIViC (2 items, levels C,D) | COSMIC (TSG)",Tissue enhanced,False
+PTEN,9,A,4,,106.6,YES,149,"BUPARLISIB, PP-242, PANITUMUMAB","B,C,D","Everolimus, Epidermal Growth Factor Receptor Tyrosine Kinase Inhibitor",TSG,1,YES,"Overexpressed (107 TPM, p97) | Surface protein (HPA) | Druggable (149 drugs) | CIViC (60 items, levels B,C,D) | COSMIC (TSG) | Known Osteosarcoma driver | 1 recruiting trial(s)",Low tissue specificity,False
+ATRX,9,A,4,,196.3,,12,"CISPLATIN, TEMOZOLOMIDE, FLUOROURACIL","B,D","Fluorouracil, Cisplatin, Temozolomide, PCV Regimen",TSG,0,YES,"Overexpressed (196 TPM, p99) | Druggable (12 drugs) | CIViC (5 items, levels B,D) | COSMIC (TSG) | Known Osteosarcoma driver",Low tissue specificity,False
+B2M,9,A,4,,1190.8,YES,4,"THYROGLOBULIN, AMIKACIN, ANTI-PD-L1 MONOCLONAL ANTIBODY",C,Pembrolizumab,TSG,0,,"Overexpressed (1191 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs) | CIViC (1 items, levels C) | COSMIC (TSG)",Low tissue specificity,False
+RHOA,9,A,4,,183.5,YES,7,"QUINIDINE, PRAVASTATIN SODIUM, NS004",E,,"oncogene, TSG",0,,"Overexpressed (183 TPM, p99) | Surface protein (HPA) | Druggable (7 drugs) | CIViC (1 items, levels E) | COSMIC (oncogene, TSG)",Low tissue specificity,False
 EDNRB,9,A,3,YES,73.1,YES,14,"ENDOTHELIN-1, ENRASENTAN, MACITENTAN",,,,0,,"Mutated (MODERATE) | Overexpressed (73 TPM, p96) | Surface protein (HPA) | Druggable (14 drugs)",Tissue enhanced,False
 CDKN2A,8,A,4,,0.5,,28,"RIBOCICLIB, PACLITAXEL, ULIXERTINIB","A,B,C,D","Palbociclib, Alvocidib",TSG,4,YES,"Druggable (28 drugs) | CIViC (27 items, levels A,B,C,D) | COSMIC (TSG) | Known Osteosarcoma driver | 4 recruiting trial(s)",Tissue enhanced,False
+RB1,8,A,4,,140.8,,36,"BAY 61-3606, PALBOCICLIB, TOPOTECAN HYDROCHLORIDE","B,D","Palbociclib, Chemotherapy",TSG,6,YES,"Overexpressed (141 TPM, p98) | Druggable (36 drugs) | CIViC (7 items, levels B,D) | COSMIC (TSG) | Known Osteosarcoma driver | 6 recruiting trial(s)",Low tissue specificity,False
+TP53,8,A,4,,40.2,,364,"VEMURAFENIB, CHK1 INHIBITOR GDC-0575, FENTICLOR","B,D,E","Carboplatin, Cisplatin, Tamoxifen","oncogene, TSG, fusion",6,YES,"Expressed (40 TPM) | Druggable (364 drugs) | CIViC (52 items, levels B,D,E) | COSMIC (oncogene, TSG, fusion) | Known Osteosarcoma driver | 6 recruiting trial(s)",Low tissue specificity,False
 CD276,8,A,3,,194.8,YES,5,"ENOBLITUZUMAB, 8H9 131I, OMBURTAMAB I-131",,,,1,,"Overexpressed (195 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs) | 1 recruiting trial(s)",Low tissue specificity,False
 CD74,8,A,3,,960.6,YES,5,"DIOA, MILATUZUMAB, VU0240551",,,"oncogene, fusion",0,,"Overexpressed (961 TPM, p100) | Surface protein (HPA) | Druggable (5 drugs) | COSMIC (oncogene, fusion)",Tissue enhanced,False
 FAT1,8,A,3,,1268.5,YES,1,CAPECITABINE,,,TSG,0,,"Overexpressed (1268 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)",Tissue enhanced,False
@@ -14,6 +26,18 @@ FLNA,8,A,3,,413.0,YES,2,"SIMUFILAM, SIMUFILAM",,,,0,,"Overexpressed (413 TPM, p1
 LIFR,8,A,3,,826.8,YES,1,EMFILERMIN,,,fusion,0,,"Overexpressed (827 TPM, p100) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (fusion)",Low tissue specificity,False
 MERTK,8,A,3,,337.0,YES,5,"HESPERADIN, NINGETINIB, TAMNORZATINIB",D,UNC1062,,0,,"Overexpressed (337 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs) | CIViC (1 items, levels D)",Tissue enhanced,False
 PTPN13,8,A,3,,207.1,YES,1,ANTIESTROGEN,,,TSG,0,,"Overexpressed (207 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)",Tissue enhanced,False
+ABI1,8,A,3,,219.8,YES,4,"DASATINIB ANHYDROUS, IMATINIB, NILOTINIB",,,"TSG, fusion",0,,"Overexpressed (220 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs) | COSMIC (TSG, fusion)",Low tissue specificity,False
+CTNNA1,8,A,3,,166.5,YES,13,"EDAXETERKIB, RAVOXERTINIB, SCH772984",,,"TSG, fusion",0,,"Overexpressed (167 TPM, p98) | Surface protein (HPA) | Druggable (13 drugs) | COSMIC (TSG, fusion)",Low tissue specificity,False
+DDX6,8,A,3,,225.3,YES,1,INCB3619,,,"oncogene, fusion",0,,"Overexpressed (225 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (oncogene, fusion)",Low tissue specificity,False
+EZR,8,A,3,,303.0,YES,2,"RO 31-8220, TNF-ALPHA",,,fusion,0,,"Overexpressed (303 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs) | COSMIC (fusion)",Low tissue specificity,False
+HNRNPA2B1,8,A,3,,552.8,YES,5,"LOBELINE, STM2457, STC-15",,,"oncogene, fusion",0,,"Overexpressed (553 TPM, p100) | Surface protein (HPA) | Druggable (5 drugs) | COSMIC (oncogene, fusion)",Low tissue specificity,False
+HSP90AB1,8,A,3,,1876.1,YES,43,"SILIBININ, NOVOBIOCIN, TANESPIMYCIN",,,fusion,0,,"Overexpressed (1876 TPM, p100) | Surface protein (HPA) | Druggable (43 drugs) | COSMIC (fusion)",Low tissue specificity,False
+IFNGR1,8,A,3,,252.2,YES,2,"INTERFERON GAMMA-1B, INDOLE-3-CARBINOL",D,Ipilimumab,,0,,"Overexpressed (252 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs) | CIViC (1 items, levels D)",Low tissue specificity,False
+IL6ST,8,A,3,,618.7,YES,3,"BAZEDOXIFENE, RALOXIFENE HYDROCHLORIDE, SATRALIZUMAB",,,oncogene,0,,"Overexpressed (619 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs) | COSMIC (oncogene)",Low tissue specificity,False
+NCOA1,8,A,3,,158.8,YES,3,"TAMOXIFEN, METHYLENE BLUE ANHYDROUS, ETOPOSIDE",,,fusion,0,,"Overexpressed (159 TPM, p98) | Surface protein (HPA) | Druggable (3 drugs) | COSMIC (fusion)",Low tissue specificity,False
+NOTCH2,8,A,3,,289.1,YES,7,"TAREXTUMAB, NOTCH SIGNALING PATHWAY INHIBITOR MK0752, MK-0752",,,"oncogene, TSG",0,,"Overexpressed (289 TPM, p99) | Surface protein (HPA) | Druggable (7 drugs) | COSMIC (oncogene, TSG)",Low tissue specificity,False
+TGFBR2,8,A,3,,604.8,YES,2,"IRINOTECAN HYDROCHLORIDE, HESPERETIN",,,TSG,0,,"Overexpressed (605 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs) | COSMIC (TSG)",Low tissue specificity,False
+XPC,8,A,3,,186.1,YES,1,DOXORUBICIN HYDROCHLORIDE,,,TSG,0,,"Overexpressed (186 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)",Low tissue specificity,False
 SUCO,8,B,2,YES,122.5,YES,0,,,,,0,,"Mutated (HIGH) | Overexpressed (122 TPM, p98) | Surface protein (HPA)",Tissue enhanced,False
 MYC,7,A,4,,89.5,,70,"UBENIMEX, DIETHYLSTILBESTROL, METHYLPREDNISOLONE",D,"Prexasertib, Olaparib, Cisplatin, JQ-1","oncogene, fusion",0,YES,"Overexpressed (90 TPM, p97) | Druggable (70 drugs) | CIViC (2 items, levels D) | COSMIC (oncogene, fusion) | Known Osteosarcoma driver",Tissue enhanced,False
 ADAM17,7,B,2,,181.7,YES,5,"APRATASTAT, MARIMASTAT, INFLIXIMAB",,,,0,,"Overexpressed (182 TPM, p99) | Surface protein (HPA) | Druggable (5 drugs)",Low tissue specificity,False
@@ -82,6 +106,8 @@ TXN,7,B,2,,210.4,YES,4,"GAMBOGENIC ACID, PX-12, GAMBOGIC ACID",,,,0,,"Overexpres
 UGCG,7,B,2,,269.7,YES,10,"VENGLUSTAT, PRALICIGUAT, ADRIAMYCIN",,,,0,,"Overexpressed (270 TPM, p99) | Surface protein (HPA) | Druggable (10 drugs)",Tissue enhanced,False
 XBP1,7,B,2,,170.5,YES,11,"ANGUSTIBALIN, PROTOAPIGENONE, DITHIAZANINE IODIDE",,,,0,,"Overexpressed (170 TPM, p98) | Surface protein (HPA) | Druggable (11 drugs)",Tissue enhanced,False
 YBX1,7,B,2,,293.7,YES,1,ABIRATERONE ACETATE,,,,0,,"Overexpressed (294 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs)",Tissue enhanced,False
+ITGB1,7,B,2,,722.0,YES,12,"VOLOCIXIMAB, NATALIZUMAB, FIRATEGRAST",,,,0,,"Overexpressed (722 TPM, p100) | Surface protein (HPA) | Druggable (12 drugs) | COSMIC (nan)",Low tissue specificity,False
+TGFBR1,7,B,2,,534.6,YES,7,"4-(3-PYRIDIN-2-YL-1H-PYRAZOL-4-YL)QUINOLINE, VACTOSERTIB, LY-2382770",,,,0,,"Overexpressed (535 TPM, p100) | Surface protein (HPA) | Druggable (7 drugs) | COSMIC (nan)",Low tissue specificity,False
 PRKCB,6,B,4,YES,3.2,,16,"RUBOXISTAURIN, CEP-2563 DIHYDROCHLORIDE, QUERCETIN",D,,,0,,"Mutated (MODERATE) | Expressed (3 TPM) | Druggable (16 drugs) | CIViC (1 items, levels D) | COSMIC (nan)",Tissue enhanced,False
 BMP1,6,B,3,YES,85.5,,1,COMPOUND 2 [PMID: 11934595],,,,0,,"Mutated (MODERATE) | Overexpressed (86 TPM, p96) | Druggable (1 drugs)",Low tissue specificity,False
 COL4A2,6,B,3,YES,83.0,,3,"OCRIPLASMIN, COLLAGENASE CLOSTRIDIUM HISTOLYTICUM, NAVOXIMOD",,,,0,,"Mutated (MODERATE) | Overexpressed (83 TPM, p96) | Druggable (3 drugs)",Tissue enhanced,False
@@ -92,6 +118,16 @@ IL1RL2,6,B,2,YES,3.2,YES,3,"IMSIDOLIMAB, SPESOLIMAB, SPESOLIMAB",,,,0,,Mutated (
 LPP,6,B,2,,175.6,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (176 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)",Tissue enhanced,False
 MLLT10,6,B,2,,157.6,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (158 TPM, p98) | Surface protein (HPA) | COSMIC (oncogene, fusion)",Tissue enhanced,False
 MYH9,6,B,2,,332.3,YES,0,,,,"TSG, fusion",0,,"Overexpressed (332 TPM, p99) | Surface protein (HPA) | COSMIC (TSG, fusion)",Tissue enhanced,False
+AFDN,6,B,2,,203.8,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (204 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)",Low tissue specificity,False
+ARHGEF12,6,B,2,,188.4,YES,0,,,,"TSG, fusion",0,,"Overexpressed (188 TPM, p99) | Surface protein (HPA) | COSMIC (TSG, fusion)",Low tissue specificity,False
+CREB3L2,6,B,2,,225.7,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (226 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)",Low tissue specificity,False
+DDX3X,6,B,2,,301.0,YES,0,,,,TSG,0,,"Overexpressed (301 TPM, p99) | Surface protein (HPA) | COSMIC (TSG)",Low tissue specificity,False
+EIF3E,6,B,2,,165.1,YES,0,,,,"TSG, fusion",0,,"Overexpressed (165 TPM, p98) | Surface protein (HPA) | COSMIC (TSG, fusion)",Low tissue specificity,False
+GOLGA5,6,B,2,,208.3,YES,0,,,,fusion,0,,"Overexpressed (208 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,False
+HERPUD1,6,B,2,,194.5,YES,0,,,,fusion,0,,"Overexpressed (195 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,False
+KTN1,6,B,2,,206.7,YES,0,,,,fusion,0,,"Overexpressed (207 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,False
+MSN,6,B,2,,160.3,YES,0,,,,fusion,0,,"Overexpressed (160 TPM, p98) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,False
+RPN1,6,B,2,,225.9,YES,0,,,,fusion,0,,"Overexpressed (226 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,False
 NR2F2,5,B,3,YES,28.4,,3,"PYRIDABEN, RESACTIN A, CYCLOHEXIMIDE",,,,0,,Mutated (MODERATE) | Expressed (28 TPM) | Druggable (3 drugs) | COSMIC (nan),Low tissue specificity,False
 ACE,5,B,2,YES,3.0,YES,59,"SALVIANOLIC ACID B, CANDOXATRIL, CILAZAPRIL",,,,0,,Mutated (MODERATE) | Expressed (3 TPM) | Surface protein (HPA) | Druggable (59 drugs),Tissue enhanced,False
 ATP1A2,5,B,2,YES,0.3,YES,7,"OLANZAPINE, DESLANOSIDE, DIGITOXIN",,,,0,,Mutated (MODERATE) | Surface protein (HPA) | Druggable (7 drugs),Group enriched,False
@@ -215,37 +251,11 @@ IVL,4,C,2,YES,2.4,,6,"RETINOIC ACID AGENT, PERILLYL ALCOHOL, INFLIXIMAB",,,,0,,M
 MYH7B,4,C,2,YES,2.2,,3,"OMECAMTIV MECARBIL, MAVACAMTEN, DANICAMTIV",,,,0,,Mutated (MODERATE) | Expressed (2 TPM) | Druggable (3 drugs),Group enriched,False
 ROBO2,4,C,2,YES,51.7,YES,0,,,,TSG,0,,Mutated (MODERATE) | Expressed (52 TPM) | Surface protein (HPA) | COSMIC (TSG),Tissue enhanced,False
 SRGAP3,4,C,2,YES,9.5,,0,,,,fusion,0,,Mutated (HIGH) | Expressed (10 TPM) | COSMIC (fusion),Tissue enhanced,False
+RNF213,4,C,2,YES,98.7,YES,0,,,,fusion,0,,"Mutated (MODERATE) | Overexpressed (99 TPM, p97) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,False
 CCDC15,4,C,1,YES,51.3,YES,0,,,,,0,,Mutated (HIGH) | Expressed (51 TPM) | Surface protein (HPA),Tissue enhanced,False
 DLG2,4,C,1,,6.2,YES,1,ANASTROZOLE,,,,0,YES,Expressed (6 TPM) | Surface protein (HPA) | Druggable (1 drugs) | Known Osteosarcoma driver,Tissue enhanced,False
 JPH4,4,C,1,YES,0.5,YES,0,,,,,0,,Mutated (HIGH) | Surface protein (HPA),Tissue enhanced,False
 OR10G8,4,C,1,YES,0.1,YES,0,,,,,0,,Mutated (HIGH) | Surface protein (HPA),Not detected,False
-PTEN,3,D,5,,106.6,YES,149,"BUPARLISIB, PP-242, PANITUMUMAB","B,C,D","Everolimus, Epidermal Growth Factor Receptor Tyrosine Kinase Inhibitor",TSG,1,YES,"Overexpressed (107 TPM, p97) | Surface protein (HPA) | Druggable (149 drugs) | CIViC (60 items, levels B,C,D) | COSMIC (TSG) | Known Osteosarcoma driver | 1 recruiting trial(s)",Low tissue specificity,True
-CTNNB1,3,D,5,,1234.3,YES,62,"PP1, PF-670462, MPI-0479605","B,C,D","Anti-CTLA-4 Monoclonal Antibody, Anti-PD-L1 Monoclonal Antibody, Meloxicam","oncogene, fusion",2,,"Overexpressed (1234 TPM, p100) | Surface protein (HPA) | Druggable (62 drugs) | CIViC (15 items, levels B,C,D) | COSMIC (oncogene, fusion) | 2 recruiting trial(s)",Low tissue specificity,True
-MDM2,3,D,5,,530.2,,25,"DIPLAMINE B, NUTLIN-3, TCDD",B,"Pemetrexed, Cisplatin",oncogene,4,YES,"Overexpressed (530 TPM, p100) | Druggable (25 drugs) | CIViC (4 items, levels B) | COSMIC (oncogene) | Known Osteosarcoma driver | 4 recruiting trial(s)",Low tissue specificity,True
-RB1,3,D,5,,140.8,,36,"BAY 61-3606, PALBOCICLIB, TOPOTECAN HYDROCHLORIDE","B,D","Palbociclib, Chemotherapy",TSG,6,YES,"Overexpressed (141 TPM, p98) | Druggable (36 drugs) | CIViC (7 items, levels B,D) | COSMIC (TSG) | Known Osteosarcoma driver | 6 recruiting trial(s)",Low tissue specificity,True
-CALR,3,D,4,,971.9,YES,8,"TRETINOIN, PEGINTERFERON ALFA-2A, ANGIOGENESIS INHIBITOR","A,B",Peginterferon Alfa-2a,oncogene,0,,"Overexpressed (972 TPM, p100) | Surface protein (HPA) | Druggable (8 drugs) | CIViC (4 items, levels A,B) | COSMIC (oncogene)",Low tissue specificity,True
-GNAS,3,D,4,,216.6,YES,15,"AMITRIPTYLINE HYDROCHLORIDE, FLUOROURACIL, NICLOSAMIDE","B,C","Radioactive Iodine, Cisplatin, Fluorouracil",oncogene,0,,"Overexpressed (217 TPM, p99) | Surface protein (HPA) | Druggable (15 drugs) | CIViC (11 items, levels B,C) | COSMIC (oncogene)",Low tissue specificity,True
-SF3B1,3,D,4,,345.4,YES,3,"H3B-8800, ETOPOSIDE, OLAPARIB","A,B,D","Spliceostatin A, Olaparib, Etoposide",oncogene,0,,"Overexpressed (345 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs) | CIViC (8 items, levels A,B,D) | COSMIC (oncogene)",Low tissue specificity,True
-ATRX,3,D,4,,196.3,,12,"CISPLATIN, TEMOZOLOMIDE, FLUOROURACIL","B,D","Fluorouracil, Cisplatin, Temozolomide, PCV Regimen",TSG,0,YES,"Overexpressed (196 TPM, p99) | Druggable (12 drugs) | CIViC (5 items, levels B,D) | COSMIC (TSG) | Known Osteosarcoma driver",Low tissue specificity,True
-B2M,3,D,4,,1190.8,YES,4,"THYROGLOBULIN, AMIKACIN, ANTI-PD-L1 MONOCLONAL ANTIBODY",C,Pembrolizumab,TSG,0,,"Overexpressed (1191 TPM, p100) | Surface protein (HPA) | Druggable (4 drugs) | CIViC (1 items, levels C) | COSMIC (TSG)",Low tissue specificity,True
-RHOA,3,D,4,,183.5,YES,7,"QUINIDINE, PRAVASTATIN SODIUM, NS004",E,,"oncogene, TSG",0,,"Overexpressed (183 TPM, p99) | Surface protein (HPA) | Druggable (7 drugs) | CIViC (1 items, levels E) | COSMIC (oncogene, TSG)",Low tissue specificity,True
-TP53,3,D,4,,40.2,,364,"VEMURAFENIB, CHK1 INHIBITOR GDC-0575, FENTICLOR","B,D,E","Carboplatin, Cisplatin, Tamoxifen","oncogene, TSG, fusion",6,YES,"Expressed (40 TPM) | Druggable (364 drugs) | CIViC (52 items, levels B,D,E) | COSMIC (oncogene, TSG, fusion) | Known Osteosarcoma driver | 6 recruiting trial(s)",Low tissue specificity,True
-HSPA5,3,D,3,,1663.7,YES,13,"MIANSERIN, 4-METHYLDAPHNETIN, AG 490",B,Fluorouracil,,0,,"Overexpressed (1664 TPM, p100) | Surface protein (HPA) | Druggable (13 drugs) | CIViC (1 items, levels B)",Low tissue specificity,True
-ABI1,3,D,3,,219.8,YES,4,"DASATINIB ANHYDROUS, IMATINIB, NILOTINIB",,,"TSG, fusion",0,,"Overexpressed (220 TPM, p99) | Surface protein (HPA) | Druggable (4 drugs) | COSMIC (TSG, fusion)",Low tissue specificity,True
-CTNNA1,3,D,3,,166.5,YES,13,"EDAXETERKIB, RAVOXERTINIB, SCH772984",,,"TSG, fusion",0,,"Overexpressed (167 TPM, p98) | Surface protein (HPA) | Druggable (13 drugs) | COSMIC (TSG, fusion)",Low tissue specificity,True
-DDX6,3,D,3,,225.3,YES,1,INCB3619,,,"oncogene, fusion",0,,"Overexpressed (225 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (oncogene, fusion)",Low tissue specificity,True
-EZR,3,D,3,,303.0,YES,2,"RO 31-8220, TNF-ALPHA",,,fusion,0,,"Overexpressed (303 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs) | COSMIC (fusion)",Low tissue specificity,True
-HNRNPA2B1,3,D,3,,552.8,YES,5,"LOBELINE, STM2457, STC-15",,,"oncogene, fusion",0,,"Overexpressed (553 TPM, p100) | Surface protein (HPA) | Druggable (5 drugs) | COSMIC (oncogene, fusion)",Low tissue specificity,True
-HSP90AB1,3,D,3,,1876.1,YES,43,"SILIBININ, NOVOBIOCIN, TANESPIMYCIN",,,fusion,0,,"Overexpressed (1876 TPM, p100) | Surface protein (HPA) | Druggable (43 drugs) | COSMIC (fusion)",Low tissue specificity,True
-IFNGR1,3,D,3,,252.2,YES,2,"INTERFERON GAMMA-1B, INDOLE-3-CARBINOL",D,Ipilimumab,,0,,"Overexpressed (252 TPM, p99) | Surface protein (HPA) | Druggable (2 drugs) | CIViC (1 items, levels D)",Low tissue specificity,True
-IL6ST,3,D,3,,618.7,YES,3,"BAZEDOXIFENE, RALOXIFENE HYDROCHLORIDE, SATRALIZUMAB",,,oncogene,0,,"Overexpressed (619 TPM, p100) | Surface protein (HPA) | Druggable (3 drugs) | COSMIC (oncogene)",Low tissue specificity,True
-ITGB1,3,D,3,,722.0,YES,12,"VOLOCIXIMAB, NATALIZUMAB, FIRATEGRAST",,,,0,,"Overexpressed (722 TPM, p100) | Surface protein (HPA) | Druggable (12 drugs) | COSMIC (nan)",Low tissue specificity,True
-NCOA1,3,D,3,,158.8,YES,3,"TAMOXIFEN, METHYLENE BLUE ANHYDROUS, ETOPOSIDE",,,fusion,0,,"Overexpressed (159 TPM, p98) | Surface protein (HPA) | Druggable (3 drugs) | COSMIC (fusion)",Low tissue specificity,True
-NOTCH2,3,D,3,,289.1,YES,7,"TAREXTUMAB, NOTCH SIGNALING PATHWAY INHIBITOR MK0752, MK-0752",,,"oncogene, TSG",0,,"Overexpressed (289 TPM, p99) | Surface protein (HPA) | Druggable (7 drugs) | COSMIC (oncogene, TSG)",Low tissue specificity,True
-RNF213,3,D,3,YES,98.7,YES,0,,,,fusion,0,,"Mutated (MODERATE) | Overexpressed (99 TPM, p97) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,True
-TGFBR1,3,D,3,,534.6,YES,7,"4-(3-PYRIDIN-2-YL-1H-PYRAZOL-4-YL)QUINOLINE, VACTOSERTIB, LY-2382770",,,,0,,"Overexpressed (535 TPM, p100) | Surface protein (HPA) | Druggable (7 drugs) | COSMIC (nan)",Low tissue specificity,True
-TGFBR2,3,D,3,,604.8,YES,2,"IRINOTECAN HYDROCHLORIDE, HESPERETIN",,,TSG,0,,"Overexpressed (605 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs) | COSMIC (TSG)",Low tissue specificity,True
-XPC,3,D,3,,186.1,YES,1,DOXORUBICIN HYDROCHLORIDE,,,TSG,0,,"Overexpressed (186 TPM, p99) | Surface protein (HPA) | Druggable (1 drugs) | COSMIC (TSG)",Low tissue specificity,True
 H1-2,3,D,3,YES,880.0,,8,"DASA-58, COMPOUND 16 [PMID: 31977207], COMPOUND 1 [PMID: 31465224]",,,,0,,"Mutated (MODERATE) | Overexpressed (880 TPM, p100) | Druggable (8 drugs)",Low tissue specificity,True
 CKAP4,3,D,2,YES,304.5,YES,0,,,,,0,,"Mutated (HIGH) | Overexpressed (304 TPM, p99) | Surface protein (HPA)",Low tissue specificity,True
 PIP5K1A,3,D,2,YES,106.4,YES,0,,,,,0,,"Mutated (HIGH) | Overexpressed (106 TPM, p97) | Surface protein (HPA)",Low tissue specificity,True
@@ -319,16 +329,6 @@ TXNIP,3,D,2,,2812.7,YES,1,RECOMBINANT FAS LIGAND,,,,0,,"Overexpressed (2813 TPM,
 UBE2K,3,D,2,,181.7,YES,3,"HISTIDINE, DEXTROAMPHETAMINE SULFATE, HISTAMINE",,,,0,,"Overexpressed (182 TPM, p99) | Surface protein (HPA) | Druggable (3 drugs)",Low tissue specificity,True
 UTRN,3,D,2,,391.9,YES,2,"ENZYME INHIBITOR, EZUTROMID",,,,0,,"Overexpressed (392 TPM, p100) | Surface protein (HPA) | Druggable (2 drugs)",Low tissue specificity,True
 YES1,3,D,2,,343.7,YES,175,"SB203580, SB-633825, GW643971X",,,,0,,"Overexpressed (344 TPM, p100) | Surface protein (HPA) | Druggable (175 drugs)",Low tissue specificity,True
-AFDN,3,D,2,,203.8,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (204 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)",Low tissue specificity,True
-ARHGEF12,3,D,2,,188.4,YES,0,,,,"TSG, fusion",0,,"Overexpressed (188 TPM, p99) | Surface protein (HPA) | COSMIC (TSG, fusion)",Low tissue specificity,True
-CREB3L2,3,D,2,,225.7,YES,0,,,,"oncogene, fusion",0,,"Overexpressed (226 TPM, p99) | Surface protein (HPA) | COSMIC (oncogene, fusion)",Low tissue specificity,True
-DDX3X,3,D,2,,301.0,YES,0,,,,TSG,0,,"Overexpressed (301 TPM, p99) | Surface protein (HPA) | COSMIC (TSG)",Low tissue specificity,True
-EIF3E,3,D,2,,165.1,YES,0,,,,"TSG, fusion",0,,"Overexpressed (165 TPM, p98) | Surface protein (HPA) | COSMIC (TSG, fusion)",Low tissue specificity,True
-GOLGA5,3,D,2,,208.3,YES,0,,,,fusion,0,,"Overexpressed (208 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,True
-HERPUD1,3,D,2,,194.5,YES,0,,,,fusion,0,,"Overexpressed (195 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,True
-KTN1,3,D,2,,206.7,YES,0,,,,fusion,0,,"Overexpressed (207 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,True
-MSN,3,D,2,,160.3,YES,0,,,,fusion,0,,"Overexpressed (160 TPM, p98) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,True
-RPN1,3,D,2,,225.9,YES,0,,,,fusion,0,,"Overexpressed (226 TPM, p99) | Surface protein (HPA) | COSMIC (fusion)",Low tissue specificity,True
 BAZ1B,3,D,2,YES,562.0,,0,,,,,0,,"Mutated (HIGH) | Overexpressed (562 TPM, p100)",Low tissue specificity,True
 CDC40,3,D,2,YES,80.8,,0,,,,,0,,"Mutated (MODERATE) | Overexpressed (81 TPM, p96)",Low tissue specificity,True
 EP400,3,D,2,YES,81.7,,0,,,,,0,,"Mutated (MODERATE) | Overexpressed (82 TPM, p96)",Low tissue specificity,True

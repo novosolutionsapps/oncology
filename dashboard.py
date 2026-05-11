@@ -790,6 +790,8 @@ def render_ladder():
     display_df = ladder_df[ladder_df['housekeeping'] == False] if 'housekeeping' in ladder_df.columns else ladder_df
     tier_a = display_df[display_df['tier'] == 'A'].head(20)
     tier_b = display_df[display_df['tier'] == 'B'].head(20)
+    tier_c_df = display_df[display_df['tier'] == 'C'].head(20)
+    tier_d_df = display_df[display_df['tier'] == 'D'].sort_values('score', ascending=False).head(30)
     n_a = int((display_df['tier'] == 'A').sum())
     n_b = int((display_df['tier'] == 'B').sum())
     n_c = int((display_df['tier'] == 'C').sum())
@@ -943,6 +945,44 @@ def render_ladder():
                 dash_table.DataTable(
                     data=ladder_table(tier_b),
                     columns=[{"name": c, "id": c} for c in ["Gene","Score","Modalities","TPM","Surface","Drugs","Top Drugs","CIViC","COSMIC"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                    sort_action="native",
+                    page_size=15,
+                ),
+            ]),
+        ]),
+
+        # Tier C
+        card([
+            html.H3(f"Tier C: Candidate Targets ({n_c})", style={"color": "#2ecc71", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P("Emerging signal from expression or surface protein data. Consider IHC staining, radioligand diagnostic scan, "
+                   "or additional sequencing to validate before pursuing therapeutically.",
+                   style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=ladder_table(tier_c_df),
+                    columns=[{"name": c, "id": c} for c in ["Gene","Score","Modalities","TPM","Surface","Drugs","Top Drugs","COSMIC"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
+                    sort_action="native",
+                    page_size=15,
+                ),
+            ]),
+        ]),
+
+        # Tier D
+        card([
+            html.H3(f"Tier D: Watchlist ({n_d})", style={"color": "#7f8c8d", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P("Preliminary signal from a single modality. Monitor for additional confirming evidence from new sequencing, "
+                   "updated clinical databases, or newly approved therapies. Showing top 30 by score.",
+                   style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=ladder_table(tier_d_df),
+                    columns=[{"name": c, "id": c} for c in ["Gene","Score","TPM","Surface","Drugs","Top Drugs"]],
                     style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
                     style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
                                  "padding": "6px", "fontFamily": "monospace", "fontSize": "clamp(9px, 1.3vw, 12px)", "whiteSpace": "normal"},
