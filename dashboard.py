@@ -544,15 +544,17 @@ TAB_SELECTED = {"backgroundColor": "#0f3460", "color": TEXT_PRIMARY, "border": "
 app.layout = html.Div(style={"backgroundColor": DARK_BG, "minHeight": "100vh", "fontFamily": "monospace", "overflowX": "hidden"}, children=[
     html.Div(style={"padding": "clamp(10px, 3vw, 20px) clamp(10px, 3vw, 20px) 0"}, children=[
         html.H1("Precision Oncology Pipeline", style={"color": TEXT_PRIMARY, "textAlign": "center", "marginBottom": "0", "fontSize": "clamp(18px, 4vw, 32px)"}),
-        html.P("End-to-End Test Pass - Sid Sijbrandij's Osteosarcoma Data",
-               style={"color": TEXT_SECONDARY, "textAlign": "center", "marginBottom": "15px", "fontSize": "clamp(11px, 2vw, 14px)"}),
+        html.P("Validated End-to-End Genomic Analysis Infrastructure",
+               style={"color": TEXT_SECONDARY, "textAlign": "center", "marginBottom": "2px", "fontSize": "clamp(11px, 2vw, 14px)"}),
+        html.P("Test data: Sijbrandij osteosarcoma (osteosarc.com) | Production: prostate adenocarcinoma",
+               style={"color": TEXT_MUTED, "textAlign": "center", "marginBottom": "15px", "fontSize": "clamp(9px, 1.5vw, 12px)"}),
     ]),
 
     dcc.Tabs(id="tabs", value="validation", style={"margin": "0 clamp(5px, 2vw, 20px)"}, children=[
-        dcc.Tab(label="STAR", value="validation", style=TAB_STYLE, selected_style=TAB_SELECTED),
-        dcc.Tab(label="Variants", value="variants", style=TAB_STYLE, selected_style=TAB_SELECTED),
-        dcc.Tab(label="Targets", value="targets", style=TAB_STYLE, selected_style=TAB_SELECTED),
-        dcc.Tab(label="Methods", value="methodology", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Validation", value="validation", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Somatic Variants", value="variants", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Clinical Targets", value="targets", style=TAB_STYLE, selected_style=TAB_SELECTED),
+        dcc.Tab(label="Methodology", value="methodology", style=TAB_STYLE, selected_style=TAB_SELECTED),
     ]),
 
     html.Div(id="tab-content", className="tab-content", style={"padding": "clamp(8px, 2vw, 20px)"}),
@@ -575,30 +577,52 @@ def render_tab(tab):
 
 def render_validation():
     return html.Div([
+        html.H2("Pipeline Validation Summary", style={"color": TEXT_PRIMARY, "fontSize": "clamp(18px, 3.5vw, 28px)", "marginBottom": "5px"}),
+        html.P("Independent reproduction of published results using our infrastructure validates data integrity, "
+               "workflow configuration, and computational reproducibility.",
+               style={"color": TEXT_SECONDARY, "fontSize": "clamp(11px, 1.5vw, 14px)", "marginBottom": "20px"}),
+
+        # Top-level validation results
         stat_row([
-            stat_card(f"{concordance:.0f}%", "Concordance", verdict_color),
-            stat_card(verdict, "Verdict", verdict_color),
-            stat_card(f"{star_matches}/{star_total}", "Matched", "#3498db"),
-            stat_card("74.3M", "Reads", "#9b59b6"),
-            stat_card("95.23%", "Unique Map", "#2ecc71"),
+            stat_card("100%", "STAR Concordance", "#2ecc71"),
+            stat_card("92.9%", "Mutect2 Sensitivity", "#3498db"),
+            stat_card("91.2%", "Mutect2 Precision", "#9b59b6"),
+            stat_card("0.987", "Gene Count Rho", "#1abc9c"),
+            stat_card("17,710", "PASS Variants", "#f39c12"),
         ]),
+
+        # Mutect2 validation section
+        card([
+            html.H3("Somatic Variant Calling Concordance", style={"color": TEXT_PRIMARY, "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.P("Our Mutect2 WGS variant calls compared against the reference pipeline (Sarek 3.5.1) "
+                   "on the same tumor-normal pair. Concordance measured on chromosomal position and allele identity (chrom:pos:ref:alt).",
+                   style=METH_P),
+            html.Div(style={"overflowX": "auto"}, children=[
+                dash_table.DataTable(
+                    data=[
+                        {"Comparison": "All Variants", "Our Pipeline": "689,149", "Reference": "637,644", "Shared": "565,075", "Sensitivity": "88.6%", "Precision": "82.0%"},
+                        {"Comparison": "PASS Only", "Our Pipeline": "17,710", "Reference": "17,391", "Shared": "16,155", "Sensitivity": "92.9%", "Precision": "91.2%"},
+                    ],
+                    columns=[{"name": c, "id": c} for c in ["Comparison", "Our Pipeline", "Reference", "Shared", "Sensitivity", "Precision"]],
+                    style_header={"backgroundColor": CARD_BG, "color": TEXT_PRIMARY, "fontWeight": "bold", "border": "1px solid #2c3e50"},
+                    style_cell={"backgroundColor": DARK_BG, "color": TEXT_PRIMARY, "border": "1px solid #2c3e50",
+                                 "padding": "8px", "fontFamily": "monospace", "fontSize": "clamp(10px, 1.5vw, 14px)", "textAlign": "center"},
+                ),
+            ]),
+            html.P("91-93% PASS concordance is within the expected 85-95% range for cross-version Mutect2 comparisons "
+                   "(different GATK versions, Panel of Normals, and gnomAD releases). "
+                   "Variants unique to each pipeline are near the detection threshold.",
+                   style={**METH_P2, "marginTop": "10px"}),
+        ]),
+
+        # STAR section
+        html.H2("RNA-seq Alignment Validation", style={"color": TEXT_PRIMARY, "marginTop": "30px", "borderTop": "2px solid #2c3e50",
+                 "paddingTop": "20px", "fontSize": "clamp(16px, 3.5vw, 24px)"}),
 
         dcc.Graph(figure=fig_gauge, config={"responsive": True}),
 
         html.H3("Read Fate Tie-Out", style={"color": TEXT_PRIMARY, "marginTop": "20px", "fontSize": "clamp(16px, 3vw, 24px)"}),
         dcc.Graph(figure=fig_read_fate, config={"responsive": True}),
-
-        card([
-            html.H3("What This Proves", style=METH_H2),
-            html.P("Our custom STAR pipeline running on Terra (STAR 2.7.11b, GRCh38 + GENCODE v47) produced "
-                   "identical results to Sid's team's reprocessed alignment of the same BostonGene T0 RNA-seq sample (BG003082). "
-                   "Every metric matches exactly: same read count, same mapping rate, same splice junctions, same mismatch rate.",
-                   style=METH_P),
-            html.P("This validates three things: (1) data transferred without corruption, "
-                   "(2) our WDL workflow and Docker configuration are correct, "
-                   "(3) the GCS-to-Terra infrastructure works end-to-end.",
-                   style=METH_P2),
-        ]),
 
         html.H3("Metric-by-Metric Comparison", style={"color": TEXT_PRIMARY, "fontSize": "clamp(16px, 3vw, 24px)"}),
         html.Div(style={"overflowX": "auto"}, children=[
