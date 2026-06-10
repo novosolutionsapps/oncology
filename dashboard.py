@@ -556,6 +556,20 @@ app.layout = html.Div(style={"backgroundColor": DARK_BG, "minHeight": "100vh", "
                style={"color": TEXT_MUTED, "textAlign": "center", "marginBottom": "15px", "fontSize": "clamp(9px, 1.5vw, 12px)"}),
     ]),
 
+    # Clinical-safety banner — these results are a TEST validation, not patient data.
+    html.Div(
+        style={"backgroundColor": "#7b241c", "color": "#fdebd0",
+               "padding": "10px clamp(10px, 3vw, 20px)", "margin": "0 clamp(5px, 2vw, 20px) 14px",
+               "borderRadius": "6px", "border": "1px solid #e74c3c", "textAlign": "center",
+               "fontWeight": "bold", "fontSize": "clamp(10px, 1.8vw, 13px)"},
+        children=[
+            html.Span("⚠ TEST DATA — NOT FOR CLINICAL USE. "),
+            html.Span("Results come from a public osteosarcoma validation sample (Sid Sijbrandij's "
+                      "open data), not a patient. Nothing here should inform a clinical decision.",
+                      style={"fontWeight": "normal"}),
+        ],
+    ),
+
     dcc.Tabs(id="tabs", value="validation", style={"margin": "0 clamp(5px, 2vw, 20px)"}, children=[
         dcc.Tab(label="Validation", value="validation", style=TAB_STYLE, selected_style=TAB_SELECTED),
         dcc.Tab(label="Somatic Variants", value="variants", style=TAB_STYLE, selected_style=TAB_SELECTED),
