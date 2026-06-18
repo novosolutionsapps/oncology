@@ -1,0 +1,9 @@
+# Keep the image lean; do NOT exclude data/ or variant_review.html (both served).
+.git
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+.env
+.venv/
+venv/
