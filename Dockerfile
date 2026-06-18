@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # App code + data + variant_review.html (served by a Flask route in dashboard.py).
 COPY . .
 
-# Railway injects PORT at runtime. dashboard.py exposes `server = app.server`
-# (same target as the existing Procfile).
+# Railway injects PORT at runtime. dashboard.py exposes `server = app.server`.
+# gunicorn.conf.py reads PORT via os.environ (NOT shell expansion) to avoid the
+# "'$PORT' is not a valid port number" crash when the start command runs via exec.
 ENV PORT=8080
-CMD ["sh", "-c", "gunicorn dashboard:server --bind 0.0.0.0:${PORT} --timeout 120"]
+CMD ["gunicorn", "dashboard:server", "-c", "gunicorn.conf.py"]

@@ -3,5 +3,8 @@
   "build": {
     "builder": "DOCKERFILE",
     "dockerfilePath": "Dockerfile"
+  },
+  "deploy": {
+    "startCommand": "gunicorn dashboard:server -c gunicorn.conf.py"
   }
 }
