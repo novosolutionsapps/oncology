@@ -1044,9 +1044,10 @@ def render_ladder():
                 html.Tr([html.Td("Cancer gene census", style=METH_TD_L), html.Td("COSMIC v103 GRCh38 (763 curated cancer genes)", style=METH_TD_R)]),
                 html.Tr([html.Td("Clinical trials", style=METH_TD_L), html.Td("ClinicalTrials.gov API v2 (50 recruiting, osteosarcoma/sarcoma)", style=METH_TD_R)]),
                 html.Tr([html.Td("OncoKB", style={**METH_TD_L, "borderBottom": "none"}),
-                         html.Td("PENDING — demo API only (78 entries). Full integration will add FDA evidence levels (1-4) "
-                                 "and may significantly alter tier assignments.",
-                                 style={**METH_TD_R, "borderBottom": "none", "color": "#e74c3c"})]),
+                         html.Td("OncoKB v7.2 full knowledge base -> oncogenicity + FDA evidence levels (1-4) per variant for the "
+                                 "configured tumor type. This osteosarcoma validation sample has 0 SNV-actionable variants "
+                                 "(expected; structural/CNV-driven cancer).",
+                                 style={**METH_TD_R, "borderBottom": "none"})]),
             ]),
         ]),
     ])
