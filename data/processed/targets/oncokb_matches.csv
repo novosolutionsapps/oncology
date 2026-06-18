@@ -1,12 +1,115 @@
-gene,variant,protein_change,level,cancer_type,drugs,description,source
-TP53,Y220C,Y220C,3A,All Solid Tumors,Rezatapopt,"Rezatapopt is an orally available, small-molecule structural corrector specific for the Y220C-mutant p53 protein. There are promising clinical data of response to rezatapopt in patients with TP53 Y220",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,AML with Myelodysplasia-Related Changes,,"This assertion is supported by (PMID: 25860933, 25412851).",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Acute Myeloid Leukemia,,"This assertion is supported by (PMID: 22186996, 18596741).",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Chronic Lymphocytic Leukemia/Small Lymphocytic Lymphoma,,"This assertion is supported by (PMID: 19188171, 20697090, 24652989, 23243274, 24004666).",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Essential Thrombocythemia,,"This assertion is supported by (PMID: 22887079, 29296692, 24478400).",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Myelodysplastic Syndromes,,"This assertion is supported by (PMID: 24220272, 21714648, 25092778).",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Myeloproliferative Neoplasms,,"This assertion is supported by (PMID: 22887079, 25516983, 22052707).",DRIVER
-TP53,Deletion,Deletion,Px1,Plasma Cell Myeloma,,"This assertion is supported by (PMID: 9680348, 18337559, 17209057 Abstract: Hofste op Bruinink, D. et al. Abstract# Blood 128:3271, 2017. http://www.bloodjournal.org/content/128/22/3271?sso-checked=tr",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Primary Myelofibrosis,,"This assertion is supported by (PMID: 22887079, 25516983, 22052707).",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px1,Therapy-Related Myeloid Neoplasms,,"This assertion is supported by (PMID: 25412846, 25952993).",DRIVER
-TP53,Oncogenic Mutations,Oncogenic Mutations,Px3,Mantle Cell Lymphoma,,"This assertion is supported by (PMID: 28819011, 26022239, 24684350, 8639789, 7579380).",DRIVER
+gene,mutation,oncogenic,highest_level,highest_resistance,mutation_effect
+EFHD2,K118I,Unknown,,,Unknown
+ZNF436,S207C,Unknown,,,Unknown
+PUM1,S296I,Unknown,,,Unknown
+SORT1,Q750H,Unknown,,,Unknown
+PIP5K1A,G461X,Unknown,,,Unknown
+LCE1B,P14S,Unknown,,,Unknown
+IVL,P176L,Unknown,,,Unknown
+ARHGEF11,R1179W,Unknown,,,Unknown
+ATP1A2,P479L,Unknown,,,Unknown
+STYXL2,P338A,Unknown,,,Unknown
+SUCO,nan,Unknown,,,Unknown
+CENPL,P26H,Unknown,,,Unknown
+CTSE,C60F,Unknown,,,Unknown
+OBSCN,G4303V,Unknown,,,Unknown
+OR2T12,Y276H,Unknown,,,Unknown
+CAPN14,R90G,Unknown,,,Unknown
+TRABD2A,Q36H,Unknown,,,Unknown
+IL1RL2,P545PX,Unknown,,,Unknown
+CFAP221,N19NFFX,Unknown,,,Unknown
+CFAP221,N20ITPLIVFLAPSTGVTIALLTPFHTEVVTDFILFHID,Unknown,,,Unknown
+LY75,S1097C,Unknown,,,Unknown
+SRGAP3,Q130*,Unknown,,,Unknown
+BTD,F423V,Unknown,,,Unknown
+CDHR18P,nan,Unknown,,,Unknown
+PRICKLE2,R78K,Unknown,,,Unknown
+ROBO2,N1068K,Unknown,,,Unknown
+ABI3BP,R423M,Unknown,,,Unknown
+SLC35G2,L388F,Unknown,,,Unknown
+NLGN1,A503V,Unknown,,,Unknown
+EVC,S961*,Unknown,,,Unknown
+DEFB131A,Q67K,Unknown,,,Unknown
+NDST4,G529W,Unknown,,,Unknown
+PRDM9,W703R,Unknown,,,Unknown
+DIAPH1,K1174N,Unknown,,,Unknown
+WWC1,V179G,Unknown,,,Unknown
+DRD1,S417P,Unknown,,,Unknown
+CDHR2,L10H,Unknown,,,Unknown
+SLC17A4,W89R,Unknown,,,Unknown
+H1-2,AAKPKV197V,Unknown,,,Unknown
+ITPR3,A2115S,Unknown,,,Unknown
+DNAH8,K887*,Unknown,,,Unknown
+EYS,D346G,Unknown,,,Unknown
+CD109,R1310M,Unknown,,,Unknown
+CDC40,W475S,Unknown,,,Unknown
+FZD9,R226H,Unknown,,,Unknown
+BAZ1B,nan,Unknown,,,Unknown
+PCLO,T2960N,Unknown,,,Unknown
+EXOC4,S34I,Unknown,,,Unknown
+RP1L1,L792V,Unknown,,,Unknown
+BMP1,S366T,Unknown,,,Unknown
+EBF2,K218R,Unknown,,,Unknown
+VPS13B,S3731F,Unknown,,,Unknown
+SPAG1,R406X,Unknown,,,Unknown
+FAM83H,G306GX,Unknown,,,Unknown
+GLIS3,I622X,Unknown,,,Unknown
+GLIS3,PHH619X,Unknown,,,Unknown
+SPATA31F1,H283Q,Unknown,,,Unknown
+RECK,E221D,Unknown,,,Unknown
+FRMPD1,D1480E,Unknown,,,Unknown
+SMC5,R371K,Unknown,,,Unknown
+CNTRL,E464*,Unknown,,,Unknown
+DAB2IP,nan,Unknown,,,Unknown
+GTF3C5,EEEE430-,Unknown,,,Unknown
+DBH,H457Y,Unknown,,,Unknown
+GDF2,K329M,Unknown,,,Unknown
+PCDH15,R678M,Unknown,,,Unknown
+NAV2,A1753V,Unknown,,,Unknown
+FJX1,W245C,Unknown,,,Unknown
+PPP6R3,A687S,Unknown,,,Unknown
+OR10G8,L42PX,Unknown,,,Unknown
+CCDC15,R819MX,Unknown,,,Unknown
+NTF3,K56NX,Unknown,,,Unknown
+OR10P1,T204N,Unknown,,,Unknown
+AGAP2,S187Y,Unknown,,,Unknown
+CKAP4,GGGGGGKSSSSSSASAAAAAAAASSSA72X,Unknown,,,Unknown
+ABTB3,Q974*,Unknown,,,Unknown
+DDX54,R141Q,Unknown,,,Unknown
+EP400,G155E,Unknown,,,Unknown
+SLC7A1,G369R,Unknown,,,Unknown
+EDNRB,I247L,Unknown,,,Unknown
+MYO16,P1499S,Unknown,,,Unknown
+COL4A2,G372E,Unknown,,,Unknown
+TEP1,E348D,Unknown,,,Unknown
+KLHL33,E395V,Unknown,,,Unknown
+JPH4,Y149*,Unknown,,,Unknown
+FBXO33,N147K,Unknown,,,Unknown
+DYNC1H1,V314I,Unknown,,,Unknown
+DYNC1H1,Q3267H,Unknown,,,Unknown
+SHC4,G488E,Unknown,,,Unknown
+CGNL1,LLEQKSK612LX,Unknown,,,Unknown
+ANKDD1A,R30G,Unknown,,,Unknown
+NR2F2,G65V,Unknown,,,Unknown
+PRKCB,G425E,Unknown,,,Unknown
+ZNF764,S63N,Unknown,,,Unknown
+TVP23B,K175M,Unknown,,,Unknown
+KRT37,R250K,Unknown,,,Unknown
+KCNH4,P814S,Unknown,,,Unknown
+TTLL6,G31R,Unknown,,,Unknown
+NME1,G24R,Unknown,,,Unknown
+ACE,S732T,Unknown,,,Unknown
+RNF157,P291S,Unknown,,,Unknown
+RNF213,IL1119I,Unknown,,,Unknown
+SERPINB10,Q10H,Unknown,,,Unknown
+ABCA7,G2119R,Unknown,,,Unknown
+DOT1L,W611*,Unknown,,,Unknown
+C3,G814V,Unknown,,,Unknown
+OR10H1,S112Y,Unknown,,,Unknown
+NLRP4,H639D,Unknown,,,Unknown
+MYH7B,R372W,Unknown,,,Unknown
+CASTOR1,nan,Unknown,,,Unknown
+FRMPD4,L873M,Unknown,,,Unknown
+ZNF674,L176F,Unknown,,,Unknown
+TAF7L,E23X,Unknown,,,Unknown
+XPNPEP2,R371L,Unknown,,,Unknown

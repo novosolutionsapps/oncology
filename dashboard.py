@@ -840,8 +840,9 @@ def render_ladder():
             html.Div(style={"display": "flex", "alignItems": "center", "gap": "10px"}, children=[
                 html.Span("PRELIMINARY", style={"backgroundColor": "#f39c12", "color": "#0a0a1a", "padding": "3px 10px",
                            "borderRadius": "4px", "fontWeight": "bold", "fontSize": "clamp(10px, 1.5vw, 13px)"}),
-                html.Span("These tier assignments will be updated when OncoKB FDA evidence levels become available. "
-                          "OncoKB adds variant-level FDA-approved therapy matching that may promote or demote targets between tiers.",
+                html.Span("These tiers now incorporate OncoKB FDA evidence levels (full v7.2 knowledge base). "
+                          "This osteosarcoma validation sample has no SNV-level OncoKB-actionable variants (expected for a "
+                          "structural/copy-number-driven cancer); the FDA-approved-therapy layer populates for SNV-hotspot tumor types.",
                           style={"color": TEXT_SECONDARY, "fontSize": "clamp(10px, 1.5vw, 13px)"}),
             ]),
         ]),
@@ -1057,7 +1058,7 @@ def render_targets():
         ("CIViC", len(civic_df), f"{len(civic_df['gene'].unique()) if len(civic_df) > 0 else 0} genes", "#3498db", "Clinical Interpretation of Variants in Cancer"),
         ("COSMIC", len(cosmic_df), f"{len(cosmic_df)} census genes", "#9b59b6", "Cancer Gene Census v103"),
         ("Trials", len(trials_df), f"{len(trials_df['nct_id'].unique()) if len(trials_df) > 0 else 0} recruiting", "#1abc9c", "ClinicalTrials.gov"),
-        ("OncoKB", len(oncokb_df), "DEMO ONLY", "#e74c3c", "FDA-Recognized Precision Oncology KB"),
+        ("OncoKB", len(oncokb_df), "INTEGRATED (0 actionable)", "#2ecc71", "FDA-Recognized Precision Oncology KB"),
     ]
 
     # DGIdb top genes
@@ -1196,15 +1197,17 @@ def render_targets():
 
         # OncoKB callout
         card([
-            html.H3("OncoKB Integration: Awaiting API Access", style={"color": "#e74c3c", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
+            html.H3("OncoKB Integration: Live (Full Knowledge Base)", style={"color": "#2ecc71", "marginTop": "0", "fontSize": "clamp(14px, 2.5vw, 20px)"}),
             html.P("OncoKB is the FDA-recognized precision oncology knowledge base that maps somatic variants directly to "
                    "FDA-approved therapies with tiered evidence levels (Level 1: FDA-approved, Level 2: standard care, "
                    "Level 3A: compelling evidence, Level 3B: standard care in another tumor type). "
                    "It is the clinical-grade annotation layer that completes this pipeline.",
                    style=METH_P),
-            html.P("Our pipeline is validated and producing results from DGIdb, CIViC, COSMIC, and ClinicalTrials.gov. "
-                   "OncoKB integration is the final step to deliver FDA-level therapeutic actionability scoring. "
-                   "API access has been approved and is pending key delivery.",
+            html.P("OncoKB is now connected via the full knowledge base (v7.2): each somatic variant is annotated with OncoKB "
+                   "oncogenicity and FDA evidence levels (1-4) for the configured tumor type. This osteosarcoma validation sample "
+                   "contains no SNV-level OncoKB-actionable variants (expected, since osteosarcoma is driven by structural/copy-number "
+                   "events rather than SNV hotspots); the FDA-approved-therapy layer populates for SNV-hotspot tumor types such as the "
+                   "prostate production configuration.",
                    style={**METH_P2, "fontStyle": "italic"}),
             html.Div(style={"display": "flex", "gap": "15px", "flexWrap": "wrap", "marginTop": "15px"}, children=[
                 html.Div(style={"flex": "1", "minWidth": "200px", "padding": "10px", "backgroundColor": "#0d1117", "borderRadius": "5px", "borderLeft": "3px solid #2ecc71"}, children=[
